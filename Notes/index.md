@@ -2,6 +2,9 @@
 
 ## Notes de cours Master Informatique
 
+> Si vous voulez ajouter du contenu, corriger des fautes etc... 
+> L'ensemble du contenu est accessible ici : https://github.com/chocorion/Note-de-cours
+
 ### Semestre 7
 
 [Calcul et Complexité](http://robin.navarro.emi.u-bordeaux.fr/CalculabiliteComplexite.html)
