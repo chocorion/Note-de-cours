@@ -394,3 +394,16 @@ On considère un programe $A \in NP$ quelconque et on montre $A \le_p NP$.
 * Etant donné un circuit booléen C avec entrées $x_1, ..., x_k, y_1, ..., y_m$ et une évaluation $val : \{x_1, ..., x_k\} \leftarrow \{0, 1\}$ on construit une formule booléenne $\varphi_{val}$, ded taille polynomiale en taille (C), tel que :
     * $\varphi_{val}$ est satisfaisable si et seulement si *il existe* une valuation $\tilde{val} : \{y_1, ..., y_m\} \rightarrow \{0, 1\}$ tel que C s'évalue à 1 sous la valuation $<val, \tilde{val}>$.
 
+
+## Calculabilité
+
+L'ensemble $D$ des suites binaires infinies n'est pas dénombrable.
+
+On suppose par l'absurde que $D$ est dénombrable, et on construit une suite binaire infinie qui n'apparait pas dans l'énumération supposée.
+$$
+    D = \{S_0, S_1, S_2, ...\}
+$$
+$S_i$ étant une suite binaire infinie.
+On construit une suite en prenant la diagonale : $S_n = 1 - S_n(n)$.
+
+Par définition, cette suite est différente de tous les $S_i$. C'est absurde.

@@ -456,3 +456,120 @@ On transforme $\tilde{g}(\tilde{x})$ en $\tilde{\tilde{g}}(\tilde{\tilde{x}})$ t
 $\tilde{g}(\tilde{x}) = \tilde{\tilde{g}}(\tilde{\tilde{x}}) \forall \tilde{x} \in \tilde{C_1} \Rightarrow \tilde{\tilde{C_1}} = \tilde{C_1}$
 
 Il faut transformer $\tilde{\tilde{x}} \in \tilde{\tilde{C_2}}$ tel que $-\tilde{g}(\tilde{x}) = \tilde{\tilde{g}}(\tilde{\tilde{x}}) \Rightarrow \tilde{\tilde{C_2}} = (-1) * \tilde{C_2}$.
+
+### Rappel du dernier cours :
+
+$Obs = C_1 \cup C_2$. Le problème est linéairement séparable si $\exist\ (\underbrace{w}_{\in \R^N}, \underbrace{w_0}_{\in \R})$ si et seulement si 
+* $\forall x \in C_1, w^Tx + w_0 > 0$
+* $\forall x \in C_2, w^Tx + w_0 \le 0$
+
+On transforme le problème en cherchant $\tilde{w} = \begin{bmatrix}w_0\\w\end{bmatrix}$
+
+$C_1 \rightarrow \tilde{C_1} \rightarrow x \in C_1 \tilde{x} = \tilde{x}\begin{bmatrix}1\\x\end{bmatrix}$
+   
+$C_2 \rightarrow \tilde{C_2} \rightarrow x \in C_2 \tilde{x} = \tilde{x}\begin{bmatrix}1\\x\end{bmatrix}$
+
+Si et seulement si : 
+* $\forall \tilde{x} \in \tilde{C}_1, \tilde{w}^T\tilde{x} > 0$
+* $\forall \tilde{x} \in \tilde{C}_2, \tilde{w}^T\tilde{x} \le 0$
+
+On transforme le problème $\tilde{\tilde{w}}^T = \tilde{w}^T$
+
+* $\tilde{C_1} \rightarrow \tilde{\tilde{C_1}}$ avec $\tilde{C_1} = \tilde{\tilde{C_1}}$
+* $\tilde{C_2} \rightarrow \tilde{\tilde{C_2}}$, $\forall \tilde{x} \in \tilde{C_1} \Rightarrow \tilde{\tilde{x}} \in \tilde{\tilde{C_2}}$ avec $\tilde{\tilde{x}} = - \tilde{x}$
+
+$$
+   \forall \tilde{\tilde{x}} \in \tilde{\tilde{C_1}} \cup \tilde{\tilde{C_2}}, \tilde{\tilde{w}}^T \tilde{\tilde{x}} \ge 0
+$$
+
+On passe à un problème indépendant de $C_1$ et de $C_2$.
+
+**Exemple :**
+
+$C_1 = \{(1, 2) (2, 3)\} \rightarrow \tilde{C_1} = \{(1, 1, 2) (1, 2, 3)\}$
+
+$C_2 = \{(1, 1) (3, 2)\} \rightarrow \tilde{C_2} = \{(1, 1, 1) (1, 3, 2)\}$
+
+$\tilde{\tilde{C_1}} = \tilde{C_1}$
+
+$\tilde{\tilde{C_2}} = \{(-1, -1, -1) (-1, -3, -2)\}$
+
+
+On change les notations : 
+$\tilde{\tilde{w}} = a, \tilde{\tilde{x}} = y$
+
+$\tilde{\tilde{w}}^T = a^T$
+
+$$
+   \forall y \in \tilde{\tilde{Obs}} = \tilde{\tilde{C_1}} \cup \tilde{\tilde{C_2}}, a^ty \ge 0
+$$
+
+Si $\exist y \in \tilde{\tilde{Obs}}\ tq\ a^ty < 0:$ a n'est pas solution du problème, y est mal classé par a.
+
+On peut définir $Y_m(a) = \{y \in \tilde{\tilde{obs}}\ tq\ a^Ty < 0\}$. Si a est solution, alors $Y_m(a) = \empty$
+
+On doit trouver une fonction $J(a)$ dont a est solution du problème (séparation linéaire) quand $J(a)$ est minimum.
+
+$$
+J(a) = |Y_m(a)|
+$$
+
+Le problème avec cette fonction, c'est qu'elle est constante par morceau, donc pas de descente de gradient.
+
+$$
+   J(a) = \Sigma_{y \in Y_m(a)} \frac{a^Ty}{||a||}
+$$
+
+$\frac{a^Ty}{||a||}$ est la distance de y à l'hyperplan définie par a.
+$$
+   J(a) = -\Sigma_{y \in Y_m(a)} \frac{a^Ty}{||a||}
+$$
+Passage d'un problème de maximisation à un problème de minimisation.
+Si $Y_m(a) = 0$, $J(a) = 0$. On passe d'une fonction constante par morceau à une fonction continue par morceau.
+
+Minimiser $J(a) = -\Sigma_{y \in Y_m(a)} \frac{a^Ty}{||a||}$ revient à minimiser $J(a) = -\Sigma_{y \in Y_m(a)} a^Ty$. On a donc $J(a) = -\Sigma_{y \in Y_m(a)} a^Ty$.
+
+On peut calculer $\frac{\partial J(a)}{\partial a} = -\Sigma_{y \in Y_m(a)} y$.
+
+Le problème est qu'on a pas d'expressin analytique de $Y_m(a)$. On doit passer en revue l'ensemble des classes de l'observation. On va utiliser la descente de gradient. On calcul les $Y_m(a)$, tant que $Y_m(a_k) \ne 0$, $a_{k + 1} = a_k + \Sigma y$ (+ car le signe de la dérivée est -).
+
+**Exemple :**
+
+On a $\tilde{\tilde{obs}} = \{(1, 1, 2) (1, 2, 3) (-1, -1, -1) (-1, -3, -2)\}$
+$a_0 = [1, -2, 2]$
+
+
+* $\underbrace{[1\ -2\ 2]}_{a_0^T} \underbrace{\begin{bmatrix}1\\1\\2\end{bmatrix}}_{y_1} = 3$, $y_1$ est bien classé.
+* $a_0^Ty_2 = 3$
+* $a_0^Ty_3 = -1$, $y_3$ mal classé, on le rajoute à $Y_m(a_0)$
+* $a_0^Ty_4 = 1$
+
+$Y_m(a_0) = \{-1 -1 -1\}$
+
+$a_1 = a_0 + \Sigma_y = \begin{bmatrix}1\\-2\\2\end{bmatrix} + \begin{bmatrix}-1\\-1\\-1\end{bmatrix} = \begin{bmatrix}0\\-1\\1\end{bmatrix}$
+
+etc...
+
+Pour faire évoluer $a_k$, il y a deux stratégies : 
+* Soit on calcul $Y_m(a)$ sur tout l'observation
+* Soit on prends le premier mal classé et on met à jour
+
+Si le problème est linéairement séparable, l'algorithme converge vers une des solutions.
+Si le problème n'est pas linéairement séparable, c'est une boucle infinie.
+
+Une solution peut être d'atténuer la condition.
+$$
+   while(\eta(k) \Sigma_y > \epsilon)\\
+   a_{k + 1} = a_k + \eta(k) \Sigma_y
+$$
+
+Dans le cas ou le problème n'est pas linéairement séparable, la solution dépend de $a_0$ et de $\eta(k)$.
+
+On a cherhcé un a tel que $\forall y \in \tilde{\tilde{obs}}, a^Ty > 0$
+
+Soit $b \in \R^{n - 1}$, on cherche un a tel que $Ya = b$
+Il y a une solution si le nombre d'éléments de l'observation est égal à la dimension de l'espace que définit a. Si $x \in obs, x \in \R^2, y \in \tilde{\tilde{obs}}, y \in \R^3$, il faut 3 éléments dans l'observation.
+
+Si on a 3 inconnus, si on a 200 observations, il y a 200 équations à 3 inconnues, $Ya \ne b, Ya \simeq b$.
+
+$J(a) = ||Ya - b||^2$
