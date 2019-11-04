@@ -373,7 +373,26 @@ $$
 $$
 $d$, espace des paramètres de l'observation.
 
-## Analyse discriminante
+
+
+### Résumé ACP td
+
+$$
+n\ lignes\underbrace{\begin{pmatrix}C_{1, 1} ... C_{i, d}\\...\\C_{n, 1} ... C_{n, d}\end{pmatrix}}_{d\ caractéristiques} * d\ lignes\underbrace{\begin{pmatrix}e_{1, 1} ... e_{1, k}\\...\\e_{d, 1} ... e_{d, k}\end{pmatrix}}_k = VT\ projeté (n * k)
+$$
+
+En ACP, on cherche dans un nuage de point l'axe de plus grande variance. C'est l'axe qui garde au mieux les distances entre les points, car c'est la distance entre les points qui refletent l'information. On cherche le vecteur propre de plus grande valeur propre de la matrice de covariance. $AX = \lambda X$, matlab `eig()`
+
+#### Comment faire :
+
+* Centrer les caractéristiques (on place le repère au millieu) en soustrayant la moyenne
+* Calculer la matrice de covariance
+* Prendre les k vecteur propre correspondant aux k plus grandes valeurs propre
+* On projet $\rightarrow$ On multiplie notre vérité terrain par les vecteurs propres
+
+On applique la même projection sur tout la véritain terrain, pas par classes !
+
+## Analyse discriminante ACI
 
 > On cherche la projection qui sépare au mieux les classes.
 
@@ -436,7 +455,33 @@ Dans ce cas, $S_w^{-1}S_B^{-1}$ est de rang $N - 1$.
 * $J(w) = \frac{w^T S_b w}{w^T S_w w} = \frac{(\hat{\mu}_1 - \hat{\mu}_2)^2}{\hat{S}_1^2 - \hat{S}_k^2}$
 * N classes, on peut redimensionner de 1 à N - 1
 
+### Résumé ACI td
+
+Le but : Séparer au mieux les classes. On cherche donc à éloigner le plus possible les nuages de points. On cherche donc un écart des moyennes maximums, avec une variance minimal afin d'avoir les points proche de la moyenne.
+$$
+\frac{\tilde{\mu}_1 - \tilde{\mu}_2}{\tilde{\sigma_1}^2 + \tilde{\sigma_2}^2}
+$$
+On cherche à maximiser ce résultat.
+
+
+
+#### Comment faire :
+
+On cherche une matrice de projection $w$. On Calcul les termes suivants:
+
+* $S_w$ = Somme des matrices de covariance, il y en a une par classe. C'est une matrice de dimension $d*d$
+* $S_b$ = $\Sigma_i^{nb} nb_i (\mu_i - \mu)^T(\mu_i - \mu)$, nb étant le nombre d'individu, $\mu_i$ la moyenne de l'individu, $\mu$ moyenne individu de chaque classe (les $\mu$ sont des vecteurs ligne)
+
+On calcul $S_w^{-1} * S_b$, dont on prends les vecteurs propre (axe d'inertie maximal). Il y en a C - 1, C étant le nombre de classe. Les vecteurs propre sont comme pour l'ACP triés par valeur propre. Les vecteurs propre sont notre matrice de projection.
+
+##### Cas particulier à 2 classes
+
+Dans le cas ou nous avons seulement 2 classes, $w = S_w^{-1}(\mu_1 - \mu_2)^T$.
+
+
+
 ## Classifieur linéaire
+
 VT a n classes, on cherche un ensemble d'hyperplan qui séparent les classes.
 Problème à deux classes peut srvir pour problème à N classes.
 
@@ -466,7 +511,7 @@ $Obs = C_1 \cup C_2$. Le problème est linéairement séparable si $\exist\ (\un
 On transforme le problème en cherchant $\tilde{w} = \begin{bmatrix}w_0\\w\end{bmatrix}$
 
 $C_1 \rightarrow \tilde{C_1} \rightarrow x \in C_1 \tilde{x} = \tilde{x}\begin{bmatrix}1\\x\end{bmatrix}$
-   
+
 $C_2 \rightarrow \tilde{C_2} \rightarrow x \in C_2 \tilde{x} = \tilde{x}\begin{bmatrix}1\\x\end{bmatrix}$
 
 Si et seulement si : 
@@ -573,3 +618,4 @@ Il y a une solution si le nombre d'éléments de l'observation est égal à la d
 Si on a 3 inconnus, si on a 200 observations, il y a 200 équations à 3 inconnues, $Ya \ne b, Ya \simeq b$.
 
 $J(a) = ||Ya - b||^2$
+
