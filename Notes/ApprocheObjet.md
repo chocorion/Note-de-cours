@@ -816,7 +816,7 @@ public class AgendaService {
 
 **Repository(save/load) / Factory**
 
-**DAO** version des entity avec seulement les datas, dans le domain.
+**DTO** version des entity avec seulement les datas, dans le domain. Data Transfert Object
 
 ```java
 package domain;
@@ -834,7 +834,157 @@ package infra;
 public class AgendaRepositoryImpl implements AgendaRepository {
     void save(Agenda agenda) {
         // On a besoin de l'état du rendez-vous, dans une forme qu'on ne peut changer
-        // DAO, data access objet
+        // DTO, data transfert objet
     }
 }
 ```
+
+## Cours 9 : CQRS (la couche application)
+
+> Les 4 classes à l'examen, pouvoir les réécrire
+
+**Exemple** Le jeu d'échec
+
+| Aggregate | Entity | VO    | Repository |
+| --------- | ------ | ----- | ---------- |
+| Game      | Case   | Piece | GameRep    |
+
+L'*UI* doit intéragir avec les objets du domain. Les interractions passent par la couche **application**. Cette couche contient donc du code qui permet la manipulation efficace des concepts métiers. Dans notre exemple, à chaque fois que l'on fait un mouvement, on sauvegarde. C'est un service de la couche application, pas un service métier. 
+
+```java
+public class moveAutoSave {
+    void move();
+    void save();
+}
+```
+
+* Si c'est du code pour *l'autorité*, c'est dans la couche domain (est-ce que je peux bouger cette pièce ici ?). 
+* Si c'est du code pour l'efficacité, c'est dans la couche application. (temps de traitement, rapidité de la réponse (*async*))
+
+
+
+*CQRS* = Command Query Responsability Segregation (Sépariation des responsabilités entre les requêtes et les commandes)
+
+* Query *read only*, peut seulement lire les informations dans le domain.
+* Command *write*, écrire des informations dans le domain. Ils doivent être **asynchrone**.
+
+### Command
+
+```java
+package application;
+
+public class ServiceApplication {
+    GameRepository gameRepository;
+    
+    public void moveAutoSave(Location from, Location to,int gameId) {
+        Game game = gameRepository.getGameById(gameId); //Query
+        
+        game.move(from, to);
+        gameRepository.save(game);	//Command
+    }
+}
+```
+
+On peut optimiser la query en utilisant un cache, et la command en utilisant l'asynchrone.
+
+
+
+#### Le pattern Command (GOF)
+
+`moveAutoSave()` va retourner un entier, qui est le numéro de command. On va avoir quelque part une Queue (dispatcher) de command. Il y a des *workers* qui vont récupérer les commandes, et c'est eux qui font le `save()`. On peut mettre plein de workers et mettre du multi-threading.
+
+#### La command
+
+```java
+package application;
+
+public class SaveGameCommand {
+    private GameDTO gameToSave;
+    
+    public SaveGameCommand(GameDTO game) {
+        this.gameToSave = game;
+    }
+    
+    // Tout le code nécessaire à l'exécution de la commande
+    public void exec(GameRepository gameRepository) {
+        gameRepository.save(this.gameToSave);
+    }
+}
+```
+
+
+
+#### Queue / Dispatcher
+
+```java
+package application;
+
+public class CommandQueue {
+    private Set<SaveGameCommand> commandSet;
+    
+    public synchronized void add(SaveGameCommand gameCommand) {
+        this.commandSet.add(gameCommand);
+    }
+    
+    public synchronized SaveGameCommand pop() {
+        return this.commandSet.getLast();
+    }
+}
+```
+
+
+
+#### Worker
+
+```java
+package application;
+
+public class Worker extends Thread{
+    private CommandQueue queue;
+    
+    public void run() {
+        while(true)
+        	this.queue.pop().exec();
+    }
+}
+```
+
+### Query
+
+```java
+package application;
+
+public class GetGameServiceApp {
+    private Game currentGame;
+    
+    public Game getGame(int id) {
+        if (currentGame.id != id) {
+            currentGame = gameRepository.getGameById(id);
+        }   
+        
+        return currentGame;
+    }
+}
+```
+
+
+
+
+
+```java
+package application;
+
+public class ServiceApplication {
+    GameRepository gameRepository;
+    
+    public void moveAutoSave(Location from, Location to,int gameId) {
+        GetGameServiceApp.getGame(gameId); // Query
+        
+        game.move(from, to);
+        
+        SaveGameCommand command = new Command(g); // Command
+        queue.add(command);
+    }
+}
+```
+
