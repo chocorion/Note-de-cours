@@ -128,13 +128,13 @@ Idée : Aller dans le sens de la pente (descente). On regarde le résultat de la
 * < 0 : On avance
 * \> 0 : On recule
 
-$\theta^{n+1} = \theta^n - \vec\nabla J(\theta^n)$. On s'arrête lorsque $||J(\theta^{n + 1})||\ge \epsilon$. Rien ne garantit que le minimum local sera atteint.
+$\theta^{n+1} = \theta^n - \vec\nabla J(\theta^n)$. On s'arrête lorsque $||J(\theta^{n + 1})||\less \epsilon$. Rien ne garantit que le minimum local sera atteint.
 
 $\theta^{n + 1} = \theta^n - \eta(n)\vec\nabla J(\theta^n)$, ou $\eta$ est un coefficient d'accélération/amortissement.
 
 Si nous avons un échantillon de $10^6$, on restreint le gradient à une partie de l'observation.
 
-### Rappel : Shéma général descente de gradient
+### Rappel : Schéma général descente de gradient
 
 $J(\theta)$
 
