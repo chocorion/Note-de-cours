@@ -459,7 +459,7 @@ Dans ce cas, $S_w^{-1}S_B^{-1}$ est de rang $N - 1$.
 
 Le but : Séparer au mieux les classes. On cherche donc à éloigner le plus possible les nuages de points. On cherche donc un écart des moyennes maximums, avec une variance minimal afin d'avoir les points proche de la moyenne.
 $$
-\frac{\tilde{\mu}_1 - \tilde{\mu}_2}{\tilde{\sigma_1}^2 + \tilde{\sigma_2}^2}
+\frac{(\tilde{\mu}_1 - \tilde{\mu}_2)^2}{\tilde{\sigma_1}^2 + \tilde{\sigma_2}^2}
 $$
 On cherche à maximiser ce résultat.
 
