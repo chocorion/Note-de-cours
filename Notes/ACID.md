@@ -155,7 +155,7 @@ Informations :
 * Observation: `{..., (xi, yi), ...}`
 * Forme générale de la fonction, on cherche une fonction de la forme $h(x)=\theta x + \theta_0$.
 
-Pour simplifier les calculs, nous allons utiliser $\tilde \theta = \begin{pmatrix}\theta_0\\.\\.\\.\\\theta_i\end{pmatrix},\ x \rightarrow \tilde x = \begin{pmatrix}1\\.\\.\\.\\x_i\end{pmatrix}$. Nous obtenons alors $h(\tilde x) = \tilde \theta \tilde x$. La fonction d'erreur devient $J(\tilde \theta) = \Sigma_{i = 1}^mx_i^k(\tilde \theta \tilde x_i - y_i)^2$.
+Pour simplifier les calculs, nous allons utiliser $\tilde \theta = \begin{pmatrix}\theta_0\\.\\.\\.\\\theta_i\end{pmatrix},\ x \rightarrow \tilde x = \begin{pmatrix}1\\.\\.\\.\\x_i\end{pmatrix}$. Nous obtenons alors $h(\tilde x) = \tilde \theta \tilde x$. La fonction d'erreur devient $J(\tilde \theta) = \Sigma_{i = 1}^m(\tilde \theta \tilde x_i - y_i)^2$.
 
 $\frac{\partial J(\tilde \theta)}{\partial \tilde \theta_i} = 2 * \Sigma_{i = 1}^mx_i^k(\tilde \theta \tilde x_i - y_i)$ Commen on cherche une minimalisation, on peut ignore le facteur constant *2*.
 
