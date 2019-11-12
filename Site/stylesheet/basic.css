@@ -1,0 +1,50 @@
+body {
+    font-family: 'Vollkorn', serif;
+    color: #333333;
+    text-align: center;
+    font-size: 1.2em;
+}
+
+h1 {
+    font-size: 3em;
+    text-align: center;
+    font-weight: normal;
+    color: #252525;
+}
+
+h2 {
+    font-size: 2em;
+    font-weight: normal;
+    text-align: center;
+}
+
+hr {
+    width: 30%;
+}
+
+ul {
+    list-style: none;
+}
+
+.navBar {
+    list-style-type: none;
+}
+
+.navBar .navElements ul .navItem {
+    float: left;
+    text-decoration: none;
+    display: none;
+}
+
+.navBar .navElements:hover ul .navItem {
+    display: inline;
+}
+
+.navBar .navElements {
+    text-decoration: none;
+    display: inline;
+}
+
+.navItem.selected {
+    color: red;
+}
