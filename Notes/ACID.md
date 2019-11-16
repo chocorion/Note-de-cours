@@ -128,7 +128,7 @@ Idée : Aller dans le sens de la pente (descente). On regarde le résultat de la
 * < 0 : On avance
 * \> 0 : On recule
 
-$\theta^{n+1} = \theta^n - \vec\nabla J(\theta^n)$. On s'arrête lorsque $||J(\theta^{n + 1})||\less \epsilon$. Rien ne garantit que le minimum local sera atteint.
+$\theta^{n+1} = \theta^n - \vec\nabla J(\theta^n)$. On s'arrête lorsque $||J(\theta^{n + 1})|| < \epsilon$. Rien ne garantit que le minimum local sera atteint.
 
 $\theta^{n + 1} = \theta^n - \eta(n)\vec\nabla J(\theta^n)$, ou $\eta$ est un coefficient d'accélération/amortissement.
 
@@ -618,4 +618,167 @@ Il y a une solution si le nombre d'éléments de l'observation est égal à la d
 Si on a 3 inconnus, si on a 200 observations, il y a 200 équations à 3 inconnues, $Ya \ne b, Ya \simeq b$.
 
 $J(a) = ||Ya - b||^2$
+
+#### Résumé dernier cours, problème de séparation linéaire
+
+On cherche un $a$ tel que $\forall y_i \in \tilde{\tilde{Obs}}\ a^Ty_i > 0$.
+
+*Perceptron :* $J(a) = -\Sigma a^Ty_i$, $y_i \in Y_m$
+
+On va transformer le problème en ajoutant un vecteur b, $b \ge 0$. $b = \begin{pmatrix}b_1 > 0\\b_2 > 0\\...\\b_n > 0\end{pmatrix}, n = taille\ \tilde{\tilde{Obs}}$.
+
+On a $Ya - b$, il faut chercher un $a$ qui approxime $b$.
+
+Comment construire $Y \rightarrow$ matrice avec sur chaque ligne les $y_i$, $y_i \in \tilde{\tilde{Obs}}$.
+
+On a la distance entre un élément de l'observation et la projection par a avec, $y_i$, $a$, $\rightarrow a^Ty_i -b_i$. On a donc la fonction d'erreur suivante : $J(a) = \Sigma_{i = 1}^m(a^Ty_i - b_i)^2$.
+
+On peut réécrire cette fonction de manière un peu plus matricielle : $J(a) = ||Ya - b||^2$.
+
+On cherche ensuite la dérivée :
+$$
+   \frac{\partial (J(a))}{\partial(a)} = 2Y^T(Ya - b)
+$$
+$$
+   2Y^T(YA - b) = 0
+$$
+Ce qui est équivalent à écrire : 
+$$
+   \nabla J(a)
+$$
+
+
+Il y a deux solutions possibles :
+* Résolution du système $2Y^T(Ya-b) = 0$
+* Descente de gradient $a^{k + 1} = a^k - \vec{\nabla}J(a^k)$
+
+Pour la première méthode, on a :
+$$
+   Y^T(Ya - b) = 0
+$$
+$$
+   Y^TYa = Y^Tb
+$$
+$$
+   a = (YY^T)^{-1}Y^Tb
+$$
+
+Est-ce que le $a$ obtenue est solution du problème de séparation linéaire ?
+
+$Ya \simeq b$. On a pas forcement de solution, car plus d'équations que d'inconnues.
+$Ya \simeq \begin{bmatrix}b_1 + \epsilon_i\\...\\b_n + \epsilon_n\end{bmatrix}$ on ne peut pas garantir $\epsilon_i = 0\ \forall i$.
+
+Avec cette technique, on a $J(a) = ||Ya - b||^2$. On ne peut pas garantir que le $a$ obtenu sépare linéairement le problème, même si le problème est linéairement séparable.
+
+La solution obtenue dépend du b choisi.
+
+$$
+   b = \begin{bmatrix}
+      1\\1\\...\\1
+   \end{bmatrix}, ||Ya -b||^2 \rightarrow a
+$$
+
+$$
+   b = \begin{bmatrix}
+      2\\2\\...\\2
+   \end{bmatrix}, ||Ya' -b||^2 \rightarrow a'
+$$
+
+Quelle relation entre $a$ et $a'$ ?
+
+Si $a' = 2a$, $||Y2a - \begin{bmatrix}2\\2\\2\end{bmatrix}||^2 = 2^2 ||Ya - \begin{bmatrix}1\\1\\1\end{bmatrix}||^2$.
+
+Si $\forall b_i = cst$, alors la solution peut se ramener à $b = \begin{bmatrix}1\\1\\1\\1\end{bmatrix}$.
+
+Si $a$ est solution pour $b = \begin{bmatrix}1\\1\\1\\1\end{bmatrix}$, alors $a$ est solution pour $b = \begin{bmatrix}cst\\cst\\cst\\cst\end{bmatrix}$.
+
+
+$$
+Ya = \begin{bmatrix}
+   a^Ty_1\\
+   ...\\
+   a^Ty_n
+\end{bmatrix} et\ a^Ty_i < 0
+$$
+
+alors 
+$$
+   Ycst\ a = \begin{bmatrix}
+   cst a^Ty_1\\
+   ...\\
+   cst\ a^Ty_n
+\end{bmatrix} et\ cst\ a^Ty_i < 0
+$$
+
+La valeur de $b_i$ mesure la distance entre la proection du $i^{ème}$ élément et la droite obtenue.
+
+Si $b = \begin{bmatrix}1\\1\\1\\1\\10\end{bmatrix}$, la contribution du $5^{ème}$ élément est moindre que celle des autre (il est plus loin de la droite).
+
+##### Descente de gradient
+
+$répéter$
+
+   $a^{k + 1} = a^k - \underbrace{2Y^T(Ya^k - b)}_{\vec{\nabla}J(a^k)}$
+
+$tant\ que (|a^{k + 1} - a^k| > \epsilon)$
+
+On peut modifier l'algorithme pour rajouter le pas du gradient $\eta(k)$. Problème que l'on peut avoir : $2\underbrace{Y^T(Ya}_{couteux} - b)$.
+On peut alors faire élément par élément en modifiant dans l'algorithme : $a^{k + 1} = a^k - \eta(k)(2y_i((a^Ty_i) - b_i))$.
+
+> A retenir : Deux méthode :
+> * Analytique (pseudo-inverse)
+> * Descente de gradient
+>
+> Dans les deux cas on est pas sure de la solution
+
+-------------
+$C_1 = \{(6, 9), (5, 7)\}$, $C_2 = \{(5, 9), (0, 4)\}$
+
+$Y = \begin{bmatrix}1&6&9\\2&5&7\\-1&-5&-9\\-1&0&-4\end{bmatrix}$, $b = \begin{bmatrix}1\\1\\1\\1\end{bmatrix}$.
+
+$a = \begin{bmatrix}2.1\\1.0\\-0.9\end{bmatrix}$. Le fait d'avoir $-0.9$ ne nous permet pas de dire que $a$ n'est pas solution. Il faut d'abord regarder $Ya$.
+
+
+$Ya = \begin{bmatrix}2.7 + 6 - 0.9 * 9\\2.7 + 5 - 7.0\\-2.7 - 5 + 9 * 0.9\\-2.7 - 0 + 0.9 * 4\end{bmatrix} > 0$. $a$ est donc solution.
+
+
+Changement de critère : $J(a, b) = ||Ya - b||^2$, $b \ge 0$
+* Première solution : On fixe $b$ et on calcul $a$, cf méthode précédent (pseudo-inverse/gradient)
+* Deuxième méthode : On se donne $a$ qui est une approximation de b.
+   $\frac{\partial(J(a, b))}{\partial(b)} = 2(Ya - b)$
+
+   $2(Ya - b) = 0$
+
+   $Ya = b \rightarrow$ pas de solution analytique
+
+On va donc utiliser la descente de gradient.
+
+$b_{k + 1} = b_k - \eta(k) 2(Ya -b_k)$. Quel peut être le problème ? $b_{k + 1}$ peut avoir un élément négatif. Pour résoudre le problème on ramène à une position donnée la valeur précédente.
+
+$$
+\underbrace{
+   \begin{bmatrix}
+      -2\\0.5\\0.5
+   \end{bmatrix}
+}_{b_{k + 1}} = 
+\underbrace{
+   \begin{bmatrix}
+      1\\1\\1
+   \end{bmatrix}
+}_{b_k} - \underbrace{\eta(k)}_{ = 0.5} \underbrace{\begin{bmatrix}3\\0.5\\0.5\end{bmatrix}}_{(Ya - b)}
+$$
+
+On définit $e_k = Ya - b_k$. On obtient $b_{k + 1} = b_k + \eta(k) (e_k + |e_k|)$
+* Si $e_k > 0$, $e_k + |e_k| = 2e_k$
+* Si $e_k < 0$, $e_k + |e_k| = 0$
+
+Algorithme finale :
+* On calcul $a_k$ en utilisant pseudo-inverse/gradient
+* On bloque le $a_k$ obtenue
+* On fait un descente de gradiant en utilisant $a_k$, et on calcul $b_k$
+* On revient à la première étape tant qui $b_{k + 1} = b_k + \epsilon$ ou $a_{k + 1} = a_k +\epsilon$
+
+La contribution des échantillons se règlent algorithmiquement. Le problème avec le perceptron pour l'approximation avecles moindres carrés et qu'on ne maitrise pas la position de la droite.
+
+On injecte alors dans l'algorithme $min(dist(D, X_1)) = min(dist(D, X_2))$. Cela nous permet d'avoir une meilleur marge autour de la droite.
 
