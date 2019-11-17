@@ -1,5 +1,5 @@
 <?php require '../components/header.php' ?>
 
-<h1>Analyse, classification et indexation des données</h1>
+<iframe src="../generated_content/ACID.html" frameborder="0" class="markdown_incrustation"></iframe>
 
 <?php require '../components/footer.php' ?>
