@@ -1,6 +1,5 @@
 <?php
-    function makeNavItem($link, $name) {
-        $className = 'navItem';
+    function makeNavItem($link, $name, $className = '') {
         if ($_SERVER["PHP_SELF"] === $link) {
             $className .= ' selected';
         }
@@ -10,23 +9,31 @@ HTML;
     }
 ?>
 
-<ul class = "navBar">
-    <li class="navElements"><?= makeNavItem('/index.php', 'Accueil') ?></li>
+<div class = "navBar">
+    <?= makeNavItem('/index.php', 'Accueil', 'dropDown navElements') ?>
     
-    <li class="navElements"> <span>Semestre 7</span>
-        <ul>
-            <li><?= makeNavItem('/acid.php', 'Analyse, classification et indexation des données') ?></li>
-            <li><?= makeNavItem('/ao.php', 'Approche objet') ?></li>
-            <li><?= makeNavItem('/coca.php', 'Calculabilité et complexité') ?></li>
-            <li><?= makeNavItem('/se.php', 'Systèmes d\'exploitation') ?></li>
-            <li><?= makeNavItem('/ia.php', 'Intelligence artificielle') ?></li>
-            <li><?= makeNavItem('/anglais.php', 'Anglais') ?></li>
-        </ul>
-    </li>
+    <div class = "dropDown navElements">
+        <span class = "dropdown_button">
+            Semestre 7
+        </span>
+        
 
-    <li class="navElements"> <span>Semestre 8</span>
-        <ul>
-</ul>
-        </li>
+        <div class="dropdown_content">
+            <li><?= makeNavItem('/acid.php', 'Analyse, classification et indexation des données', 'navItem') ?></li>
+            <li><?= makeNavItem('/ao.php', 'Approche objet', 'navItem') ?></li>
+            <li><?= makeNavItem('/coca.php', 'Calculabilité et complexité', 'navItem') ?></li>
+            <li><?= makeNavItem('/se.php', 'Systèmes d\'exploitation', 'navItem') ?></li>
+            <li><?= makeNavItem('/ia.php', 'Intelligence artificielle', 'navItem') ?></li>
+            <li><?= makeNavItem('/anglais.php', 'Anglais', 'navItem') ?></li>
+        </div>
+    </div>
 
-</ul>
+    <div class="dropDown navElements">
+       
+        <span class = "dropdown_button">
+            Semestre 8
+        </span>
+
+    </div>
+
+</div>
