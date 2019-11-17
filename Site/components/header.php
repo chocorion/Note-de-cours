@@ -28,5 +28,13 @@
     </head>
 
     <body>
-
-    <?php require 'navbar.php' ?>
+    
+    <?php 
+    if (isset($display_nav)) {
+        if ($display_nav) {
+            require 'navbar.php';
+        }
+    } else {
+        require 'navbar.php';
+    }
+    ?>
