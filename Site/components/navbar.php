@@ -1,5 +1,5 @@
 <?php
-    function makeNavItem(string $link, string $name): string {
+    function makeNavItem($link, $name) {
         $className = 'navItem';
         if ($_SERVER["PHP_SELF"] === $link) {
             $className .= ' selected';
