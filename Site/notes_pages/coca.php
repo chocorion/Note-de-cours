@@ -1,5 +1,5 @@
 <?php require '../components/header.php' ?>
 
-<h1>Calculabilité et complexité</h1>
+<iframe src="../generated_content/CalculabiliteComplexite.html" frameborder="0" class="markdown_incrustation"></iframe>
 
 <?php require '../components/footer.php' ?>

@@ -1,5 +1,5 @@
 <?php require '../components/header.php' ?>
 
-<h1>Anglais</h1>
+<iframe src="../generated_content/Anglais.html" frameborder="0" class="markdown_incrustation"></iframe>
 
 <?php require '../components/footer.php' ?>
