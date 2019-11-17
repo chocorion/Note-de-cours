@@ -15,12 +15,12 @@ HTML;
     
     <li class="navElements"> <span>Semestre 7</span>
         <ul>
-            <li><?= makeNavItem('/notes_pages/acid.php', 'Analyse, classification et indexation des données') ?></li>
-            <li><?= makeNavItem('/notes_pages/ao.php', 'Approche objet') ?></li>
-            <li><?= makeNavItem('/notes_pages/coca.php', 'Calculabilité et complexité') ?></li>
-            <li><?= makeNavItem('/notes_pages/se.php', 'Systèmes d\'exploitation') ?></li>
-            <li><?= makeNavItem('/notes_pages/ia.php', 'Intelligence artificielle') ?></li>
-            <li><?= makeNavItem('/notes_pages/anglais.php', 'Anglais') ?></li>
+            <li><?= makeNavItem('/acid.php', 'Analyse, classification et indexation des données') ?></li>
+            <li><?= makeNavItem('/ao.php', 'Approche objet') ?></li>
+            <li><?= makeNavItem('/coca.php', 'Calculabilité et complexité') ?></li>
+            <li><?= makeNavItem('/se.php', 'Systèmes d\'exploitation') ?></li>
+            <li><?= makeNavItem('/ia.php', 'Intelligence artificielle') ?></li>
+            <li><?= makeNavItem('/anglais.php', 'Anglais') ?></li>
         </ul>
     </li>
 

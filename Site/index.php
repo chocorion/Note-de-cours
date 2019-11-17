@@ -19,12 +19,12 @@
 
 <div class="index_nav">
     <ul>
-        <li><a href="./notes_pages/coca.php">Calculabilité et complexité</a></li>
-        <li><a href="./notes_pages/se.php">Systèmes d'exploitation</a></li>
-        <li><a href="./notes_pages/ao.php">Approche objet</a></li>
-        <li><a href="./notes_pages/acid.php">Analyse, indexation et classification des données</a></li>
-        <li><a href="./notes_pages/ia.php">Intelligence artificielle</a></li>
-        <li><a href="./notes_pages/anglais.php">Anglais</a></li>
+        <li><a href="coca.php">Calculabilité et complexité</a></li>
+        <li><a href="se.php">Systèmes d'exploitation</a></li>
+        <li><a href="ao.php">Approche objet</a></li>
+        <li><a href="acid.php">Analyse, indexation et classification des données</a></li>
+        <li><a href="ia.php">Intelligence artificielle</a></li>
+        <li><a href="anglais.php">Anglais</a></li>
     </ul>
 </div>
 
