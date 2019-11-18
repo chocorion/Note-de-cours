@@ -988,3 +988,151 @@ public class ServiceApplication {
 }
 ```
 
+
+
+### Cours 10 : Couche Application/UI
+
+Couche application dispose de services, qui ne sont pas les mêmes que les services du domain.
+Ces services sont *stateless*, et manipulent des *value object*.
+
+* `List<Reference> search(String search)`
+* `IdBasket createBasketAndAddReference(Reference)`
+* `void addReferenceToBasket(int idBasket, Reference)`
+
+```java
+int createBasketAndAllReference(Reference r) {
+    Basket b = new Basket();
+    b.order(r, 1);
+
+    repository.add(b);
+
+    return b.getId();
+}
+
+void addReferenceToBasket(int basketId, Reference r, int quantity) {
+    Basket b = repository.findById(basketId);
+
+    b.order(r, quantity);
+
+    repository.update(b);
+}
+```
+
+
+Classe qui va contenir les fonction (toujours couche application): 
+
+```java
+public class ServiceBasket {
+    private BasketRepository repository;
+
+    int createBasketAndAllReference(Reference r);
+    void addReferenceToBasket(int basketId, Reference r, int quantity);
+
+    public ServiceBasket(BasketRepository rep) {
+        this.repository = rep;
+    }
+}
+```
+
+--------------------
+
+**Exemple echec :**
+
+
+
+```java
+public class Game {
+    private int id;
+    
+    public void move(Location from, Location to) { ... }
+
+
+
+}
+```
+
+```java
+public interface GameRepository {
+    public void add(Game g);
+    public Game findGameById(int id);
+    public void update(Game g);
+}
+```
+
+```java
+package infra;
+
+/**
+ * ~/GameRep/
+ *  - 1235.json
+ *  - 2034.json
+ *  - ...
+ * Un fichier json par game
+ * {
+ *     "id": 139
+ *      "locations": [
+ *          {
+ *              "line": 1,
+ *              "col": A,
+ *              "piece": TourB,
+ *       ...    
+ 
+**/
+
+public class GameRepJSON implements GameRepository {
+    public void add(Game g) {
+        int id = g.getId();
+
+        File f = new File (id + ".json");
+        String json = "{";
+        json += "id: " + id + ";";
+
+        g.getDTO();//...
+    }
+}
+```
+
+```java
+package application;
+
+public class GameService {
+    private GameRepository rep;
+    // On peut ajouter un cache
+    
+    public GameService(GameRepository rep) {
+        this.rep = rep;
+    }
+
+    public int newGame() {
+        Game g = new Game();
+        rep.add(g);
+
+        return g.getId();
+    }
+
+    public void move (int gameId, Location from, Location to) {
+        Game g = rep.findGameById(gameId);
+        g.move(from, to); // Ecriture, changement d'état -> CQRS
+
+        // A la sortie de la fonction game est détruit par le garbage collector, donc il faut le save
+
+        rep.update(g);
+    }
+
+    public void move (int gameId, Location from, Location to) {
+        // MoveCommand dans application 
+        queue.add(new MoveCommand(gameId, from, to));
+    }
+}
+```
+
+#### UI
+
+UI Back $\rightarrow$ API.
+
+```javascript
+app.get('/newgame', (req, res) => {
+    GameService gs = new GameService();
+    res.send(gs.newGame());
+})
+```
