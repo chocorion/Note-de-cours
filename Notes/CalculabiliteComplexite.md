@@ -407,3 +407,118 @@ $S_i$ étant une suite binaire infinie.
 On construit une suite en prenant la diagonale : $S_n = 1 - S_n(n)$.
 
 Par définition, cette suite est différente de tous les $S_i$. C'est absurde.
+
+Une fonction $f : \N \rightarrow \N$ est *calculable* s'il existe un programme/algorithme qui calcule *f*. Définition assez flou, une fonction *c-calculable* n'est peut-être pas *java-calculable*. On admettra alors la thèse de *Church-Turing*, qui dit que tous les modèles "raisonnables" de calcul sont équivalents.
+
+### Fonction non calculable
+
+**Combien de mots binaires y a-t-il ?** autant que des entiers posigifs. On de que cet ensemble est *dénombrable*. Les mots binaires peuvent être énumérés.
+
+**Combien de programmes/algorithmes existe-t-il ?** on peut coder chaque programme *P* par un mot en binaire, avec le codage que l'on veut. On peut énumérer tous les programmes en énumérant les mots représentant les programmes. Cette ensemgble est donc également *dénombrable*.
+
+**Combien de fonctions $f : \N \rightarrow \N$ existe-t-il ?** autant que des nombres réels (ensemble *non-dénombrable*)
+
+**Conséquence :** il existe des fonctions $f : \N \rightarrow \N$ *non-calculable*.
+
+### Programmes LOOP
+
+#### Syntax
+* Variables res, x, y, z, ... (Dans $\N$)
+* Constantes 0, 1, ....
+* Opérations +, -
+* instructions `x := y +/- c`, `x := c`, `LOOP(x) DO P ODD`
+
+L'effet de `x := y +/- c` est d'affecter à x la valeur `max(0, y +/-c)`
+`LOOP(x)` fait x fois `P`.
+
+**Exemple 1: addition**
+
+```
+x := y;
+LOOP(z) DO x := x + 1 OD;
+```
+Calcule $x = y + z$.
+
+
+**Exemple 2: multiplication**
+
+```
+x := 0;
+LOOP(z) DO
+    LOOP(y) DO x := x + 1 OD
+OD
+```
+Calcule $x = y * z$.
+
+#### LOOP-calculable
+
+Soit P un programme LOOP. L'entrée de P est un *k-uplet* $\vec n = (n_1, n_2, ..., n_k) \in \N^k$.
+La sortie de P est la valeur de la variable res à la fin du calcul de P. La fonction calculée par P est notée $f_p$.
+
+Une fonction $f: \N^k \rightarrow \N$ est *loop-calculable* s'il existe un programme LOOP P tel que  $f(\vec n) = f_p(0, \vec n, 0, ..., 0)$.
+
+**Remarque :** un programme LOOP termine toujours, donc les fonctions loop-calculable sont totale.
+
+
+### Programmes While
+
+Les programmes while sont définis à partir des programmes loop, en rajoutant l'instruction `WHILE(x != 0) DO P ODD`.
+
+Par définition, un programme loop-calculable est while-calculable.
+
+Les fonctions while-calculable ne sont pas totale (`WHILE(x != 0) DO x := x + 1 OD`)
+
+### Programmes GOTO
+
+#### Syntax
+* Variables x, y, ... $\in \N$, constante 0, 1, ...
+* Instructions :
+  * x := y +/- c
+  * x := c
+  * IF(x = 0) THEN GOTO l FI (saut conditionnel)
+  * GOTO l (saut inconditionnel)
+  * HALT
+
+L'instruction HALT est  la dernière.
+
+**Exemple : addition** 
+```
+1: x := y
+2: IF (z = 0) THEN GOTO 5 FI
+3: x := x + 1; z := z - 1
+4: GOTO 2
+5: HALT
+```
+
+Pour toute fonction $f: \N \rightarrow \N$:
+* f est while-calculable si et seulement si f est goto-calculable.
+
+*Remarque* Tout programme while peut être réécrit en un programme utilisant une seule boucle while.
+
+
+Il existe des fonctions while-calculable qui ne sont pas loop-calculable, exemple fonction d'Ackermann.
+
+(Mettre fonction d'ackermann)
+
+
+## Machine de Turing
+
+Une machine de turing est composée de :
+* Une bande infinie à droite et à gauche
+* Dans chaque case se trouve un symbole, qui peut être blanc
+* On dispose d'une tête de lecture/écriture
+* La machine peut être dans un nombre fini d'états
+
+L'accès mémoire est séquetiel, la machine peut bouger la tête de lecture soit à gauche, soit à droite d'une seule case à chaque étapes.
+
+
+
+
+
+
+
+
+
+
+## Problèmes et algorithmes
+
