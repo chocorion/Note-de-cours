@@ -83,3 +83,52 @@ On peut écrire les fonctions mathématiques de chaque couche :
 2. $y_1 = f(z_1)$
 3. $z_2 = w_2y_1 + b_2$
 4. $\hat{y} = f(z_2)$
+
+Pour simplifier, on utilise comme fonction de perte la somme des carrés des écarts : $\mathcal{L}(y, \hat{y}) = \frac{1}{2}(\hat{y} - y)^2$.
+
+Comme fonction d'activation, nous allons utiliser la fonction sigmoïd, $f(z) = \sigma(z) = \frac{1}{1 + e^{-z}}$.
+
+
+Si on note $\theta = \{w_1, w_2, b_1, b_2\}$, il faut trouver $\theta^*$ tel que $\theta^* = arg\ min_{\theta} L(\theta)$.
+
+La formule de la descente de gradient est $\theta^{t + 1} = \theta^t - \eta \nabla L(\theta^t)$, ce que l'on peut traduite dans notre cas par :
+* $w_1^{t + 1} = w_1^{(t)} - \eta \frac{\partial \mathcal{L}}{\partial w_1}(w_1^{(t)}, w_2^{(t)}, b_1^{(t)}, b_2^{(t)})$
+* $w_2^{t + 1} = w_2^{(t)} - \eta \frac{\partial \mathcal{L}}{\partial w_2}(w_1^{(t)}, w_2^{(t)}, b_1^{(t)}, b_2^{(t)})$
+* $b_1^{t + 1} = b_1^{(t)} - \eta \frac{\partial \mathcal{L}}{\partial b_1}(w_1^{(t)}, w_2^{(t)}, b_1^{(t)}, b_2^{(t)})$
+* $b_2^{t + 1} = b_2^{(t)} - \eta \frac{\partial \mathcal{L}}{\partial b_2}(w_1^{(t)}, w_2^{(t)}, b_1^{(t)}, b_2^{(t)})$
+
+> Comment calculer les dérivées partielles 
+> $\frac{\partial \mathcal{L}}{\partial w_1}$, $\frac{\partial \mathcal{L}}{\partial w_2}$, $\frac{\partial \mathcal{L}}{\partial b_1}$ et $\frac{\partial \mathcal{L}}{\partial b_2}$ ?
+
+On commence par $w = w_2$. On peut observer que $\mathcal{L} = \mathcal{L}(\hat{y}(w)) = \mathcal{L}(\hat{y}(z_2(w)))$
+
+La règle de chainage nous indique que : $\frac{\partial \mathcal{L}}{\partial w} = \frac{\partial \mathcal{L}}{\partial \hat{y}}.\frac{\partial \hat{y}}{\partial z_2}.\frac{\partial z_2}{\partial w}$
+
+Faisons les calculs : 
+* $\frac{\partial \mathcal{L}}{\partial \hat{y}} = \frac{\partial (\frac{1}{2}(y - \hat{y})^2)}{\partial \hat{y}} = (y - \hat{y})$
+* $\frac{\partial \hat{y}}{\partial z_2} = \frac{\partial (f(z_2))}{\partial z_2} = \frac{\partial (\sigma(z_2))}{\partial z_2} = \sigma (z_2)(1 - \sigma(z_2)) = \hat{y}(1 - \hat{y})$
+* $\frac{\partial z_2}{\partial w} = \frac{\partial (w_2 y_2 + b_2)}{\partial w} = y_1$
+
+$\rightarrow \frac{\partial \mathcal{L}}{\partial w_2} = (y - \hat{y})\hat{y}(1 - \hat{y})y_1$
+
+Un calcul similaire nous donne $\rightarrow \frac{\partial \mathcal{L}}{\partial b_2} = (y - \hat{y})\hat{y}(1 - \hat{y})$
+
+
+**Remarques :**
+* $y - \hat{y}$ est l'erreur commise
+* On dispose de tous les ingrédients pour calculer les deux dérivées nécessaires pour la dernière couche.
+
+
+> Qu'en est-il de la couche cachée ?
+
+En faisant tous les calculs, on obtient :  
+* $\frac{\partial \mathcal{L}}{\partial W_0} = (\hat{y} - y) \hat{y} (1 - \hat{y})y_1(1 - y_1)w_1 x$
+* $\frac{\partial \mathcal{L}}{\partial b_1} = (\hat{y} - y) \hat{y} (1 - \hat{y})y_1(1 - y_1)w_1$
+
+
+De ce que j'ai compris, pour tester on mélange nos données de test, on les regroupe en *mini-batch*, dès qu'on a testé sur un mini-batch on réajuste les paramètres avec la *back-propagation*, et une fois que tous les mini-batch sont fait c'est la fin d'une *epoch*.
+
+
+Dans les outils de *deep-learning*, ces deux paramètres sont à indiquer :
+* *batch-size :* nombre d'exemples à utiliser pour estimer le gradient de la fonction de coût.
+* *epoch :* le nombre d'époques à réaliser lors de la descente de gradient.
