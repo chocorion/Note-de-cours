@@ -782,3 +782,134 @@ La contribution des échantillons se règlent algorithmiquement. Le problème av
 
 On injecte alors dans l'algorithme $min(dist(D, X_1)) = min(dist(D, X_2))$. Cela nous permet d'avoir une meilleur marge autour de la droite.
 
+
+### SVM Support Vector Machine
+
+> Monté en dimension, et la frontière de séparation n'est plus forcément linéaire.
+
+(Dans la suite, "x" représent les points appartenant à une classe 1, et "o" ceux d'une class 2)
+
+`min(dist(D, "x")) = min(dist(D, "o"))`
+
+*SVM* devient plus précis que le perceptron. Il est mieux car laisse plus de liberté.
+
+$\underbrace{D = w^T + w_0}_{w\ et\ w_0\ définissent\ D}$, $dist(x, D) = \frac{||w^T x + w_0||}{||w||}$.
+
+$g'(x) = \alpha g(x)$, $dist(x, D) = \frac{||\alpha w^T x + \alpha w_0||}{||\alpha w||} = \frac{||w^T x + w_0||}{||w||}$
+
+Si $x$ est à distance $\alpha$, $min(dist(D, "x")) = min(dist(D, "o")) = \alpha$
+
+On s'intéresse à $x$ tel que $dist(D, x) = \frac{1}{||w||}$, $w^T x + w_0 = 1$
+
+$J(w, w_0) = \frac{2}{||w||}$ = marge entre "o" et "x".
+
+Sachant que $w^T x + w_0 = 1$, on veut la plus grande marge. On veut donc maximiser $J(w, w_0)$, ce qui revient à maximiser $\frac{1}{2}||w||^2$. C'est donc un problème d'optimisation quadratique.
+
+$$
+J(\alpha) = \Sigma_{i = 1}^n \alpha_i - \frac{1}{2} \Sigma_i^n \Sigma_j^n \alpha_i \alpha_j z_i z_j x_i^T x_j
+$$
+
+$\forall i \in [1, ..., n], \alpha_i > 0$, $\Sigma_{i = 1}^n \alpha_i y_i = 0$.
+
+* $z_i = 1$ si $x_i \in$ classe 1
+* $z_i = -1$ si $x_i \in$ classe 2
+
+$z_i(w^T x_i + w_0 - 1) \ge 0$.
+
+
+* Si $\alpha_i = 0$, alors $x_i$ n'est pas un support vector.
+* Si $\alpha_i \ne 0$, alors $x_i$ est un support vector.
+
+$z_i(w^T x_i + w_0) = 1$
+
+$$
+w = \Sigma_{i = 1}^n \alpha_i z_i x_i
+$$
+
+Pour un $x_i$ tel que $\alpha_i \ne 0$ : $z_i w_i x_i - 1 = z_i w_0$.
+
+La droite D est définie comme $(\Sigma_{i = 1}^n \alpha_i z_i x_i)^T x + w_0$. Comme les non support vector ont un $\alpha_i = 0$, ils ne participent pas à la droite.
+
+Est-ce que l'on peut faire des *SVM* de manière incrémentale ? Non on ne peut pas.
+
+On va passer de $J(\alpha) = \Sigma_{i = 1}^n \alpha_i - \frac{1}{2} \Sigma_i^n \Sigma_j^n \alpha_i \alpha_j z_i z_j x_i^T x_j$
+à $J(\alpha) = \Sigma_{i = 1}^n \alpha_i - \frac{1}{2} \Sigma_i^n \Sigma_j^n \alpha_i \alpha_j z_i z_j \varphi^T(x_i) \varphi(x_j)$
+
+La fonction $\varphi$ amène la transformation (changement d'espace) $x \rightarrow \varphi(x)$.
+
+Si $-\inf < x < x_1\ alors\ 0$
+Si $x_1 \le x \le x_2\ alors\ 0$
+Si $x2 < x < \inf\ alors\ 1$
+
+$\varphi(x) = (x, x^2)$
+Monter en dimension nous permet d'avoir plus de place entre les points.
+
+$D = [w_0, w_1, w_2] \begin{pmatrix}1\\x\\x^2\end{pmatrix}$
+Dans $\R$, fonction du second degré $w_0 + x w_1 + x^2 w_2$. Deux solutions, $x_1$ et $x_2$.
+
+Nous avons donc $g(x) = w^T \varphi(x) + w_0$.
+
+$Noyeau = K(x, y) = \varphi^T(x) \varphi(y)$. On va prendre ici $K(x, y) = (x^Ty)^2$. On cherche $\varphi$ tel que $K(x, y) = \varphi^T(x) \varphi(y)$.
+
+$x = \begin{bmatrix}x_1\\x_2\end{bmatrix}$, $y = \begin{bmatrix}y_1\\y_2\end{bmatrix}$.
+$$
+   ([x_1\ x_2]\begin{bmatrix}y_1\\y_2\end{bmatrix})^2
+$$
+$$
+   (x_1 y_1 + x_2 y_2)^2
+$$
+$$
+   (x_1 y_1)^2 + 2(x_1 y_1)(x_2 y_2) + (x_2 y_2)^2
+$$
+On cherche donc à passer de l'étape précédente à :
+$$
+\varphi^T \begin{pmatrix}x_1\\x_2\end{pmatrix} \varphi \begin{pmatrix}y_1\\y_2\end{pmatrix}
+$$
+
+On a :
+$$
+\begin{bmatrix}x_1^2\\\sqrt{2}x_1 x_2\\x_2^2\end{bmatrix} [y_1^2, \sqrt{2}y_1 y_2,y_2^2]
+$$
+
+> Pas n'importe quel noyeau fonctionne avec SVM. Par exemple, les noyeaux polynomiaux fonctionnent.
+
+**Ce qu'il faut retenir :**
+
+Principe du SCM:
+* Séparateur linéaire
+* Bon résultat car nous permet de séparer au mieux avec une droite
+  * équilibre
+  * extensible, s'adapte aux changements
+* $min(Dist(D, "o")) = min(Dist(D, "x")) = \frac{1}{||w||}$, $||w^T x + w_0|| = 1$.
+* Les supports vector
+* On maximise $J(w) = \frac{2}{||w||}$
+
+* On a un vecteur $\alpha = \begin{pmatrix}\alpha_1\\...\\\alpha_n\end{pmatrix}$
+   * $\alpha_i = 0$ si $x_i$ n'est pas un support vector.
+   * $\alpha_i \ne 0$ si $x_i$ est un support vector.
+* $w = \Sigma_1^n z_i \alpha_i x_i$
+* $z_i = 1$ si $x_i \in$ classe 1
+* $z_i = -1$ si $x_i \in$ classe 2
+* $z_i(w^T x_i + w_0) = 1$
+* Si on a $w$, on calcul $w_0$ pour un support vector 
+  * Noyeau $K(x, y) = \varphi^T(x) \varphi(y)$
+
+On part d'un espace initial, on passe à un espace supérieur avec $\varphi$. On utilise SVM sur cet espace pour trouver la séparation avec $\begin{bmatrix}w_0\\w\end{bmatrix}$. On revient à notre espace départ, avec $cl(x) = w \varphi(x) + w_0$. $\varphi(x)$ n'est pas forcément linéaire.
+
+On peut ajouter une certaine tolérance pour les cas non séparable.
+
+
+
+## KNN - K Nearest Neighbourg
+
+On cherche à classer P.
+$N(P_1, ..., P_k)$ calculer k voisins de P en fonction de la vérité terrain. En fonction de $N$ on classe P.
+
+*Comment Calculer N ?* Il faut une notion de distance.
+
+Classer P $\rightarrow$ élire la classe
+* Vote majoritaire
+* Distance moyenne
+* Plus courte distance
+* ...
+
