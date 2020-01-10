@@ -29,8 +29,15 @@
 </div>
 
 <h3>Semestre 8</h3>
+
 <div class="index_nav">
-    Pas encore :)
+    <ul>
+        <li><a href="pdp.php">Projet de Programmation</a></li>
+        <li><a href="archi.php">Architecture logicielle</a></li>
+        <li><a href="conception.php">Conception formelle</a></li>
+        <li><a href="progpara.php">Programmation des Architectures Parallèles</a></li>
+
+    </ul>
 </div>
 
 <?php require 'components/footer.php' ?>
