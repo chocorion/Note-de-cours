@@ -31,8 +31,15 @@ HTML;
     <div class="dropDown navElements">
        
         <span class = "dropdown_button">
-            Semestre 8
+            Semestre 8 - GL
         </span>
+
+        <div class="dropdown_content">
+            <li><?= makeNavItem('/pdp.php', 'Projet de Programmation', 'navItem') ?></li>
+            <li><?= makeNavItem('/archi.php', 'Architecture logicielle', 'navItem') ?></li>
+            <li><?= makeNavItem('/progpara.php', 'Programmation des Architectures Parallèles', 'navItem') ?></li>
+            <li><?= makeNavItem('/conception.php', 'Conception formelle', 'navItem') ?></li>
+        </div>
 
     </div>
 

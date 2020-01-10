@@ -28,7 +28,7 @@
     </ul>
 </div>
 
-<h3>Semestre 8</h3>
+<h3>Semestre 8 - Génie Logicielle</h3>
 
 <div class="index_nav">
     <ul>
