@@ -4,8 +4,8 @@ html, body {
     overflow: hidden
 }
 
-.overflow_enable {
-    overflow: auto;
+.overfow {
+    overflow: scroll;
 }
 
 body {

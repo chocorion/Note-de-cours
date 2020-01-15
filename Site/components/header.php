@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <html>
-    <head>
+    <head <?php echo (isset($overflow))? 'class=overflow': "" ?>
         <meta charset="utf-8">
         <title>
             <?php echo (isset($title))? $title : "Cours" ?>

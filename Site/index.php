@@ -1,4 +1,5 @@
 <?php $display_nav = false; ?>
+<?php $overflow = true; ?>
 <?php require 'components/header.php' ?>
 
 <div class="overflow_enable">
