@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html <?php echo (isset($overflow))? 'class=overflow': "" ?>>
+<html <?php echo (isset($overflow))? 'class="overflow"': "" ?>>
     <head>
         <meta charset="utf-8">
         <title>

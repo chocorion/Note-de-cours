@@ -2,7 +2,6 @@
 <?php $overflow = true; ?>
 <?php require 'components/header.php' ?>
 
-<div class="overflow_enable">
 <h1>Site de Robin</h1>
 
 <h2>Note de cours du Master Informatique de l'université de Bordeaux.</h2>
@@ -39,6 +38,5 @@
         <li><a href="conception.php">Conception formelle</a></li>
         <li><a href="progpara.php">Programmation des Architectures Parallèles</a></li>
     </ul>
-</div>
 </div>
 <?php require 'components/footer.php' ?>
