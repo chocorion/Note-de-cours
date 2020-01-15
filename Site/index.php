@@ -1,5 +1,5 @@
 <?php $display_nav = false; ?>
-<?php $overflow = true; ?>
+<?php $overflow_disp = true; ?>
 <?php require 'components/header.php' ?>
 
 <h1>Site de Robin</h1>
