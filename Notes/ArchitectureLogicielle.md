@@ -1,4 +1,4 @@
-# Architecture Logicielle
+# Architecture Logiciel
 
 [TOC]
 
