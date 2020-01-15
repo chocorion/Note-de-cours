@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html <?php echo (isset($overflow_disp))? 'class="overflow_disp"': "" ?>>
+<html <?php echo (isset($overflow_disp))? 'style="overflow: scroll;"': "" ?>>
     <head>
         <meta charset="utf-8">
         <title>
@@ -27,7 +27,7 @@
 
     </head>
 
-    <body <?php echo (isset($overflow_disp))? 'class="overflow_disp"': "" ?>>
+    <body <?php echo (isset($overflow_disp))? 'style="overflow: scroll;"': "" ?>>
     
     <?php 
     if (isset($display_nav)) {
