@@ -4,6 +4,10 @@ html, body {
     overflow: hidden
 }
 
+.overflow_enable {
+    overflow: auto;
+}
+
 body {
     font-family: 'Vollkorn', serif;
     color: #333333;
