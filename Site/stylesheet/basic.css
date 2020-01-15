@@ -1,11 +1,11 @@
 html, body {
     margin: 0;
     height: 100%;
-    overflow: hidden
+    overflow: hidden;
 }
 
 .overfow {
-    overflow: scroll;
+    overflow: scroll !important;
 }
 
 body {

@@ -27,7 +27,7 @@
 
     </head>
 
-    <body>
+    <body <?php echo (isset($overflow))? 'class="overflow"': "" ?>>
     
     <?php 
     if (isset($display_nav)) {
