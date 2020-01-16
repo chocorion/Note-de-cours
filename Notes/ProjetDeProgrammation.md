@@ -441,3 +441,70 @@ Mais aussi :
 * Indiquer éventuellement des conditions particulières (transit sur un réseau, calcul distribué, etc.).
 * ...
 
+
+## Documentation
+
+La connaissance du domaine d'un projet permet :
+* d'en situer la mise en oeuvre dans un contexte
+* d'en mettre en place la conception et le modèle
+* d'en préciser les conditions, les difficultés, les possibilités et les buts.
+
+Et donc :
+* Documentation, lectures.
+* Analyse de l'existant.
+* Références, bibliographie.
+
+*L'existant d'un projet* consiste en :
+* Des travaux écrits qui présentent des solutions directement liées au sujet d'un projet.
+* Des logiciels, outils, implémentations, directement liés au sujet d'un projet.
+
+### Quelques éléments généraux sur la documentation
+
+Une recherche de documentation et d'existant se base en particulier sur :
+* Des livres et articles.
+* Des introductions, des tutoriaux, des états de l'art.
+* L'utilisation d'outils de recherche dans des bibliothèques ou sur internet, de bases d'information, d'encyclopédies
+* L'utilisation des références bibliographiques des documents principaux.
+* L'utilisation des *références bibliographiques inverses* des documents principaux.
+
+La *bibliographie inverse d'un document* est l'ensemble des références qui citent le document. Cet ensemble de publications :
+* Permet d'enrichir la liste des références liées au document (pas seulement son passé, mais aussi son futur).
+* Permet de mettre à jour les notions utilisées dans le document par des références plus récentes.
+* Est un indication possible de qualité.
+
+On obtient cet inverse par des *indexes de citations*.
+* AMS Reviews
+* Zentralblatt Math
+* Google Scholar
+* CiteSeer Scientific Literature Digital Library
+
+
+### Quelques éléments sur la documentation généraliste par internet
+
+L'accès sur internet à la documentation scientifique de bon niveau est généralement payante.
+Il faut donc utiliser sci-hub, s'il est bloqué il faut changer le dns par défaut pour ne pas utiliser le dns d'un FAI français.
+
+Wikipédia est une encyclopédies. On ne cite pas des encyclopédies.
+
+Autres types de sites, parfois de bonne qualité :
+* Sites, blogs de chercheurs réputés.
+* Sites d'information ouverts sur la programmation, par exemple :
+    - Stackoverflow
+    - Reddit (r/compsci, r/programming)
+
+### Construction d'une bibliographie
+
+Lors de la rédactiono d'une bibliographie, il existe un format standard à respecter qui requiert d'intégrer toutes les informations des références.
+Latex gère très bien tout ça. Attention lors de la citation d'URL à bien mettre la date d'accès au document.
+
+
+
+#### Quelques règles :
+
+Donner priorité aux références signées par des auteurs, et qui proviennent d'universités, d'instituts de recherche ou assimilés.
+
+User avec parcimonie des entrées de type URL (elles sont éphémères).
+
+Citer à bon escient. Par exemple, ne par faire apparaître de références trop générales (dictionnaires, encyclopédies, etc.) sur des sujets trop généraux.
+
+Le cahier d'analyse des besions et le mémoire en PdP comporteront une bibliographie dûment rédigée et exploitée.
