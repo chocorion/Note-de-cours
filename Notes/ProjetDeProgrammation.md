@@ -442,6 +442,53 @@ Mais aussi :
 * ...
 
 
+
+### En résumé
+
+L'analyse des besions en développement logiciel est cruciale :
+**Remarques**
+* Il est plus simple et rapide d'établir des listes de besoins que de les implémenter.
+* Plus l'analyse des besions est correcte et précise, plus le temps de développement du logiciel s'en trouvera raccourci, et plus la forme finale du logiciel aura des chances d'être adéquate et meilleure.
+
+## Document d'analyse des besoins
+
+Le document d'analyse des besoins, aussi appelé *spécificatin des exigences* (Software Requirements Specification - SRS), présente l'ensemble des besoins d'un projet. Il existe des descriptions normatives des SRS, par exemple le *Recommended Practice for SRS*, IEEE/ANSI 830-1998.
+
+Ceci dit, il est reconnu qu'il est difficile de décrire précisément un standard pour la présentation des besoins d'un logiciel.
+
+Néanmoins en PdP, nous fixerons les contraintes de rédaction du document d'analyse des besoins ainsi :
+
+```
+1. Une courte introduction au projet.
+
+2. Une description et analyse de l’existant.
+
+3. Une description des besoins( ́eventuellement avec distinction besoins utilisateurs/besoins système) :
+    i. Une liste des besoins fonctionnels, chacun associes à :
+        -Un niveau de priorite d’implémentation dans le projet.
+        -Toutes ou une partie des rubriques (a)-(e) ci-dessous.
+
+    ii. Une liste des besoins non fonctionnels globaux, chacun associes à :
+        a.Des quantifications.
+        b.Des ́elements de faisabilité.
+        c.Des contraintes ou difficultés techniques.
+        d.L’énonciation de risques et parades.
+        e.La spécification de tests de validation et de contrôle.
+
+    iii. Ces besoins seront expliqués, justifiés, illustrés au moyen de :
+    scénarios, prototypes(par ex. prototypes papier pour les interfaces, prototypesimplémentés pour la faisabilité),schémas, et diagrammes UML.
+
+4.Un diagramme de Gantt de mise en œuvre des besoins.
+5.Une bibliographie.
+```
+
+Avec une analyse précise des besions, il est possible de tenter d'organiser le temps, les moyens, les équipes, et de chiffrer les besoins.
+
+Les *diagrammes de Gantt* en donnent une représentation synthétique.
+
+**Remarque :** certains besoins non fonctionnels induisent des besoins fonctionnels (par exemple, l'optimisation, le niveau de sécurité, la convivialité). Certains besoins fonctionnels nécessitent une discussion sur des besoins non fonctionnels.
+
+
 ## Documentation
 
 La connaissance du domaine d'un projet permet :
