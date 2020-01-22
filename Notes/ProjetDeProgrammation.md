@@ -461,7 +461,7 @@ Néanmoins en PdP, nous fixerons les contraintes de rédaction du document d'ana
 ```
 1. Une courte introduction au projet.
 
-2. Une description et analyse de l’existant.
+2. Une description et analyse de l’existant (pas forcément).
 
 3. Une description des besoins( ́eventuellement avec distinction besoins utilisateurs/besoins système) :
     i. Une liste des besoins fonctionnels, chacun associes à :
@@ -478,16 +478,19 @@ Néanmoins en PdP, nous fixerons les contraintes de rédaction du document d'ana
     iii. Ces besoins seront expliqués, justifiés, illustrés au moyen de :
     scénarios, prototypes(par ex. prototypes papier pour les interfaces, prototypesimplémentés pour la faisabilité),schémas, et diagrammes UML.
 
-4.Un diagramme de Gantt de mise en œuvre des besoins.
+4.Un diagramme de Gantt de mise en œuvre des besoins (non contractuel).
 5.Une bibliographie.
 ```
-
+Ce plan n'est pas à respecter absolument.
 Avec une analyse précise des besions, il est possible de tenter d'organiser le temps, les moyens, les équipes, et de chiffrer les besoins.
 
 Les *diagrammes de Gantt* en donnent une représentation synthétique.
 
 **Remarque :** certains besoins non fonctionnels induisent des besoins fonctionnels (par exemple, l'optimisation, le niveau de sécurité, la convivialité). Certains besoins fonctionnels nécessitent une discussion sur des besoins non fonctionnels.
 
+**Les besions sont à développer !**
+On ne peut pas se contenter de dire *le logiciel doit être rapide*.
+Pour la faisabilité, programme de test.
 
 ## Documentation
 
@@ -555,3 +558,5 @@ User avec parcimonie des entrées de type URL (elles sont éphémères).
 Citer à bon escient. Par exemple, ne par faire apparaître de références trop générales (dictionnaires, encyclopédies, etc.) sur des sujets trop généraux.
 
 Le cahier d'analyse des besions et le mémoire en PdP comporteront une bibliographie dûment rédigée et exploitée.
+
+

@@ -144,7 +144,6 @@ au revoir
   * les threads exclaves sont démobilisés
   * le thread maître retrouve son équipe précédente
 
-  
 
 ```c
 #pragme omp parallel
@@ -178,3 +177,182 @@ f();
 }
 ```
 
+
+#### Paranthèse sur un sujet d'exam
+
+Dans le code suivant, problème pour paralléliser à cause de t[i - 1].
+```c
+for (int i = 1; i < 100; i++) {
+    t[i] = t[i] + t[i - 1];
+}
+```
+
+$$
+\begin{bmatrix}
+0 & 1 & 0 & 0\\
+0 & 0 & 0 & 1\\
+1 & 0 & 0 & 1\\
+0 & 0 & 1 & 0
+\end{bmatrix}
+
+\rightarrow
+
+\begin{bmatrix}
+1 & 1\\
+1 & 3\\
+2 & 1 & 3\\
+1 & 2
+\end{bmatrix}
+$$
+
+
+```c
+bool creuse[XDIM][YDIM];
+bool xdense[XDIM][YDIM + 1];
+bool ydense[YDIM][XDIM + 1];
+
+void creuse2annexe() {
+    for (int i = 0; i < XDIM; i++) {
+        for (int j = 0; j < YDIM; j++) {
+            if (creuse[i][j]) {
+                int ii, jj;
+                
+                // capture car l'opération n'est pas réellement atomic
+                #pragma omp atomic capture
+                ii = ++y[j][0];
+                jj = ...;
+        }
+    }
+}
+```
+Pour paralléliser, il faut être sur que les threads travaillent sur des domaines de lectures et d'écritures disjoints. En cas d'intersection, il faut réfléchir.
+
+--------------
+
+On veut paralléliser le code suivant :
+
+
+```c
+for (int etape = 0; etape < k; etape++) {
+    for (int i = 0; i < 10; i++) {
+        out[i] = f(input, i);
+    }
+
+    memcpy(input, out, ...);
+}
+```
+Comme il faut faire étape par étape, on ne peut pas paralléliser la première boucle.
+Le code suivant fonctionne, mais n'est pas très beau. À la fin de chaque étape, tous les threads sont détruits, puis recréés à chaque étapes.
+
+```c
+for (int etape = 0; etape < k; etape++) {
+
+    #pragma omp parallel for
+    for (int i = 0; i < 10; i++) {
+        out[i] = f(input, i);
+    }
+
+    memcpy(input, out, ...);
+}
+```
+
+```c
+int etape;
+#pragma omp parallel private(etape)
+for (etape = 0; etape < k; etape++) {
+
+    #pragma omp for
+    for (int i = 0; i < 10; i++) {
+        out[i] = f(input, i);
+    }
+    // Barrière implicite.
+
+    if (omp_get_num() == 0) // ou pragma omp master/single
+        memcpy(input, out, ...);
+    // Barrière implicite dans le cas de single, mais pas avec master.
+
+    #pragma omp barrier
+    // Sinon tous les threads continuent le reste du calcul sans attendre le memcpy.
+}
+```
+Ici, commee étape est partagé, on va avoir des problèmes de synchro.
+Soit il faut rendre la variable privée, soit un thread l'incrémente pour tous les autres.
+Il est plus simple de rendre étape privée, c'est ce que fait `private(etape)`.
+
+Tous les threads font le `memcpy`. 
+
+```c
+int *entree = input;
+int *sortie = output;
+
+#pragma omp parallel firstprivate(entree, sortie) // Indique au compilateur que entree et sortie sont privée, mais il faut copier leur valeur.
+for (int etape = 0; etape < k; etape ++) {
+    #pragma omp for nowait
+    for (int i = 0; i < 10; i++){
+        sortie[i] = f(entree, i);
+    }
+
+    swap(entree, sortie);
+    #pragma omp barrier
+}
+```
+
+`firstprivate` est plus important à retenir que private. On fait sauter la barrière du for avec `nowait`.
+C'est mieux que chaques thread s'occupe de swap plutôt qu'un. Un swap est moins chère que la synchronisation. La parallélisation à un coup, il y a plus d'instruction que dans le cas parallèle.
+
+Exemple d'examen : 
+```c
+#pragma omp parallel for reduction(+:s) // permet de résoudre le problème avec s
+for (i = 0; i < N; i++) {
+    s += f(i); // problem, s partagé.
+}
+```
+Il faut paralléliser le code, avec différentes complexités pour *f*.
+Constant : schedule(static)
+Linéaire : schedule(static, 1)
+Exponentiel : On inverse l'index, schedule(dynamic, 1)
+Aléatoire : (static, 1) -> mais pas pour ce qui est périodique, ou dynamique.
+
+### Voyageur de commerce
+
+```c
+void tsp(etape, longueur_chemin, visite, ici) {
+    if (etape == nombre_ville) {
+        if (longueur_chemin + dist[ici][0] < MIN) {
+            MIN = longueur_chemin + dist[ici][0];
+        }
+        return;
+    }
+
+    for (int v = 1; v < nombre_ville, v++) {
+        if (v not in visite) {
+            tsp(etape + 1, longueur_chemin + dist[ici][v], visite + v, v);
+        }
+    }
+}
+```
+
+> Comment paralléliser ce code ?
+
+Pour faciliter les choses, on créé une fonction `top_départ`, duplication du code pour lancer les threads au premier niveau.
+
+```c
+void top_depart(etape, longueur_chemin, visite, ici) {
+    if (etape == nombre_ville) {
+        #pragma omp critical
+        if (longueur_chemin + dist[ici][0] < MIN) {
+            MIN = longueur_chemin + dist[ici][0];
+        }
+        return;
+    }
+
+    #pragma omp parallel for
+    for (int v = 1; v < nombre_ville, v++) {
+        if (v not in visite) {
+            tsp(etape + 1, longueur_chemin + dist[ici][v], visite + v, v);
+        }
+    }
+}
+```
+MIN est partagée par tout le monde.
+omp_set_nested ?
