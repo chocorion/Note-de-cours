@@ -10,6 +10,10 @@ html, body {
     min-height: 100%; 
 }
 
+.text-italic {
+    font-style: italic;
+}
+
 #container {
     display: flex;
     flex-direction: column;
@@ -103,4 +107,23 @@ html, body {
 .center-text h2 {
     color: rgb(100, 100, 100);
     font-size: 1.3em;
+}
+
+#cours-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+#cours-container > div {
+    color: rgb(153, 102, 102);
+    font-size: 1.2em;
+}
+
+#cours-container > div:hover .hidden-menu {
+    display: flex;
+    flex-direction: column;
+}
+
+.hidden-menu {
+    display: none;
 }
