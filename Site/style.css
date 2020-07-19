@@ -1,0 +1,106 @@
+html, body {
+    height: 100%;
+    margin: 0;
+
+    font-family: "Roboto Slab", "Roboto", "Lato", sans-serif;
+    color: rgb(40, 40, 40);
+}
+
+#wrapper {
+    min-height: 100%; 
+}
+
+#container {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    height: 100%;
+}
+
+#navigation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#navigation a:first-child {
+    margin-top: 50px;
+}
+
+#navigation a {
+    display: inline-block;
+    text-decoration: none;
+    color: rgb(153, 102, 102);
+    font-size: 1.15em;
+
+    margin-top: 14px;
+
+    transition: font-size .2s;
+}
+
+#navigation .selectedCategory {
+    text-decoration: underline;
+}
+
+#navigation a:hover {
+    font-size: 1.4em;
+    transition: font-size .2s;
+}
+
+#container main {
+    width: 100%;
+}
+
+#presentation {
+    margin-top: 4%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#avatar {
+    width: 12rem;
+    
+    border-radius: 100%;
+    border-style: solid;
+    border-color: rgba(110, 110, 110, .5);
+}
+
+#presentation .title {
+    margin-top: 1%;
+    font-size: 1.8em;
+    line-height: 0.5em;
+}
+
+#presentation .sub-title {
+    margin-top: -1px;
+    font-size: 1.5em;
+    color: rgb(100, 100, 100);
+}
+
+#presentation .presentation-text {
+    width: 35%;
+    font-size: 1.1em;
+    color: rgba(45, 45, 45);
+    text-align: center;
+}
+
+#presentation .presentation-links a {
+    margin: 0 20px;
+}
+
+.iconify {
+    color: rgba(90, 90, 90);
+}
+
+.center-text {
+    display: table;
+    width: 40% !important;
+    margin: 4% auto;
+}
+
+.center-text h2 {
+    color: rgb(100, 100, 100);
+    font-size: 1.3em;
+}

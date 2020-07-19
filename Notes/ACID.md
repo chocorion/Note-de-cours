@@ -84,7 +84,7 @@ B --> C(F)
 
 Observation : $ \left\{ \begin{array}{ll} Features \in \mathbb{R^n}\\ classes \in \mathbb{\mathbb{N}, ou\ \mathbb{R}}\end{array}\right. $ 	*m* est égale au nombre de couples dans l'observation. *n* représente la dimension du descripteur. 
 
-$F: \mathbb{R^n} \rightarrow \mathbb{R}\\\ \ \ \ \ \ \ \ \ x \rightarrow y$	 *Quel information sur F ?*  Il faut faire un a priori sur la fonction F. Ici, on considère que F est une fonction linéaire (droite, plan, ..., hyperplan). C'est donc une droite de la forme $ax + b, \left. \begin{array}{ll} a \in \mathbb{R^n}\\b \in \mathbb{R^n}\end{array}\right\}$. $a$ est un vecteur ligne et $b$ est un vecteur colonne. Passage de l'un à l'autre avec une *transposé*.
+$F: \mathbb{R^n} \rightarrow \mathbb{R}\\ \ \ \ \ \ \ \ \ \ x \rightarrow y$	 *Quel information sur F ?*  Il faut faire un a priori sur la fonction F. Ici, on considère que F est une fonction linéaire (droite, plan, ..., hyperplan). C'est donc une droite de la forme $ax + b, \left. \begin{array}{ll} a \in \mathbb{R^n}\\b \in \mathbb{R^n}\end{array}\right\}$. $a$ est un vecteur ligne et $b$ est un vecteur colonne. Passage de l'un à l'autre avec une *transposé*.
 
 $F: \theta_{1} \vec{x} + \theta_{0}$, $\theta_{1}$ n'est pas le vecteur directeur, mais le vecteur normal, car passage en dimension $n$. On cherche $\theta_{1}$ et $\theta_{0}$. On va les fusionner en un vecteur, $F: \theta \vec{x}$.
 
