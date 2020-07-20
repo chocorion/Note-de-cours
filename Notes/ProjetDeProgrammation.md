@@ -1,5 +1,9 @@
 # Projet de Programmation
 
+
+
+> Si vous voulez un exemple de projet, [voici celui de mon groupe](https://github.com/chocorion/ia-capture-the-flag). Nous avons eu  14/20. Vous pouvez trouvez plein d'autre projet de pdp sur savanne.
+
 [TOC]
 
 ## Règles pour le projet
