@@ -130,7 +130,7 @@ $ Code \underbrace{ \rightarrow}_{Premier\ contrôle\ de\ typage\\1.\ Prévenir\
 
 C'est une relation entre 2 classes qui a un impacte sur les objets instances des classes en relations.
 
-<img src="images/BasicIllustration.png" style="zoom:100%;" />
+<img src="/images/AO/BasicIllustration.png" style="zoom:100%;" />
 
 ```java
 public class Shape {

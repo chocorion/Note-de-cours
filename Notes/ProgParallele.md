@@ -69,7 +69,7 @@ $$
 
 > Si 1% de l'application est séquentielle, on n'arrivera pas à aller 100 fois plus vite.
 
-![image-20200115104406932](/generated_content/images/PAP/loi.png)
+![image-20200115104406932](/images/PAP/loi.png)
 
 
 

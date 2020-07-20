@@ -6,17 +6,17 @@
 
 Voici un neuronne. Chaque *x* est ce que le neuronne reçoit en entrée, et *b* est le biais du neuronne. *z* est la sortie du neuronne.
 
-<img src="images/neurone_1.png">
+<img src="/images/IA/neurone_1.png">
 
 
 Sur chaque liaison entre une entrée *x* et le neuronne, nous allons ajouter une *pondération w* (ou poids). La sortie du neuronne devient $z = \Sigma w_i x_i + b$.
 
-<img src="images/neurone_2.png">
+<img src="/images/IA/neurone_2.png">
 
 
 Pour savoir si notre neurone va s'activer ou non, on rajoute une *fonction d'activation*. 
 
-<img src="images/neurone_3.png">
+<img src="/images/IA/neurone_3.png">
 
 Un exemple de fonction d'activation souvent utilisée est la fonction *sigmoïd*, définie par $\sigma(z) = \frac{1}{1 + e^{-z}}$.
 Mais il existe plein de d'autres fonctions d'activation (ReLU, radiale, stochastique...).
@@ -27,7 +27,7 @@ Pour créer un réseau de neurones, il "suffit" de brancher les sorties de neuro
 
 On peut ainsi créer des réseaux à plusieurs couches :
 
-<img src="images/neurone_4.png">
+<img src="/images/IA/neurone_4.png">
 
 #### Deep Learing
 
@@ -42,7 +42,7 @@ Pour le moment, les valeurs $y_i$ renvoyées par les neurones ont des valeurs qu
 
 Pour faire cela, on ajoute une couche de *Softmax*.
 
-<img src="images/softmax_1.png">
+<img src="/images/IA/softmax_1.png">
 
 On obtient alors une distribution de probabilité:
 * $0 < y_i < 1, \forall i$
@@ -76,7 +76,7 @@ l'objectif de l'apprentissage est donc de trouver les paramètes $\theta$ du ré
 
 Prenons un réseau simple : 
 
-<img src="images/neurone_5.png">
+<img src="/images/IA/neurone_5.png">
 
 On peut écrire les fonctions mathématiques de chaque couche :
 1. $z_1 = w_1 x + b_1$
