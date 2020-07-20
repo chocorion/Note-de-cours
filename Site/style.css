@@ -120,10 +120,22 @@ html, body {
 }
 
 #cours-container > div:hover .hidden-menu {
-    display: flex;
-    flex-direction: column;
+    overflow-y: hidden;
+	max-height: 500px;
+
+	transition-property: all;
+	transition-duration: .7s;
+    transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
 }
 
 .hidden-menu {
-    display: none;
+    display: flex;
+    flex-direction: column;
+
+    overflow-y: hidden;
+	max-height: 0;
+
+	transition-property: all;
+	transition-duration: .7s;
+	transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
 }
