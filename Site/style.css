@@ -47,9 +47,11 @@ html, body {
     text-decoration: underline;
 }
 
-#navigation a:hover {
-    font-size: 1.5em;
-    transition: font-size .2s;
+@media(hover: hover) and (pointer: fine) {
+    #navigation a:hover {
+        font-size: 1.5em;
+        transition: font-size .2s;
+    }
 }
 
 #container main {
@@ -101,7 +103,7 @@ html, body {
 
 .center-text {
     display: table;
-    width: 40% !important;
+    width: 55% !important;
     margin: 4% auto;
 }
 
@@ -120,17 +122,16 @@ html, body {
     font-size: 1.2em;
 }
 
-#cours-container > div:hover .hidden-menu {
-    visibility: visible;
-    overflow-y: hidden;
-	max-height: 500px;
+@media(hover: hover) and (pointer: fine) {
+    #cours-container > div:hover .hidden-menu {
+        visibility: visible;
+        overflow-y: hidden;
+        max-height: 500px;
 
-	transition-property: all;
-	transition-duration: .4s;
-    transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
-
-    
-    
+        transition-property: all;
+        transition-duration: .4s;
+        transition-timing-function: cubic-bezier(0, 1, 0.5, 1);  
+    }
 }
 
 .hidden-menu {
@@ -164,11 +165,13 @@ html, body {
     transition: font-size .2s;
 }
 
-.hidden-menu a:hover {
-    font-size: 1.2em;
-    text-decoration: underline;
+@media(hover: hover) and (pointer: fine) {
+    .hidden-menu a:hover {
+        font-size: 1.2em;
+        text-decoration: underline;
 
-    transition: all .2s;
+        transition: all .2s;
+    }
 }
 
 .github-link {
