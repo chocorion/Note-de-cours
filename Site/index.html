@@ -15,30 +15,86 @@ gtag('js', new Date());
 gtag('config', 'UA-151907906-1');
 </script>
 </head>
+
 <body>
-    <div id="container">
-        <main>
-            <div id="presentation">
-                <img src="/images/avatar.png" alt="avatar" id="avatar">
-                <div class="title">Robin Navarro</div>
-                <div class="sub-title">@Chocorion</div>
-                
-                <p class="presentation-text">Bienvenue sur mon site personnel, sur lequel vous retrouverez mes notes de cours pour le master Génie Logiciel de l'université Bordeaux 1.</p>
-                
-                <div class="presentation-links">
-                    <a target="_blank" href="http://www.github.com/chocorion"><span class="iconify" data-icon="fa-brands:github" data-inline="false"></span></a>
-                    <a target="_blank" href="https://www.linkedin.com/in/robin-navarro-196996144/"><span class="iconify" data-icon="fa-brands:linkedin" data-inline="false"></span></span></a>
-                    <a target="_blank" href="mailto:robiniscoding@gmail.com"><span class="iconify" data-icon="entypo:mail" data-inline="false"></span></a>
-                </div>
+    <aside id="sidebar">
+        <div id="presentation">
+            <img src="/images/avatar.png" alt="avatar" id="avatar">
+            <div class="title">Robin Navarro</div>
+            <div class="sub-title">@Chocorion</div>
+            
+            <p class="presentation-text">Bienvenue sur mon site !</p>
+            
+            <div class="presentation-links">
+                <a target="_blank" href="http://www.github.com/chocorion"><span class="iconify" data-icon="fa-brands:github" data-inline="false"></span></a>
+                <a target="_blank" href="https://www.linkedin.com/in/robin-navarro-196996144/"><span class="iconify" data-icon="fa-brands:linkedin" data-inline="false"></span></span></a>
+                <a target="_blank" href="mailto:robiniscoding@gmail.com"><span class="iconify" data-icon="entypo:mail" data-inline="false"></span></a>
             </div>
+        </div>
+    </aside>
+    
+    <nav id="navigation">
+        <a href="/" class="selectedCategory">Home</a>
+        <a href="/about.html">About me</a>
+    </nav>
+    
+    <div class="content">
+        <h1 class="title">Notes de Cours</h1>
 
-        </main>
+        <p>
+            Voici mes notes de cours par semestre pour le master génie logiciel de l'Université de Bordeaux.
+            Les semestres 7 et 8 correspondent à la première année, et les semestres 9 et 10 à la deuxième année.
+            Attention, se sont mes notes de cours, il peut y avoir des fautes dedans, rien ne vaut le cours des profs :)
+        </p>
 
-        <nav id="navigation">
-            <a href="/" class="selectedCategory">Home</a>
-            <a href="/cours/cours.html">Cours</a>
-            <a href="/about.html">About me</a>
-        </nav>
+        
+        <h2>Comment participer</h2>
+        <p>
+            Il est probable que vous trouviez des coquilles/fautes d'orthographe. De plus, et si vous ne regardez pas ce site entre 2019 et 2021,
+            il est possible que le contenu ne soit pas à jour.
+
+            Vous pouvez donc participer pour corriger/ajouter du contenu en soumettant une <span class="text-italic">pull request</span> sur le 
+            <a href="https://github.com/chocorion/Note-de-cours" class="github-link" target="_blank">repo github de ce site</a>.
+        </p>
+        <!-- TODO Mettre dans le readme du dépôt la procédure pour participer -->
+
+            <div id="cours-container">
+                <div>
+                    <h3>Semestre 7</h3>
+                    <ul>
+                    <li><a target="_blank" href="/cours/s7/acid.html">Analyse, classification et indexation des données</a></li>
+                    <li><a target="_blank" href="/cours/s7/ApprocheObjet.html">Approche Objet</a></li>
+                    <li><a target="_blank" href="/cours/s7/CalculabiliteComplexite.html">Calculabilité et Complexité</a></li>
+                    <li><a target="_blank" href="/cours/s7/SystemesExploitation.html">Systèmes d'exploitation</a></li>
+                    <li><a target="_blank" href="/cours/s7/IntelligenceArtificielle.html">Intelligence artificielle</a></li>
+                    <li><a target="_blank" href="/cours/s7/Anglais.html">Anglais</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3>Semestre 8</h3>
+                    <p>
+                        Pour ce semestre, j'ai pris les cours sur un cahier. <br>
+                        Les cours ne sont donc pas du tout complet. <br>
+                        Si j'ai le temps, je les mettrai au propre.
+                    </p>
+
+                    <ul>
+                    <li><a target="_blan_" href="/cours/s8/ArchitectureLogicielle.html">Architecture Logiciel</a></li>
+                    <li><a target="_blan_" href="/cours/s8/ConceptionFormelle.html">Conception Formelle</a></li>
+                    <li><a target="_blan_" href="/cours/s8/ProgParallele.html">Programmation parallèle</a></li>
+                    <li><a target="_blan_" href="/cours/s8/ProjetDeProgrammation.html">Projet de Programmation</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Semestre 9</h3>
+                    <p> Pas pour le moment :) </p>
+                </div>
+                <div>
+                    <h3>Semestre 10</h3>
+                    <p> Pas pour le moment :) </p>
+                </div>
+        </div>
     </div>
 </body>
 </html>

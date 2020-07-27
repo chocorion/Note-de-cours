@@ -15,12 +15,32 @@ gtag('js', new Date());
 gtag('config', 'UA-151907906-1');
 </script>
 </head>
-<body>
-    <div id="container">
-        <main class="center-text">
-            <h1>About me</h1>
 
-            <h2>Présentation</h2>
+<body>
+
+    <aside id="sidebar">
+        <div id="presentation">
+            <img src="/images/avatar.png" alt="avatar" id="avatar">
+            <div class="title">Robin Navarro</div>
+            <div class="sub-title">@Chocorion</div>
+            
+            <p class="presentation-text">Bienvenue sur mon site !</p>
+            
+            <div class="presentation-links">
+                <a target="_blank" href="http://www.github.com/chocorion"><span class="iconify" data-icon="fa-brands:github" data-inline="false"></span></a>
+                <a target="_blank" href="https://www.linkedin.com/in/robin-navarro-196996144/"><span class="iconify" data-icon="fa-brands:linkedin" data-inline="false"></span></span></a>
+                <a target="_blank" href="mailto:robiniscoding@gmail.com"><span class="iconify" data-icon="entypo:mail" data-inline="false"></span></a>
+            </div>
+        </div>
+    </aside>
+    
+    <nav id="navigation">
+        <a href="/">Home</a>
+        <a href="/about.html" class="selectedCategory">About me</a>
+    </nav>
+    
+    <div class="content">
+        <h2>Présentation</h2>
             <p>
                 Bonjour ! <br>
                 Je suis un étudiant en deuxième année de Master informatique à l'Université de Bordeaux, spécialisation Génie Logiciel.
@@ -32,14 +52,7 @@ gtag('config', 'UA-151907906-1');
             <p>
                 N'hésitez pas à me faire des retours pour améliorer ce site !
             </p>
-
-        </main>
-
-        <nav id="navigation">
-            <a href="/">Home</a>
-            <a href="/cours/cours.html">Cours</a>
-            <a href="/about.html" class="selectedCategory">About me</a>
-        </nav>
+        </div>
     </div>
 </body>
 </html>
