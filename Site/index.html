@@ -6,6 +6,7 @@
     <title>Robin NAVARRO</title>
 
     <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/firacode/5.2.0/fira_code.min.css">
     <link rel="stylesheet" href="/style.css">
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-151907906-1"></script>
 <script>
@@ -39,61 +40,60 @@ gtag('config', 'UA-151907906-1');
     </nav>
     
     <div class="content">
-        <h1 class="title">Notes de Cours</h1>
+        <div class="h1"><span class="let">let</span> title <span class="equals">=</span> <span class="string">Notes de Cours</span>;</div>
 
-        <p>
+        <p class="comment">
             Voici mes notes de cours par semestre pour le master génie logiciel de l'Université de Bordeaux.
             Les semestres 7 et 8 correspondent à la première année, et les semestres 9 et 10 à la deuxième année.
             Attention, se sont mes notes de cours, il peut y avoir des fautes dedans, rien ne vaut le cours des profs :)
         </p>
 
-        
-        <h2>Comment participer</h2>
-        <p>
-            Il est probable que vous trouviez des coquilles/fautes d'orthographe. De plus, et si vous ne regardez pas ce site entre 2019 et 2021,
-            il est possible que le contenu ne soit pas à jour.
+        <div class="separator">
+            <span class="function">function</span> <span class="function-name">onError</span><span class="parenthese">(</span><span class="parenthese">)</span> <span class="accolade">{</span> <br>
+            <blockquote>
+                <!-- error <span class="equal">=</span> (error <span class="equal">===</span> <span class="undefined">undefined</span>)?  -->
+                <!-- Il est probable que vous trouviez des coquilles/fautes d'orthographe. De plus, et si vous ne regardez pas ce site entre 2019 et 2021,
+                il est possible que le contenu ne soit pas à jour.
 
-            Vous pouvez donc participer pour corriger/ajouter du contenu en soumettant une <span class="text-italic">pull request</span> sur le 
-            <a href="https://github.com/chocorion/Note-de-cours" class="github-link" target="_blank">repo github de ce site</a>.
-        </p>
-        <!-- TODO Mettre dans le readme du dépôt la procédure pour participer -->
+                Vous pouvez donc participer pour corriger/ajouter du contenu en soumettant une <span class="text-italic">pull request</span> sur le 
+                <a href="https://github.com/chocorion/Note-de-cours" class="github-link" target="_blank">repo github de ce site</a>. <br> -->
 
-            <div id="cours-container">
-                <div>
-                    <h3>Semestre 7</h3>
-                    <ul>
-                    <li><a target="_blank" href="/cours/s7/acid.html">Analyse, classification et indexation des données</a></li>
-                    <li><a target="_blank" href="/cours/s7/ApprocheObjet.html">Approche Objet</a></li>
-                    <li><a target="_blank" href="/cours/s7/CalculabiliteComplexite.html">Calculabilité et Complexité</a></li>
-                    <li><a target="_blank" href="/cours/s7/SystemesExploitation.html">Systèmes d'exploitation</a></li>
-                    <li><a target="_blank" href="/cours/s7/IntelligenceArtificielle.html">Intelligence artificielle</a></li>
-                    <li><a target="_blank" href="/cours/s7/Anglais.html">Anglais</a></li>
-                    </ul>
-                </div>
+                <span class="console">console</span><span class="dot">.</span><span class="log">log</span><span class="parenthese">(</span> <br>
+                    <blockquote class="string">
+                    En cas de d'erreur ou de faute, tu peux faire une pull request sur le <a href="https://github.com/chocorion/Note-de-cours">repo github !</a>
+                    </blockquote>
+                <span class="parenthese">)</span>;
+            </blockquote>
+            <span class="accolade">}</span>
+        </div>
+    <!-- TODO Mettre dans le readme du dépôt la procédure pour participer -->
 
-                <div>
-                    <h3>Semestre 8</h3>
-                    <p>
-                        Pour ce semestre, j'ai pris les cours sur un cahier. <br>
-                        Les cours ne sont donc pas du tout complet. <br>
-                        Si j'ai le temps, je les mettrai au propre.
-                    </p>
-
-                    <ul>
-                    <li><a target="_blan_" href="/cours/s8/ArchitectureLogicielle.html">Architecture Logiciel</a></li>
-                    <li><a target="_blan_" href="/cours/s8/ConceptionFormelle.html">Conception Formelle</a></li>
-                    <li><a target="_blan_" href="/cours/s8/ProgParallele.html">Programmation parallèle</a></li>
-                    <li><a target="_blan_" href="/cours/s8/ProjetDeProgrammation.html">Projet de Programmation</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h3>Semestre 9</h3>
-                    <p> Pas pour le moment :) </p>
-                </div>
-                <div>
-                    <h3>Semestre 10</h3>
-                    <p> Pas pour le moment :) </p>
-                </div>
+        <div class="separator">
+            <span class="let">let</span> courses <span class="equal">=</span> { <br>
+                <blockquote>
+                    Semestre_7: [ <br>
+                    <blockquote>
+                        <a target="_blank" href="/cours/s7/acid.html"><span class="string">Analyse, classification et indexation des données</span></a>,<br>
+                        <a target="_blank" href="/cours/s7/ApprocheObjet.html"><span class="string">Approche Objet</span></a>,<br>
+                        <a target="_blank" href="/cours/s7/CalculabiliteComplexite.html"><span class="string">Calculabilité et Complexité</span></a>,<br>
+                        <a target="_blank" href="/cours/s7/SystemesExploitation.html"><span class="string">Systèmes d'exploitation</span></a>,<br>
+                        <a target="_blank" href="/cours/s7/IntelligenceArtificielle.html"><span class="string">Intelligence artificielle</span></a>,<br>
+                        <a target="_blank" href="/cours/s7/Anglais.html"><span class="string">Anglais</span></a> <br>
+                    </blockquote>
+                    ], <br>
+                    Semestre_8: [ <span class="comment">Semestre pris sur cahier, notes incomplètes...</span><br>
+                    <blockquote>
+                        <a target="_blan_" href="/cours/s8/ArchitectureLogicielle.html"><span class="string">Architecture Logiciel</span></a>, <br>
+                        <a target="_blan_" href="/cours/s8/ConceptionFormelle.html"><span class="string">Conception Formelle</span></a>, <br>
+                        <a target="_blan_" href="/cours/s8/ProgParallele.html"><span class="string">Programmation parallèle</span></a>, <br>
+                        <a target="_blan_" href="/cours/s8/ProjetDeProgrammation.html"><span class="string">Projet de Programmation</span></a><br>
+                    </blockquote>
+                    ], <br>
+                    <span class="comment">L'année n'a pas encore commencée :)</span> <br>
+                    Semestre_9: <span class="null">null</span>, <br>
+                    Semestre_10: <span class="null">null</span>
+                </blockquote>
+            }
         </div>
     </div>
 </body>
