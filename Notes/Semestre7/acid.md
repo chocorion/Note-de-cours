@@ -20,7 +20,13 @@ echo "pkg load statistics" > ~/.octaverc
 
 
 
-Personellement, je vous conseille de coder dans *vs code*, ou un autre éditeur qui *octave*, et d'utiliser octave en ligne de commande pour exécuter vos fichiers.
+Personellement, je vous conseille de coder dans *vs code*, ou un autre éditeur qui *octave*, et d'utiliser octave en ligne de commande pour exécuter vos fichiers. Il suffit de lancer :
+
+```bash
+octave td1.m
+```
+
+
 
 Aussi, une différence avec matlab est qu'il faut ajouter une ligne `pause` à la fin de votre code pour avoir le temps de voir les graphes.
 
