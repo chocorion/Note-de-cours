@@ -105,6 +105,15 @@ html, body {
     align-items: center;
 }
 
+@media screen and (max-width: 640px) {
+    #presentation {
+        margin-top: 10%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
 #avatar {
     width: 9rem;
     border-radius: 100%;
@@ -185,7 +194,7 @@ h4 {
         overflow-y: hidden;
         overflow-x: hidden;
         margin-left: 0;
-        margin-top: calc(var(--navbar-height) + 100%);
+        margin-top: calc(var(--navbar-height) + 80%);
     
         width: 100%;
     }
