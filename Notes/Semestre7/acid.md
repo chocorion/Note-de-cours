@@ -4,6 +4,28 @@
 
 [Lien mémo matlab](http://robin.navarro.emi.u-bordeaux.fr/MatLab.html)
 
+# Installation octave
+
+Octave est une alternative gratuite à Matlab. Tout fonctionne bien, il manque juste une ou deux fonctions pour les tout derniers td. Voici comment l'installer pour réaliser les tp, sur ubuntu :
+
+```bash
+sudo apt install octave octave-statistics;
+```
+
+ `octave-statistics` est un package qui permet d'utiliser des fonctions utilisées à partir du deuxième ou troisième td, tels que *mvnpdf*. Il faut le charger au démarrage d'octave, le moyen le plus simple est le suivant, permettant de le charger automatiquement  : 
+
+```bash
+echo "pkg load statistics" > ~/.octaverc
+```
+
+
+
+Personellement, je vous conseille de coder dans *vs code*, ou un autre éditeur qui *octave*, et d'utiliser octave en ligne de commande pour exécuter vos fichiers.
+
+Aussi, une différence avec matlab est qu'il faut ajouter une ligne `pause` à la fin de votre code pour avoir le temps de voir les graphes.
+
+
+
 ## Classification des données
 
 * Système numérique (capteur + unité de calcul)
