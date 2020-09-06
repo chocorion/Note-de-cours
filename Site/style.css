@@ -25,6 +25,21 @@ html, body {
     z-index: 4;
 }
 
+@media screen and (max-width: 640px) {
+    #sidebar {
+        position: absolute;
+        height: 50%;
+        width: 100%;
+    
+        top: var(--navbar-height);
+        left: 0;
+    
+        border-right: 1px solid rgba(0, 0, 0, 0.15);
+        z-index: 3;
+    }
+}
+
+
 #navigation {
     position: fixed;
     margin-left: var(--sidebar-width);
@@ -61,6 +76,20 @@ html, body {
 
 #navigation .selectedCategory {
     text-decoration: underline;
+}
+
+@media screen and (max-width: 640px) {
+    #navigation {
+        position: fixed;
+        margin-left: 0;
+        top: 0;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+        width: 100%;
+        height: var(--navbar-height);
+        z-index: 3;
+    
+        background-color: white;
+    }
 }
 
 
@@ -150,6 +179,18 @@ h4 {
 
     width: calc(100% - (var(--sidebar-width) + 4%));
 }
+
+@media screen and (max-width: 640px) {
+    .content {
+        overflow-y: hidden;
+        overflow-x: hidden;
+        margin-left: 0;
+        margin-top: calc(var(--navbar-height) + 100%);
+    
+        width: 100%;
+    }
+}
+
 .content h2 {
     color: rgb(100, 100, 100);
     font-size: 1.3em;
