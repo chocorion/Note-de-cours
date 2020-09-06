@@ -193,8 +193,9 @@ h4 {
     .content {
         overflow-y: hidden;
         overflow-x: hidden;
-        margin-left: 0;
-        margin-top: calc(var(--navbar-height) + 80%);
+        margin-left: 5%;
+        margin-right: 5%;
+        margin-top: calc(var(--navbar-height) + 85%);
     
         width: 100%;
     }
