@@ -77,3 +77,118 @@ Le logiciel nait quand le propriétaire exprime le besoin. Le besoin est ensuite
 Liste des issues que les devs espèrent pouvoir réaliser (spécifiées en lisant le cdc) = **backlog**.
 
 Pour le premier td, il faudra créer `issue.md`. Ensuite  il faut la planification, c'est-à-dire pour chaque sprint, mettre les issues à réaliser.
+
+Le dev doit spécifier les besoins, c'est-à-dire rédiger les *User Stories*. Ce processus s'appel *l'analyse du besoins*. Le backlog contient les issues rédigées par les dev, donc la version spécifié. Il est validé par le propriétaire (*PO*). 
+
+Pour pouvoir chiffrer le projet, on fait la somme des difficultées des issues dans le back log. Il faut ensuite mesurer le coût de *1*. C'est fait *au doigt mouillé* par le chef de projet. On utiliser généralement le jour-homme. (2jh = 1 dev pendant 2j, ou 2 dev pendant 1j). On utilise le jmois, 20jh, et le ja, 12jm.
+
+Aujourd'hui, dans bdx, 1jh c'est vendu en moyenne 400euros. (Donc projet pdp, 10semaines = 50jh, 20k).
+
+
+
+
+
+## Deuxième artefact : Task
+
+
+
+> Le digramme de Gantt, c'est nul.
+
+La task n'est pas l'issue. L'issue, c'est la finalité. L'issue c'est *quoi*, et la task *comment*.
+
+Pour faire la liste des taches : 
+
+1. Faire l'architecture.
+2. Quels fichiers sources à écrire.
+3. Dépendances.
+
+
+
+Exemple formulaire covid:
+
+```
+1. covid.css
+2. covidBD.sql
+3. receiveFromPOSTAndGeneratePdf.php
+4. forumaire.html
+```
+
+3 et 4 dépendent de la définition du formulaire. C'est une tâche supplémentaire. On passe de l'user story "En tant que français je veux pouvoir génere le formulaire" à 5 tâches.
+
+On peut rajouter x2 pour chaque tache, si on ajoute un test par tache.
+
+
+
+**Tache id 1 - Faire le formulaire html pour le covid**
+
+Definition of done: Contruire un fichier index.html à la racine du projet. La page html contient un form post vers l'url genPDF.php. Le forumaire contient les champs suivant : 
+
+* Name - String 50 char
+* ...
+
+Il faut un Definition Of Done précis, pour définir le RAF (Reste à faire).
+
+
+
+**Tache id 2 - Tester le formulaire html**
+
+Definition Of Done: Ouvrir index.html avec votre navigateur. Saisir un nom, ... Cliquer sur Submit, et vérifier à l'aide de l'outil DevTool qu'une requête post vers genPDF.php a été envoyée.
+
+
+
+Pour rédiger une tâche :
+
+1. Chaque tache doit avoir une durée relativement courte. Maximum un jour, soit 8h.
+2. Préciser le travail à faire.
+3. Chaque tache est liée à une userStory. On ne fait pas de tache pour rien.
+
+
+
+Liste des tâches :
+
+| Id   | Charge                   | Depend | User Story |
+| ---- | ------------------------ | ------ | ---------- |
+| 1    | index.html<br>4 heures   |        | US1Gen     |
+| 2    | Tester Id 1 <br>4 heures | 1      | US1        |
+
+
+
+Planification :
+
+|       | L    | M    | M    | J    | V    |
+| ----- | ---- | ---- | ---- | ---- | ---- |
+| Alice | T1   | T3   | T3   | X    | X    |
+| Bob   | X    | T2   | T4   | X    | X    |
+| Joh   | X    | X    | T6   | X    | X    |
+
+X = temps mort = Perte d'argent.
+
+
+
+Diagramme de Pert : 
+
+
+
+| Id   | Charge | Depend  | US   |
+| ---- | ------ | ------- | ---- |
+| 1    | 1      | X       |      |
+| 2    | 1      | 1       |      |
+| 3    | 3      | 4       |      |
+| 4    | 2      | X       |      |
+| 5    | 1      | 1, 2, 3 |      |
+| 6    | 2      | 5       |      |
+| 7    | 1      | 5       |      |
+
+
+
+<img src="/images/CDC/pert.png" />
+
+
+
+Version à la main : 
+
+|       | 1    | 2    | 3    | 4    | 5    | 6    | 7    | 8    |      |
+| ----- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
+| Alice | X    | X    | X    | T1   | X    | X    | T5   | T6   |      |
+| Bob   | T4   | T4   | T3   | T3   | X    | X    | T7   | X    |      |
+
