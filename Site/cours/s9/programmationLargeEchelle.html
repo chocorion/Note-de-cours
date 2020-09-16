@@ -156,7 +156,6 @@ mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
 mark .md-meta { color: rgb(0, 0, 0); opacity: 0.3 !important; }
 @media print {
   .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
-  .typora-export h1::after, .typora-export h2::after, .typora-export h3::after, .typora-export h4::after, .typora-export h5::after, .typora-export h6::after { content: ""; display: block; height: 100px; margin-bottom: -100px; }
 }
 
 
@@ -264,7 +263,7 @@ h2 {
     border-bottom: 1px solid #eee;
 }
 
-@media print {
+/*@media print {
     .typora-export h1,
     .typora-export h2 {
         border-bottom: none;
@@ -273,10 +272,13 @@ h2 {
 
     .typora-export h1::after,
     .typora-export h2::after {
+        content: "";
+        display: block;
+        height: 100px;
+        margin-top: -96px;
         border-top: 1px solid #eee;
-        margin-top: .3em;
     }
-}
+}*/
 
 h3 {
     font-size: 1.5em;
@@ -548,6 +550,6 @@ gtag('config', 'UA-151907906-1');
 </script>
 </head>
 <body class='typora-export'>
-<div id='write'  class=''><h1><a name="programmation-large-échelle" class="md-header-anchor"></a><span>Programmation Large Échelle</span></h1><p>&nbsp;</p><p><a href='https://www.labri.fr/perso/auber/BigDataGL/index.html'><span>Site du prof</span></a></p><p>&nbsp;</p><h2><a name="pour-les-td" class="md-header-anchor"></a><span>Pour les td</span></h2><p><span>Installation particulière en 203 (data node)</span></p><ul><li><span>Allumer les machines à distance (site du cremi &gt; service numérique &gt; démarrage à distance)</span></li><li><span>Les machines s&#39;éteignent au bout de 5 min, script pour rester connecter </span><code>/espace/Auber_PLE-203/run_xtems.sh</code><span> (il faut s&#39;être connécté avec -X)</span></li></ul><p><span>Redirection de port avec ssh, peut être utile dans certain td : </span><code>ssh -L 50070:localhost:50070 -J &lt;login&gt;@jaguar.emi.u-bordeaux.fr &lt;login&gt;@data</code></p></div>
+<div id='write'  class=''><h1><a name="programmation-large-échelle" class="md-header-anchor"></a><span>Programmation Large Échelle</span></h1><p>&nbsp;</p><p><a href='https://www.labri.fr/perso/auber/BigDataGL/index.html'><span>Site du prof</span></a></p><p>&nbsp;</p><h2><a name="pour-les-td" class="md-header-anchor"></a><span>Pour les td</span></h2><p><span>Installation particulière en 203 (data node)</span></p><ul><li><span>Allumer les machines à distance (site du cremi &gt; service numérique &gt; démarrage à distance)</span></li><li><span>Les machines s&#39;éteignent au bout de 5 min, script pour rester connecter </span><code>/espace/Auber_PLE-203/run_xtems.sh</code><span> (il faut s&#39;être connécté avec -X)</span></li></ul><p><span>Redirection de port avec ssh, peut être utile dans certain td : </span><code>ssh -L 50070:localhost:50070 -J &lt;login&gt;@jaguar.emi.u-bordeaux.fr &lt;login&gt;@data</code></p><p>&nbsp;</p><p><span>Les principes d&#39;un system big data:</span></p><ol start='' ><li><span>Robustness and fault-tolerance (especially human-fault tolerant)</span></li><li><span>Low latency reads and updates</span></li><li><span>Scalability</span></li><li><span>Generalization</span></li><li><span>Extensibility</span></li><li><span>Ad hoc queries</span></li><li><span>Minimal maintenance</span></li><li><span>Debuggability</span></li></ol><p>&nbsp;</p><p><span>Master Dataset: L&#39;idée c&#39;est de ne pas modifier les données :</span></p><ol start='' ><li><span>Data is raw</span></li><li><span>Data is immutable</span></li><li><span>Data is eterally true</span></li></ol><p>&nbsp;</p><p><span>Fact-based Model : A fact is atomic and timestamped</span></p><ol start='' ><li><span>Queryable at any time in its history</span></li><li><span>Tolerant to human errors</span></li><li><span>handles partial information</span></li><li><span>Advantages of both normalized and denormalized from</span></li></ol><p>&nbsp;</p><p><span>Storage requirements</span></p><ol start='' ><li><span>Efficient appends of new data</span></li><li><span>Scalable storage</span></li><li><span>Support for parallel processing</span></li><li><span>Tunability</span></li><li><span>Enforce immutability</span></li></ol><p><em><span>HDFS</span></em><span> Garantit tout ça.</span></p><p><span>Batch view : Extraction de données du Master Dataset. Les batch views sont créés par le Batch Layer. C&#39;est un truc qui tourne tout le temps pour générer les batch layers. Les Serving Layer contiennent des batch view, ils représentent un service pour le client. C&#39;est eux qui vont recevoir les requêtes, et y répondre.</span></p><p>&nbsp;</p><p><span>Donc, quand on a une nouvelle donnée, deux possibilitées. Soit on l&#39;ajoute dans le master dataset, et le batch doit reparcourire tout le master dataset. Soit on l&#39;ajoute directement dans le batch pour générer une nouvelle view.</span></p><p><span>On préfèrera la première option. Ce que ça apporte, c&#39;est d&#39;être plus tolérant aux erreurs. Il suffit de relancer le calcul, plutot que réfléchir pour mettre à jour (exemple de la moyenne, formule différente quand on met à jour). On va utiliser la permière option, avec Map Reduce.</span></p><p>&nbsp;</p><p><span>C&#39;est moins performant, mais fiable et facile.</span></p><p>&nbsp;</p><h3><a name="serving-layer--elephantdb-hbase-cassandra" class="md-header-anchor"></a><span>Serving Layer : (ElephantDB, </span><em><span>HBase</span></em><span>, Cassandra)</span></h3><p><span>Role : Provide fast random access to the batch views</span></p><ol start='' ><li><span>Batch writable</span></li><li><span>Scalable (la taille des données dans le batch view peut évoluer)</span></li><li><span>Random reads </span></li><li><span>Fault-tolerant</span></li><li><span>No random writes !</span></li></ol><p>&nbsp;</p><p><span>Il existe des évolutiosn de cette architecture : </span><em><span>Lambda architecture</span></em></p><p><span>On ajoute le speed layer, qui en temps réel fabrique des view (real time view), qui ne seront calculée qu&#39;à partir du speed layer, pas du master dataset. Le serving layer va donc merge les batch view, et l&#39;information partielle stockée dans les real-time view..</span></p><p>&nbsp;</p><h3><a name="speed-layer" class="md-header-anchor"></a><span>Speed layer </span></h3><p><span>Role : Compensate the batch layer update latency.</span></p><p><span>Storage requirements :</span></p><ol start='' ><li><span>random reads</span></li><li><span>random writes</span></li><li><span>scalability</span></li><li><span>fault tolerance </span></li></ol><p><span>Tout ce qui est dans le speed layer va être recalculé dans le master dataset. Le speed layer utilise donc du nosql</span></p><p>&nbsp;</p><ul><li><span>Master Dataset : HDFS</span></li><li><span>Calcul: Map/reduce, puis spark</span></li><li><span>Speed layer: Spark streaming</span></li><li><span>Serving layer: HBase</span></li></ul><p>&nbsp;</p><h2><a name="hadoop" class="md-header-anchor"></a><span>Hadoop</span></h2><h3><a name="hdfs" class="md-header-anchor"></a><span>HDFS</span></h3><p><span>Tout est orienté sur le débit. Le but, c&#39;est de lire le plus rapidement les données. Fonctionne par block de 128Mo</span></p></div>
 </body>
 </html>
