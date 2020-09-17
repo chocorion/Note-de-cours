@@ -28,7 +28,7 @@ html, body {
 @media screen and (max-width: 640px) {
     #sidebar {
         position: absolute;
-        height: 50%;
+        max-height: 40%;
         width: 100%;
     
         top: var(--navbar-height);
@@ -51,7 +51,7 @@ html, body {
 
     background-color: white;
 }
-/* rgb(153, 102, 102); */
+
 #navigation a {
     margin: 20px;
     display: inline-block;
@@ -107,10 +107,14 @@ html, body {
 
 @media screen and (max-width: 640px) {
     #presentation {
+        overflow: hidden;
         margin-top: 10%;
         display: flex;
         flex-direction: column;
         align-items: center;
+        height: 100%;
+
+        font-size: 2vh;
     }
 }
 
@@ -118,6 +122,14 @@ html, body {
     width: 9rem;
     border-radius: 100%;
 }
+
+@media screen and (max-width: 640px) {
+    #avatar {
+        width: min(30%, 110px);
+        border-radius: 100%;
+    }
+}
+
 
 
 #presentation .title {
@@ -184,23 +196,13 @@ h4 {
     position: absolute;
     left: calc(var(--sidebar-width) + 2%);
     top: var(--navbar-height);
-    /* overflow-y: hidden;
-    overflow-x: hidden; 
-    margin-left: calc(var(--sidebar-width) + 2%);
-    margin-top: var(--navbar-height);
-
-    /* width: calc(100% - (var(--sidebar-width) + 4%)); */
 }
 
 @media screen and (max-width: 640px) {
     .content {
-        overflow-y: hidden;
-        overflow-x: hidden;
-        margin-left: 5%;
-        margin-right: 5%;
-        margin-top: calc(var(--navbar-height) + 85%);
-    
-        width: 100%;
+        position: absolute;
+        top: calc(var(--navbar-height) + 50%);
+        left: 5%;
     }
 }
 
