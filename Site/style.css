@@ -130,8 +130,6 @@ html, body {
     }
 }
 
-
-
 #presentation .title {
     margin-top: 4.5%;
     font-size: 1.9em;
@@ -201,7 +199,7 @@ h4 {
 @media screen and (max-width: 640px) {
     .content {
         position: absolute;
-        top: calc(var(--navbar-height) + 50%);
+        top: calc(var(--navbar-height) + 55%);
         left: 5%;
     }
 }
