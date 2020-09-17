@@ -181,12 +181,15 @@ h4 {
 }
 
 .content {
-    overflow-y: hidden;
-    overflow-x: hidden;
+    position: absolute;
+    left: calc(var(--sidebar-width) + 2%);
+    top: var(--navbar-height);
+    /* overflow-y: hidden;
+    overflow-x: hidden; 
     margin-left: calc(var(--sidebar-width) + 2%);
     margin-top: var(--navbar-height);
 
-    width: calc(100% - (var(--sidebar-width) + 4%));
+    /* width: calc(100% - (var(--sidebar-width) + 4%)); */
 }
 
 @media screen and (max-width: 640px) {
