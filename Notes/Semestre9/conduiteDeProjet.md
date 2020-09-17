@@ -86,6 +86,16 @@ Aujourd'hui, dans bdx, 1jh c'est vendu en moyenne 400euros. (Donc projet pdp, 10
 
 
 
+> De ce que j'ai compris pour la méthodologie agile, une *user story* est une *issue*, mais une *issue* n'est pas une *user story*. Issue est un  terme générique, ça peut être une *Story*, un *Bug,* ...
+
+
+
+**User stories** are short, simple descriptions of a  feature told from the perspective of the person who desires the new  capability, usually a user or customer of the system. They typically  follow a simple template:
+
+As a < type of user >, I want < some goal > so that < some reason >.
+
+
+
 
 
 ## Deuxième artefact : Task
@@ -165,7 +175,7 @@ X = temps mort = Perte d'argent.
 
 
 
-Diagramme de Pert : 
+Diagramme de Pert (pas très utile dans le cadre du cours) : 
 
 
 
@@ -185,7 +195,7 @@ Diagramme de Pert :
 
 
 
-Version à la main : 
+Version à la main (C'est ce qu'on utilisera dans ce cours) : 
 
 |       | 1    | 2    | 3    | 4    | 5    | 6    | 7    | 8    |      |
 | ----- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
