@@ -25,7 +25,7 @@ html, body {
     z-index: 4;
 }
 
-@media screen and (max-width: 640px) {
+@media screen and (max-width: 768px) {
     #sidebar {
         position: absolute;
         max-height: 40%;
@@ -78,7 +78,7 @@ html, body {
     text-decoration: underline;
 }
 
-@media screen and (max-width: 640px) {
+@media screen and (max-width: 768px) {
     #navigation {
         position: fixed;
         margin-left: 0;
@@ -105,7 +105,7 @@ html, body {
     align-items: center;
 }
 
-@media screen and (max-width: 640px) {
+@media screen and (max-width: 768px) {
     #presentation {
         margin-top: 10%;
         height: 100%;
@@ -121,7 +121,7 @@ html, body {
     border-radius: 100%;
 }
 
-@media screen and (max-width: 640px) {
+@media screen and (max-width: 768px) {
     #avatar {
         /* width: min(30%, 110px); */
         height: 50%;
@@ -196,7 +196,7 @@ h4 {
     top: var(--navbar-height);
 }
 
-@media screen and (max-width: 640px) {
+@media screen and (max-width: 768px) {
     .content {
         position: absolute;
         top: calc(var(--navbar-height) + 55%);
