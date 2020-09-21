@@ -36,3 +36,26 @@ Les choses compliquées en css:
 
 * Trouver le bon sélecteur
 * Les boites
+
+
+
+## Javascript
+
+
+
+Les déclarations de fonctions sont *hoisted*, c'est-à-dire qu'elles sont dépacées au sommet du scope.
+
+Pour tes les éléments du DOM, 
+
+```javascript
+function onClick() {
+    console.log("Click !")
+}
+
+const button = document.querySelector("button");
+button.addEventListener('click', onClick);
+```
+
+Il faut dans ce cours utiliser cette méthode plutôt que `<button onClick="console.log("Click !");"></button> `.
+
+Il faut penser à utiliser `<script src="" defer></script>`, pour lancer le script à la fin du chargement de la page.
