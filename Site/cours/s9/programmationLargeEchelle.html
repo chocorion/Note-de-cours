@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
-<title>programmationLargeEchelle</title><link href='https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; }
+<title>programmationLargeEchelle</title><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; }
 html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
 body { margin: 0px; padding: 0px; height: auto; bottom: 0px; top: 0px; left: 0px; right: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
 iframe { margin: auto; }
@@ -159,384 +159,363 @@ mark .md-meta { color: rgb(0, 0, 0); opacity: 0.3 !important; }
 }
 
 
-:root {
-    --side-bar-bg-color: #fafafa;
-    --control-text-color: #777;
+.CodeMirror { height: auto; }
+.CodeMirror.cm-s-inner { background: inherit; }
+.CodeMirror-scroll { overflow: auto hidden; z-index: 3; }
+.CodeMirror-gutter-filler, .CodeMirror-scrollbar-filler { background-color: rgb(255, 255, 255); }
+.CodeMirror-gutters { border-right: 1px solid rgb(221, 221, 221); background: inherit; white-space: nowrap; }
+.CodeMirror-linenumber { padding: 0px 3px 0px 5px; text-align: right; color: rgb(153, 153, 153); }
+.cm-s-inner .cm-keyword { color: rgb(119, 0, 136); }
+.cm-s-inner .cm-atom, .cm-s-inner.cm-atom { color: rgb(34, 17, 153); }
+.cm-s-inner .cm-number { color: rgb(17, 102, 68); }
+.cm-s-inner .cm-def { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-variable { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-variable-2 { color: rgb(0, 85, 170); }
+.cm-s-inner .cm-variable-3 { color: rgb(0, 136, 85); }
+.cm-s-inner .cm-string { color: rgb(170, 17, 17); }
+.cm-s-inner .cm-property { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-operator { color: rgb(152, 26, 26); }
+.cm-s-inner .cm-comment, .cm-s-inner.cm-comment { color: rgb(170, 85, 0); }
+.cm-s-inner .cm-string-2 { color: rgb(255, 85, 0); }
+.cm-s-inner .cm-meta { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-qualifier { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-builtin { color: rgb(51, 0, 170); }
+.cm-s-inner .cm-bracket { color: rgb(153, 153, 119); }
+.cm-s-inner .cm-tag { color: rgb(17, 119, 0); }
+.cm-s-inner .cm-attribute { color: rgb(0, 0, 204); }
+.cm-s-inner .cm-header, .cm-s-inner.cm-header { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-quote, .cm-s-inner.cm-quote { color: rgb(0, 153, 0); }
+.cm-s-inner .cm-hr, .cm-s-inner.cm-hr { color: rgb(153, 153, 153); }
+.cm-s-inner .cm-link, .cm-s-inner.cm-link { color: rgb(0, 0, 204); }
+.cm-negative { color: rgb(221, 68, 68); }
+.cm-positive { color: rgb(34, 153, 34); }
+.cm-header, .cm-strong { font-weight: 700; }
+.cm-del { text-decoration: line-through; }
+.cm-em { font-style: italic; }
+.cm-link { text-decoration: underline; }
+.cm-error { color: red; }
+.cm-invalidchar { color: red; }
+.cm-constant { color: rgb(38, 139, 210); }
+.cm-defined { color: rgb(181, 137, 0); }
+div.CodeMirror span.CodeMirror-matchingbracket { color: rgb(0, 255, 0); }
+div.CodeMirror span.CodeMirror-nonmatchingbracket { color: rgb(255, 34, 34); }
+.cm-s-inner .CodeMirror-activeline-background { background: inherit; }
+.CodeMirror { position: relative; overflow: hidden; }
+.CodeMirror-scroll { height: 100%; outline: 0px; position: relative; box-sizing: content-box; background: inherit; }
+.CodeMirror-sizer { position: relative; }
+.CodeMirror-gutter-filler, .CodeMirror-hscrollbar, .CodeMirror-scrollbar-filler, .CodeMirror-vscrollbar { position: absolute; z-index: 6; display: none; }
+.CodeMirror-vscrollbar { right: 0px; top: 0px; overflow: hidden; }
+.CodeMirror-hscrollbar { bottom: 0px; left: 0px; overflow: hidden; }
+.CodeMirror-scrollbar-filler { right: 0px; bottom: 0px; }
+.CodeMirror-gutter-filler { left: 0px; bottom: 0px; }
+.CodeMirror-gutters { position: absolute; left: 0px; top: 0px; padding-bottom: 30px; z-index: 3; }
+.CodeMirror-gutter { white-space: normal; height: 100%; box-sizing: content-box; padding-bottom: 30px; margin-bottom: -32px; display: inline-block; }
+.CodeMirror-gutter-wrapper { position: absolute; z-index: 4; background: 0px 0px !important; border: none !important; }
+.CodeMirror-gutter-background { position: absolute; top: 0px; bottom: 0px; z-index: 4; }
+.CodeMirror-gutter-elt { position: absolute; cursor: default; z-index: 4; }
+.CodeMirror-lines { cursor: text; }
+.CodeMirror pre { border-radius: 0px; border-width: 0px; background: 0px 0px; font-family: inherit; font-size: inherit; margin: 0px; white-space: pre; overflow-wrap: normal; color: inherit; z-index: 2; position: relative; overflow: visible; }
+.CodeMirror-wrap pre { overflow-wrap: break-word; white-space: pre-wrap; word-break: normal; }
+.CodeMirror-code pre { border-right: 30px solid transparent; width: fit-content; }
+.CodeMirror-wrap .CodeMirror-code pre { border-right: none; width: auto; }
+.CodeMirror-linebackground { position: absolute; left: 0px; right: 0px; top: 0px; bottom: 0px; z-index: 0; }
+.CodeMirror-linewidget { position: relative; z-index: 2; overflow: auto; }
+.CodeMirror-wrap .CodeMirror-scroll { overflow-x: hidden; }
+.CodeMirror-measure { position: absolute; width: 100%; height: 0px; overflow: hidden; visibility: hidden; }
+.CodeMirror-measure pre { position: static; }
+.CodeMirror div.CodeMirror-cursor { position: absolute; visibility: hidden; border-right: none; width: 0px; }
+.CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+.CodeMirror-focused div.CodeMirror-cursor { visibility: inherit; }
+.cm-searching { background: rgba(255, 255, 0, 0.4); }
+@media print {
+  .CodeMirror div.CodeMirror-cursor { visibility: hidden; }
 }
 
-@include-when-export url(https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext);
 
-/* open-sans-regular - latin-ext_latin */
-  /* open-sans-italic - latin-ext_latin */
-    /* open-sans-700 - latin-ext_latin */
-    /* open-sans-700italic - latin-ext_latin */
-  html {
-    font-size: 16px;
+html {
+	font-size: 19px;
 }
 
+html, body {
+	margin: auto;
+	background: #fefefe;
+}
 body {
-    font-family: "Open Sans","Clear Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    color: rgb(51, 51, 51);
-    line-height: 1.6;
+	font-family: "Vollkorn", Palatino, Times;
+	color: #333;
+	line-height: 1.4;
+	text-align: justify;
 }
 
 #write {
-    max-width: 860px;
-  	margin: 0 auto;
-  	padding: 30px;
-    padding-bottom: 100px;
+	max-width: 960px;
+	margin: 0 auto;
+	margin-bottom: 2em;
+	line-height: 1.53;
+	padding-top: 40px;
 }
 
 @media only screen and (min-width: 1400px) {
 	#write {
-		max-width: 1024px;
+		max-width: 1100px;
 	}
 }
 
-@media only screen and (min-width: 1800px) {
-	#write {
-		max-width: 1200px;
-	}
+/* Typography
+-------------------------------------------------------- */
+
+#write>h1:first-child,
+h1 {
+	margin-top: 1.6em;
+	font-weight: normal;
 }
 
-#write > ul:first-child,
-#write > ol:first-child{
-    margin-top: 30px;
+h1 {
+	font-size:3em;
+}
+
+h2 {
+	margin-top:2em;
+	font-weight: normal;
+}
+
+h3 {
+	font-weight: normal;
+	font-style: italic;
+	margin-top: 3em;
+}
+
+h1, 
+h2, 
+h3{
+	text-align: center;
+}
+
+h2:after{
+	border-bottom: 1px solid #2f2f2f;
+    content: '';
+    width: 100px;
+    display: block;
+    margin: 0 auto;
+    height: 1px;
+}
+
+h1+h2, h2+h3 {
+	margin-top: 0.83em;
+}
+
+p,
+.mathjax-block {
+	margin-top: 0;
+	-webkit-hypens: auto;
+	-moz-hypens: auto;
+	hyphens: auto;
+}
+ul {
+	list-style: square;
+	padding-left: 1.2em;
+}
+ol {
+	padding-left: 1.2em;
+}
+blockquote {
+	margin-left: 1em;
+	padding-left: 1em;
+	border-left: 1px solid #ddd;
+}
+code,
+pre {
+	font-family: "Consolas", "Menlo", "Monaco", monospace, serif;
+	font-size: .9em;
+	background: white;
+}
+.md-fences{
+	margin-left: 1em;
+	padding-left: 1em;
+	border: 1px solid #ddd;
+	padding-bottom: 8px;
+	padding-top: 6px;
+	margin-bottom: 1.5em;
 }
 
 a {
-    color: #4183C4;
+	color: #2484c1;
+	text-decoration: none;
 }
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    position: relative;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    font-weight: bold;
-    line-height: 1.4;
-    cursor: text;
+a:hover {
+	text-decoration: underline;
 }
-h1:hover a.anchor,
-h2:hover a.anchor,
-h3:hover a.anchor,
-h4:hover a.anchor,
-h5:hover a.anchor,
-h6:hover a.anchor {
-    text-decoration: none;
+a img {
+	border: none;
 }
-h1 tt,
-h1 code {
-    font-size: inherit;
-}
-h2 tt,
-h2 code {
-    font-size: inherit;
-}
-h3 tt,
-h3 code {
-    font-size: inherit;
-}
-h4 tt,
-h4 code {
-    font-size: inherit;
-}
-h5 tt,
-h5 code {
-    font-size: inherit;
-}
-h6 tt,
-h6 code {
-    font-size: inherit;
-}
-h1 {
-    font-size: 2.25em;
-    line-height: 1.2;
-    border-bottom: 1px solid #eee;
-}
-h2 {
-    font-size: 1.75em;
-    line-height: 1.225;
-    border-bottom: 1px solid #eee;
-}
-
-/*@media print {
-    .typora-export h1,
-    .typora-export h2 {
-        border-bottom: none;
-        padding-bottom: initial;
-    }
-
-    .typora-export h1::after,
-    .typora-export h2::after {
-        content: "";
-        display: block;
-        height: 100px;
-        margin-top: -96px;
-        border-top: 1px solid #eee;
-    }
-}*/
-
-h3 {
-    font-size: 1.5em;
-    line-height: 1.43;
-}
-h4 {
-    font-size: 1.25em;
-}
-h5 {
-    font-size: 1em;
-}
-h6 {
-   font-size: 1em;
-    color: #777;
-}
-p,
-blockquote,
-ul,
-ol,
-dl,
-table{
-    margin: 0.8em 0;
-}
-li>ol,
-li>ul {
-    margin: 0 0;
+h1 a,
+h1 a:hover {
+	color: #333;
+	text-decoration: none;
 }
 hr {
-    height: 2px;
-    padding: 0;
-    margin: 16px 0;
-    background-color: #e7e7e7;
-    border: 0 none;
-    overflow: hidden;
-    box-sizing: content-box;
+	color: #ddd;
+	height: 1px;
+	margin: 2em 0;
+	border-top: solid 1px #ddd;
+	border-bottom: none;
+	border-left: 0;
+	border-right: 0;
 }
-
-li p.first {
-    display: inline-block;
-}
-ul,
-ol {
-    padding-left: 30px;
-}
-ul:first-child,
-ol:first-child {
-    margin-top: 0;
-}
-ul:last-child,
-ol:last-child {
-    margin-bottom: 0;
-}
-blockquote {
-    border-left: 4px solid #dfe2e5;
-    padding: 0 15px;
-    color: #777777;
-}
-blockquote blockquote {
-    padding-right: 0;
+.ty-table-edit {
+	background: #ededed;
+    padding-top: 4px;
 }
 table {
-    padding: 0;
-    word-break: initial;
+	margin-bottom: 1.333333rem
 }
-table tr {
-    border-top: 1px solid #dfe2e5;
-    margin: 0;
-    padding: 0;
+table th,
+table td {
+	padding: 8px;
+	line-height: 1.333333rem;
+	vertical-align: top;
+	border-top: 1px solid #ddd
 }
-table tr:nth-child(2n),
-thead {
-    background-color: #f8f8f8;
+table th {
+	font-weight: bold
 }
-table tr th {
-    font-weight: bold;
-    border: 1px solid #dfe2e5;
-    border-bottom: 0;
-    margin: 0;
-    padding: 6px 13px;
+table thead th {
+	vertical-align: bottom
 }
-table tr td {
-    border: 1px solid #dfe2e5;
-    margin: 0;
-    padding: 6px 13px;
+table caption+thead tr:first-child th,
+table caption+thead tr:first-child td,
+table colgroup+thead tr:first-child th,
+table colgroup+thead tr:first-child td,
+table thead:first-child tr:first-child th,
+table thead:first-child tr:first-child td {
+	border-top: 0
 }
-table tr th:first-child,
-table tr td:first-child {
-    margin-top: 0;
-}
-table tr th:last-child,
-table tr td:last-child {
-    margin-bottom: 0;
+table tbody+tbody {
+	border-top: 2px solid #ddd
 }
 
-.CodeMirror-lines {
-    padding-left: 4px;
+.task-list{
+	padding:0;
 }
 
-.code-tooltip {
-    box-shadow: 0 1px 1px 0 rgba(0,28,36,.3);
-    border-top: 1px solid #eef2f2;
+.md-task-list-item {
+	padding-left: 1.6rem;
 }
 
-.md-fences,
-code,
-tt {
-    border: 1px solid #e7eaed;
-    background-color: #f8f8f8;
-    border-radius: 3px;
-    padding: 0;
-    padding: 2px 4px 0px 4px;
-    font-size: 0.9em;
+.md-task-list-item > input:before {
+	content: '\221A';
+	display: inline-block;
+	width: 1.33333333rem;
+  	height: 1.6rem;
+	vertical-align: middle;
+	text-align: center;
+	color: #ddd;
+	background-color: #fefefe;
 }
 
-code {
-    background-color: #f3f4f4;
-    padding: 0 2px 0 2px;
+.md-task-list-item > input:checked:before,
+.md-task-list-item > input[checked]:before{
+	color: inherit;
 }
-
-.md-fences {
-    margin-bottom: 15px;
-    margin-top: 15px;
-    padding-top: 8px;
-    padding-bottom: 6px;
-}
-
-
-.md-task-list-item > input {
-  margin-left: -1.3em;
-}
-
-@media print {
-    html {
-        font-size: 13px;
-    }
-    table,
-    pre {
-        page-break-inside: avoid;
-    }
-    pre {
-        word-wrap: break-word;
-    }
-}
-
-.md-fences {
-	background-color: #f8f8f8;
+.md-tag {
+	color: inherit;
+	font: inherit;
 }
 #write pre.md-meta-block {
-	padding: 1rem;
-    font-size: 85%;
-    line-height: 1.45;
-    background-color: #f7f7f7;
-    border: 0;
-    border-radius: 3px;
-    color: #777777;
-    margin-top: 0 !important;
+	min-height: 35px;
+	padding: 0.5em 1em;
+}
+#write pre.md-meta-block {
+	white-space: pre;
+	background: #f8f8f8;
+	border: 0px;
+	color: #999;
+	
+	width: 100vw;
+	max-width: calc(100% + 60px);
+	margin-left: -30px;
+	border-left: 30px #f8f8f8 solid;
+	border-right: 30px #f8f8f8 solid;
+
+	margin-bottom: 2em;
+	margin-top: -1.3333333333333rem;
+	padding-top: 26px;
+	padding-bottom: 10px;
+	line-height: 1.8em;
+	font-size: 0.9em;
+	font-size: 0.76em;
+	padding-left: 0;
+}
+.md-img-error.md-image>.md-meta{
+	vertical-align: bottom;
+}
+#write>h5.md-focus:before {
+	top: 2px;
 }
 
-.mathjax-block>.code-tooltip {
-	bottom: .375rem;
+.md-toc {
+	margin-top: 40px;
+}
+
+.md-toc-content {
+	padding-bottom: 20px;
+}
+
+.outline-expander:before {
+	color: inherit;
+	font-size: 14px;
+	top: auto;
+	content: "\f0da";
+	font-family: FontAwesome;
+}
+
+.outline-expander:hover:before,
+.outline-item-open>.outline-item>.outline-expander:before {
+  	content: "\f0d7";
+}
+
+/** source code mode */
+#typora-source {
+	font-family: Courier, monospace;
+    color: #6A6A6A;
+}
+
+.html-for-mac #typora-sidebar {
+    -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+}
+
+.cm-s-typora-default .cm-header, 
+.cm-s-typora-default .cm-property,
+.CodeMirror.cm-s-typora-default div.CodeMirror-cursor {
+	color: #428bca;
+}
+
+.cm-s-typora-default .cm-atom, .cm-s-typora-default .cm-number {
+	color: #777777;
+}
+
+.typora-node .file-list-item-parent-loc, 
+.typora-node .file-list-item-time, 
+.typora-node .file-list-item-summary {
+	font-family: arial, sans-serif;
+}
+
+.md-task-list-item>input {
+    margin-left: -1.3em;
+    margin-top: calc(1rem - 12px);
 }
 
 .md-mathjax-midline {
-    background: #fafafa;
+	background: #fafafa;
 }
 
-#write>h3.md-focus:before{
-	left: -1.5625rem;
-	top: .375rem;
-}
-#write>h4.md-focus:before{
-	left: -1.5625rem;
-	top: .285714286rem;
-}
-#write>h5.md-focus:before{
-	left: -1.5625rem;
-	top: .285714286rem;
-}
-#write>h6.md-focus:before{
-	left: -1.5625rem;
-	top: .285714286rem;
-}
-.md-image>.md-meta {
-    /*border: 1px solid #ddd;*/
-    border-radius: 3px;
-    padding: 2px 0px 0px 4px;
-    font-size: 0.9em;
-    color: inherit;
-}
-
-.md-tag {
-    color: #a7a7a7;
-    opacity: 1;
-}
-
-.md-toc { 
-    margin-top:20px;
-    padding-bottom:20px;
-}
-
-.sidebar-tabs {
-    border-bottom: none;
-}
-
-#typora-quick-open {
-    border: 1px solid #ddd;
-    background-color: #f8f8f8;
-}
-
-#typora-quick-open-item {
-    background-color: #FAFAFA;
-    border-color: #FEFEFE #e5e5e5 #e5e5e5 #eee;
-    border-style: solid;
-    border-width: 1px;
-}
-
-/** focus mode */
-.on-focus-mode blockquote {
-    border-left-color: rgba(85, 85, 85, 0.12);
-}
-
-header, .context-menu, .megamenu-content, footer{
-    font-family: "Segoe UI", "Arial", sans-serif;
-}
-
-.file-node-content:hover .file-node-icon,
-.file-node-content:hover .file-node-open-state{
-    visibility: visible;
-}
-
-.mac-seamless-mode #typora-sidebar {
-    background-color: #fafafa;
-    background-color: var(--side-bar-bg-color);
-}
-
-.md-lang {
-    color: #b4654d;
-}
-
-.html-for-mac .context-menu {
-    --item-hover-bg-color: #E6F0FE;
-}
-
-#md-notification .btn {
-    border: 0;
+.md-fences .code-tooltip {
+	bottom: -2em !important;
 }
 
 .dropdown-menu .divider {
-    border-color: #e5e5e5;
-}
-
-.ty-preferences .window-content {
-    background-color: #fafafa;
-}
-
-.ty-preferences .nav-group-item.active {
-    color: white;
-    background: #999;
+	border-color: #e5e5e5;
 }
 
 
@@ -550,6 +529,6 @@ gtag('config', 'UA-151907906-1');
 </script>
 </head>
 <body class='typora-export'>
-<div id='write'  class=''><h1><a name="programmation-large-échelle" class="md-header-anchor"></a><span>Programmation Large Échelle</span></h1><p>&nbsp;</p><p><a href='https://www.labri.fr/perso/auber/BigDataGL/index.html'><span>Site du prof</span></a></p><p>&nbsp;</p><h2><a name="pour-les-td" class="md-header-anchor"></a><span>Pour les td</span></h2><p><span>Installation particulière en 203 (data node)</span></p><ul><li><span>Allumer les machines à distance (site du cremi &gt; service numérique &gt; démarrage à distance)</span></li><li><span>Les machines s&#39;éteignent au bout de 5 min, script pour rester connecter </span><code>/espace/Auber_PLE-203/run_xtems.sh</code><span> (il faut s&#39;être connécté avec -X)</span></li></ul><p><span>Redirection de port avec ssh, peut être utile dans certain td : </span><code>ssh -L 50070:localhost:50070 -J &lt;login&gt;@jaguar.emi.u-bordeaux.fr &lt;login&gt;@data</code></p><p>&nbsp;</p><p><span>Les principes d&#39;un system big data:</span></p><ol start='' ><li><span>Robustness and fault-tolerance (especially human-fault tolerant)</span></li><li><span>Low latency reads and updates</span></li><li><span>Scalability</span></li><li><span>Generalization</span></li><li><span>Extensibility</span></li><li><span>Ad hoc queries</span></li><li><span>Minimal maintenance</span></li><li><span>Debuggability</span></li></ol><p>&nbsp;</p><p><span>Master Dataset: L&#39;idée c&#39;est de ne pas modifier les données :</span></p><ol start='' ><li><span>Data is raw</span></li><li><span>Data is immutable</span></li><li><span>Data is eterally true</span></li></ol><p>&nbsp;</p><p><span>Fact-based Model : A fact is atomic and timestamped</span></p><ol start='' ><li><span>Queryable at any time in its history</span></li><li><span>Tolerant to human errors</span></li><li><span>handles partial information</span></li><li><span>Advantages of both normalized and denormalized from</span></li></ol><p>&nbsp;</p><p><span>Storage requirements</span></p><ol start='' ><li><span>Efficient appends of new data</span></li><li><span>Scalable storage</span></li><li><span>Support for parallel processing</span></li><li><span>Tunability</span></li><li><span>Enforce immutability</span></li></ol><p><em><span>HDFS</span></em><span> Garantit tout ça.</span></p><p><span>Batch view : Extraction de données du Master Dataset. Les batch views sont créés par le Batch Layer. C&#39;est un truc qui tourne tout le temps pour générer les batch layers. Les Serving Layer contiennent des batch view, ils représentent un service pour le client. C&#39;est eux qui vont recevoir les requêtes, et y répondre.</span></p><p>&nbsp;</p><p><span>Donc, quand on a une nouvelle donnée, deux possibilitées. Soit on l&#39;ajoute dans le master dataset, et le batch doit reparcourire tout le master dataset. Soit on l&#39;ajoute directement dans le batch pour générer une nouvelle view.</span></p><p><span>On préfèrera la première option. Ce que ça apporte, c&#39;est d&#39;être plus tolérant aux erreurs. Il suffit de relancer le calcul, plutot que réfléchir pour mettre à jour (exemple de la moyenne, formule différente quand on met à jour). On va utiliser la permière option, avec Map Reduce.</span></p><p>&nbsp;</p><p><span>C&#39;est moins performant, mais fiable et facile.</span></p><p>&nbsp;</p><h3><a name="serving-layer--elephantdb-hbase-cassandra" class="md-header-anchor"></a><span>Serving Layer : (ElephantDB, </span><em><span>HBase</span></em><span>, Cassandra)</span></h3><p><span>Role : Provide fast random access to the batch views</span></p><ol start='' ><li><span>Batch writable</span></li><li><span>Scalable (la taille des données dans le batch view peut évoluer)</span></li><li><span>Random reads </span></li><li><span>Fault-tolerant</span></li><li><span>No random writes !</span></li></ol><p>&nbsp;</p><p><span>Il existe des évolutiosn de cette architecture : </span><em><span>Lambda architecture</span></em></p><p><span>On ajoute le speed layer, qui en temps réel fabrique des view (real time view), qui ne seront calculée qu&#39;à partir du speed layer, pas du master dataset. Le serving layer va donc merge les batch view, et l&#39;information partielle stockée dans les real-time view..</span></p><p>&nbsp;</p><h3><a name="speed-layer" class="md-header-anchor"></a><span>Speed layer </span></h3><p><span>Role : Compensate the batch layer update latency.</span></p><p><span>Storage requirements :</span></p><ol start='' ><li><span>random reads</span></li><li><span>random writes</span></li><li><span>scalability</span></li><li><span>fault tolerance </span></li></ol><p><span>Tout ce qui est dans le speed layer va être recalculé dans le master dataset. Le speed layer utilise donc du nosql</span></p><p>&nbsp;</p><ul><li><span>Master Dataset : HDFS</span></li><li><span>Calcul: Map/reduce, puis spark</span></li><li><span>Speed layer: Spark streaming</span></li><li><span>Serving layer: HBase</span></li></ul><p>&nbsp;</p><h2><a name="hadoop" class="md-header-anchor"></a><span>Hadoop</span></h2><h3><a name="hdfs" class="md-header-anchor"></a><span>HDFS</span></h3><p><span>Tout est orienté sur le débit. Le but, c&#39;est de lire le plus rapidement les données. Fonctionne par block de 128Mo</span></p></div>
+<div id='write'  class=''><h1><a name="programmation-large-échelle" class="md-header-anchor"></a><span>Programmation Large Échelle</span></h1><p>&nbsp;</p><p><a href='https://www.labri.fr/perso/auber/BigDataGL/index.html'><span>Site du prof</span></a></p><p>&nbsp;</p><h2><a name="pour-les-td" class="md-header-anchor"></a><span>Pour les td</span></h2><p><span>Installation particulière en 203 (data node)</span></p><ul><li><span>Allumer les machines à distance (site du cremi &gt; service numérique &gt; démarrage à distance)</span></li><li><span>Les machines s&#39;éteignent au bout de 5 min, script pour rester connecter </span><code>/espace/Auber_PLE-203/run_xtems.sh</code><span> (il faut s&#39;être connécté avec -X)</span></li></ul><p><span>Redirection de port avec ssh, peut être utile dans certain td : </span><code>ssh -L 50070:localhost:50070 -J &lt;login&gt;@jaguar.emi.u-bordeaux.fr &lt;login&gt;@data</code></p><p>&nbsp;</p><p><span>Les principes d&#39;un system big data:</span></p><ol start='' ><li><span>Robustness and fault-tolerance (especially human-fault tolerant)</span></li><li><span>Low latency reads and updates</span></li><li><span>Scalability</span></li><li><span>Generalization</span></li><li><span>Extensibility</span></li><li><span>Ad hoc queries</span></li><li><span>Minimal maintenance</span></li><li><span>Debuggability</span></li></ol><p>&nbsp;</p><p><span>Master Dataset: L&#39;idée c&#39;est de ne pas modifier les données :</span></p><ol start='' ><li><span>Data is raw</span></li><li><span>Data is immutable</span></li><li><span>Data is eterally true</span></li></ol><p>&nbsp;</p><p><span>Fact-based Model : A fact is atomic and timestamped</span></p><ol start='' ><li><span>Queryable at any time in its history</span></li><li><span>Tolerant to human errors</span></li><li><span>handles partial information</span></li><li><span>Advantages of both normalized and denormalized from</span></li></ol><p>&nbsp;</p><p><span>Storage requirements</span></p><ol start='' ><li><span>Efficient appends of new data</span></li><li><span>Scalable storage</span></li><li><span>Support for parallel processing</span></li><li><span>Tunability</span></li><li><span>Enforce immutability</span></li></ol><p><em><span>HDFS</span></em><span> Garantit tout ça.</span></p><p><span>Batch view : Extraction de données du Master Dataset. Les batch views sont créés par le Batch Layer. C&#39;est un truc qui tourne tout le temps pour générer les batch layers. Les Serving Layer contiennent des batch view, ils représentent un service pour le client. C&#39;est eux qui vont recevoir les requêtes, et y répondre.</span></p><p>&nbsp;</p><p><span>Donc, quand on a une nouvelle donnée, deux possibilitées. Soit on l&#39;ajoute dans le master dataset, et le batch doit reparcourire tout le master dataset. Soit on l&#39;ajoute directement dans le batch pour générer une nouvelle view.</span></p><p><span>On préfèrera la première option. Ce que ça apporte, c&#39;est d&#39;être plus tolérant aux erreurs. Il suffit de relancer le calcul, plutot que réfléchir pour mettre à jour (exemple de la moyenne, formule différente quand on met à jour). On va utiliser la permière option, avec Map Reduce.</span></p><p>&nbsp;</p><p><span>C&#39;est moins performant, mais fiable et facile.</span></p><p>&nbsp;</p><h3><a name="serving-layer--elephantdb-hbase-cassandra" class="md-header-anchor"></a><span>Serving Layer : (ElephantDB, </span><em><span>HBase</span></em><span>, Cassandra)</span></h3><p><span>Role : Provide fast random access to the batch views</span></p><ol start='' ><li><span>Batch writable</span></li><li><span>Scalable (la taille des données dans le batch view peut évoluer)</span></li><li><span>Random reads </span></li><li><span>Fault-tolerant</span></li><li><span>No random writes !</span></li></ol><p>&nbsp;</p><p><span>Il existe des évolutiosn de cette architecture : </span><em><span>Lambda architecture</span></em></p><p><span>On ajoute le speed layer, qui en temps réel fabrique des view (real time view), qui ne seront calculée qu&#39;à partir du speed layer, pas du master dataset. Le serving layer va donc merge les batch view, et l&#39;information partielle stockée dans les real-time view..</span></p><p>&nbsp;</p><h3><a name="speed-layer" class="md-header-anchor"></a><span>Speed layer </span></h3><p><span>Role : Compensate the batch layer update latency.</span></p><p><span>Storage requirements :</span></p><ol start='' ><li><span>random reads</span></li><li><span>random writes</span></li><li><span>scalability</span></li><li><span>fault tolerance </span></li></ol><p><span>Tout ce qui est dans le speed layer va être recalculé dans le master dataset. Le speed layer utilise donc du nosql</span></p><p>&nbsp;</p><ul><li><span>Master Dataset : HDFS</span></li><li><span>Calcul: Map/reduce, puis spark</span></li><li><span>Speed layer: Spark streaming</span></li><li><span>Serving layer: HBase</span></li></ul><p>&nbsp;</p><h2><a name="hadoop" class="md-header-anchor"></a><span>Hadoop</span></h2><h3><a name="hdfs" class="md-header-anchor"></a><span>HDFS</span></h3><p><span>Tout est orienté sur le débit. Le but, c&#39;est de lire le plus rapidement les données. Fonctionne par block de 128Mo. </span></p><p>&nbsp;</p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="java"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="java"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">public</span> <span class="cm-keyword">class</span> <span class="cm-def">MonApplication</span> {</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-keyword">public</span> <span class="cm-keyword">static</span> <span class="cm-keyword">class</span> <span class="cm-def">MonProg</span> <span class="cm-keyword">extends</span> <span class="cm-variable">Configured</span> <span class="cm-keyword">implements</span> <span class="cm-variable">Tool</span> {</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-keyword">public</span> <span class="cm-variable-3">int</span> <span class="cm-variable">run</span>(<span class="cm-variable-3">String</span>[] <span class="cm-variable">args</span> <span class="cm-keyword">throws</span> <span class="cm-variable">Exception</span>) {</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-comment">// Code du programme ici</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-keyword">return</span> <span class="cm-number">0</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  }</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  }</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-keyword">public</span> <span class="cm-keyword">static</span> <span class="cm-variable-3">void</span> <span class="cm-variable">main</span>(<span class="cm-variable-3">String</span>[] <span class="cm-variable">args</span>) <span class="cm-keyword">throws</span> <span class="cm-variable">Exception</span> {</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-variable">ToolRunner</span>.<span class="cm-variable">run</span>(<span class="cm-keyword">new</span> <span class="cm-variable">MonApplication</span>.<span class="cm-variable">MonProg</span>(), <span class="cm-variable">args</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  }</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 416px;"></div><div class="CodeMirror-gutters" style="display: none; height: 416px;"></div></div></div></pre><p><span>On lance avec </span><code>hadoop jar MonAplication.jar args...</code><span> Le classe </span><em><span>Configured</span></em><span> permet de récupérer la configuration du serveur automatiquement. Ce programme est appelé un </span><em><span>Driver</span></em><span>. On peut l&#39;envoyer sur une machine du cluster, mais il peut aussi rester sur la machine avec un mode hybride. Avec MapReduce, on enverra le programme sur toutes les machines du cluster.</span></p><h3><a name="exemple---copie-de-fichier" class="md-header-anchor"></a><span>Exemple - Copie de fichier</span></h3><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="java" style="break-inside: unset;"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="java"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">public</span> <span class="cm-variable-3">int</span> <span class="cm-def">run</span>(<span class="cm-variable-3">String</span>[] <span class="cm-variable">args</span>) <span class="cm-keyword">throws</span> <span class="cm-variable">Exception</span> {</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-variable-3">String</span> <span class="cm-variable">localInputPath</span> <span class="cm-operator">=</span> <span class="cm-variable">arg1</span>[<span class="cm-number">0</span>];</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-variable">URI</span> <span class="cm-variable">uri</span> <span class="cm-operator">=</span> <span class="cm-keyword">new</span> <span class="cm-variable">URI</span>(<span class="cm-variable">args</span>[<span class="cm-number">1</span>]);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-variable">uri</span> <span class="cm-operator">=</span> <span class="cm-variable">uri</span>.<span class="cm-variable">normalize</span>();</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-variable">Configuration</span> <span class="cm-variable">conf</span> <span class="cm-operator">=</span> <span class="cm-variable">getConf</span>();</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-variable">FileSystem</span> <span class="cm-variable">fs</span> <span class="cm-operator">=</span> <span class="cm-variable">FileSystem</span>.<span class="cm-variable">get</span>(<span class="cm-variable">uri</span>, <span class="cm-variable">conf</span>, <span class="cm-string">"hadoop"</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-variable">Path</span> <span class="cm-variable">outputPath</span> <span class="cm-operator">=</span> <span class="cm-keyword">new</span> <span class="cm-variable">Path</span>(<span class="cm-variable">uri</span>.<span class="cm-variable">getPath</span>());</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-variable">OutputStream</span> <span class="cm-variable">os</span> <span class="cm-operator">=</span> <span class="cm-variable">fs</span>.<span class="cm-variable">create</span>(<span class="cm-variable">outputPath</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-variable">InputSteam</span> <span class="cm-variable">is</span> <span class="cm-operator">=</span> <span class="cm-keyword">new</span> <span class="cm-variable">BufferedInputStream</span>(<span class="cm-keyword">new</span> <span class="cm-variable">FileInputStream</span>(<span class="cm-variable">localInputPath</span>));</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-variable">IOUtils</span>.<span class="cm-variable">copyBytes</span>(<span class="cm-variable">is</span>, <span class="cm-variable">os</span>, <span class="cm-variable">conf</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-variable">os</span>.<span class="cm-variable">close</span>();</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-variable">is</span>.<span class="cm-variable">close</span>();</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-keyword">return</span> <span class="cm-number">0</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 598px;"></div><div class="CodeMirror-gutters" style="display: none; height: 598px;"></div></div></div></pre><p>&nbsp;</p><h2><a name="mapreduce" class="md-header-anchor"></a><span>Map/Reduce</span></h2><p>&nbsp;</p><p><span>Par exemple pour la recherche d&#39;un mot dans un fichier, comme le fichier est découpé en bloc de taille fixe, partagés sur différentes machines, on peut lancer les recherche en parallèle sur chaque bloc. Au lieux d&#39;être en </span><span class="MathJax_SVG" tabindex="-1" style="font-size: 100%; display: inline-block;"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="5.049ex" height="2.763ex" viewBox="0 -841.7 2174 1189.5" role="img" focusable="false" style="vertical-align: -0.808ex;"><defs><path stroke-width="0" id="E4-MJCAL-4F" d="M308 428Q289 428 289 438Q289 457 318 508T378 593Q417 638 475 671T599 705Q688 705 732 643T777 483Q777 380 733 285T620 123T464 18T293 -22Q188 -22 123 51T58 245Q58 327 87 403T159 533T249 626T333 685T388 705Q404 705 404 693Q404 674 363 649Q333 632 304 606T239 537T181 429T158 290Q158 179 214 114T364 48Q489 48 583 165T677 438Q677 473 670 505T648 568T601 617T528 636Q518 636 513 635Q486 629 460 600T419 544T392 490Q383 470 372 459Q341 430 308 428Z"></path><path stroke-width="0" id="E4-MJMAIN-28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path><path stroke-width="0" id="E4-MJMATHI-6E" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path><path stroke-width="0" id="E4-MJMAIN-29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)"><use xlink:href="#E4-MJCAL-4F" x="0" y="0"></use><use xlink:href="#E4-MJMAIN-28" x="796" y="0"></use><use xlink:href="#E4-MJMATHI-6E" x="1185" y="0"></use><use xlink:href="#E4-MJMAIN-29" x="1785" y="0"></use></g></svg></span><script type="math/tex">\mathcal{O}(n) </script><span>, on est en </span><span class="MathJax_SVG" tabindex="-1" style="font-size: 100%; display: inline-block;"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="13.583ex" height="2.763ex" viewBox="0 -841.7 5848 1189.5" role="img" focusable="false" style="vertical-align: -0.808ex;"><defs><path stroke-width="0" id="E5-MJCAL-4F" d="M308 428Q289 428 289 438Q289 457 318 508T378 593Q417 638 475 671T599 705Q688 705 732 643T777 483Q777 380 733 285T620 123T464 18T293 -22Q188 -22 123 51T58 245Q58 327 87 403T159 533T249 626T333 685T388 705Q404 705 404 693Q404 674 363 649Q333 632 304 606T239 537T181 429T158 290Q158 179 214 114T364 48Q489 48 583 165T677 438Q677 473 670 505T648 568T601 617T528 636Q518 636 513 635Q486 629 460 600T419 544T392 490Q383 470 372 459Q341 430 308 428Z"></path><path stroke-width="0" id="E5-MJMAIN-28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path><path stroke-width="0" id="E5-MJMATHI-6E" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path><path stroke-width="0" id="E5-MJMAIN-2F" d="M423 750Q432 750 438 744T444 730Q444 725 271 248T92 -240Q85 -250 75 -250Q68 -250 62 -245T56 -231Q56 -221 230 257T407 740Q411 750 423 750Z"></path><path stroke-width="0" id="E5-MJMATHI-62" d="M73 647Q73 657 77 670T89 683Q90 683 161 688T234 694Q246 694 246 685T212 542Q204 508 195 472T180 418L176 399Q176 396 182 402Q231 442 283 442Q345 442 383 396T422 280Q422 169 343 79T173 -11Q123 -11 82 27T40 150V159Q40 180 48 217T97 414Q147 611 147 623T109 637Q104 637 101 637H96Q86 637 83 637T76 640T73 647ZM336 325V331Q336 405 275 405Q258 405 240 397T207 376T181 352T163 330L157 322L136 236Q114 150 114 114Q114 66 138 42Q154 26 178 26Q211 26 245 58Q270 81 285 114T318 219Q336 291 336 325Z"></path><path stroke-width="0" id="E5-MJMAIN-5F" d="M0 -62V-25H499V-62H0Z"></path><path stroke-width="0" id="E5-MJMATHI-6C" d="M117 59Q117 26 142 26Q179 26 205 131Q211 151 215 152Q217 153 225 153H229Q238 153 241 153T246 151T248 144Q247 138 245 128T234 90T214 43T183 6T137 -11Q101 -11 70 11T38 85Q38 97 39 102L104 360Q167 615 167 623Q167 626 166 628T162 632T157 634T149 635T141 636T132 637T122 637Q112 637 109 637T101 638T95 641T94 647Q94 649 96 661Q101 680 107 682T179 688Q194 689 213 690T243 693T254 694Q266 694 266 686Q266 675 193 386T118 83Q118 81 118 75T117 65V59Z"></path><path stroke-width="0" id="E5-MJMATHI-6F" d="M201 -11Q126 -11 80 38T34 156Q34 221 64 279T146 380Q222 441 301 441Q333 441 341 440Q354 437 367 433T402 417T438 387T464 338T476 268Q476 161 390 75T201 -11ZM121 120Q121 70 147 48T206 26Q250 26 289 58T351 142Q360 163 374 216T388 308Q388 352 370 375Q346 405 306 405Q243 405 195 347Q158 303 140 230T121 120Z"></path><path stroke-width="0" id="E5-MJMATHI-63" d="M34 159Q34 268 120 355T306 442Q362 442 394 418T427 355Q427 326 408 306T360 285Q341 285 330 295T319 325T330 359T352 380T366 386H367Q367 388 361 392T340 400T306 404Q276 404 249 390Q228 381 206 359Q162 315 142 235T121 119Q121 73 147 50Q169 26 205 26H209Q321 26 394 111Q403 121 406 121Q410 121 419 112T429 98T420 83T391 55T346 25T282 0T202 -11Q127 -11 81 37T34 159Z"></path><path stroke-width="0" id="E5-MJMAIN-29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)"><use xlink:href="#E5-MJCAL-4F" x="0" y="0"></use><use xlink:href="#E5-MJMAIN-28" x="796" y="0"></use><use xlink:href="#E5-MJMATHI-6E" x="1185" y="0"></use><use xlink:href="#E5-MJMAIN-2F" x="1785" y="0"></use><use xlink:href="#E5-MJMATHI-6E" x="2285" y="0"></use><use xlink:href="#E5-MJMATHI-62" x="2885" y="0"></use><use xlink:href="#E5-MJMAIN-5F" x="3314" y="0"></use><use xlink:href="#E5-MJMATHI-62" x="3814" y="0"></use><use xlink:href="#E5-MJMATHI-6C" x="4243" y="0"></use><use xlink:href="#E5-MJMATHI-6F" x="4541" y="0"></use><use xlink:href="#E5-MJMATHI-63" x="5026" y="0"></use><use xlink:href="#E5-MJMAIN-29" x="5459" y="0"></use></g></svg></span><script type="math/tex">\mathcal{O}(n/nb \_bloc)</script><span>.</span></p><p><span>Pour pouvoir faire ce type de calcul parallèle, il faut simplement deux opérations : </span></p><ol start='' ><li><p><span class="MathJax_SVG" tabindex="-1" style="font-size: 100%; display: inline-block;"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="4.436ex" height="1.73ex" viewBox="0 -495.9 1910 744.9" role="img" focusable="false" style="vertical-align: -0.578ex;"><defs><path stroke-width="0" id="E6-MJMATHI-6D" d="M21 287Q22 293 24 303T36 341T56 388T88 425T132 442T175 435T205 417T221 395T229 376L231 369Q231 367 232 367L243 378Q303 442 384 442Q401 442 415 440T441 433T460 423T475 411T485 398T493 385T497 373T500 364T502 357L510 367Q573 442 659 442Q713 442 746 415T780 336Q780 285 742 178T704 50Q705 36 709 31T724 26Q752 26 776 56T815 138Q818 149 821 151T837 153Q857 153 857 145Q857 144 853 130Q845 101 831 73T785 17T716 -10Q669 -10 648 17T627 73Q627 92 663 193T700 345Q700 404 656 404H651Q565 404 506 303L499 291L466 157Q433 26 428 16Q415 -11 385 -11Q372 -11 364 -4T353 8T350 18Q350 29 384 161L420 307Q423 322 423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 181Q151 335 151 342Q154 357 154 369Q154 405 129 405Q107 405 92 377T69 316T57 280Q55 278 41 278H27Q21 284 21 287Z"></path><path stroke-width="0" id="E6-MJMATHI-61" d="M33 157Q33 258 109 349T280 441Q331 441 370 392Q386 422 416 422Q429 422 439 414T449 394Q449 381 412 234T374 68Q374 43 381 35T402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487Q506 153 506 144Q506 138 501 117T481 63T449 13Q436 0 417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157ZM351 328Q351 334 346 350T323 385T277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q217 26 254 59T298 110Q300 114 325 217T351 328Z"></path><path stroke-width="0" id="E6-MJMATHI-70" d="M23 287Q24 290 25 295T30 317T40 348T55 381T75 411T101 433T134 442Q209 442 230 378L240 387Q302 442 358 442Q423 442 460 395T497 281Q497 173 421 82T249 -10Q227 -10 210 -4Q199 1 187 11T168 28L161 36Q160 35 139 -51T118 -138Q118 -144 126 -145T163 -148H188Q194 -155 194 -157T191 -175Q188 -187 185 -190T172 -194Q170 -194 161 -194T127 -193T65 -192Q-5 -192 -24 -194H-32Q-39 -187 -39 -183Q-37 -156 -26 -148H-6Q28 -147 33 -136Q36 -130 94 103T155 350Q156 355 156 364Q156 405 131 405Q109 405 94 377T71 316T59 280Q57 278 43 278H29Q23 284 23 287ZM178 102Q200 26 252 26Q282 26 310 49T356 107Q374 141 392 215T411 325V331Q411 405 350 405Q339 405 328 402T306 393T286 380T269 365T254 350T243 336T235 326L232 322Q232 321 229 308T218 264T204 212Q178 106 178 102Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)"><use xlink:href="#E6-MJMATHI-6D" x="0" y="0"></use><use xlink:href="#E6-MJMATHI-61" x="878" y="0"></use><use xlink:href="#E6-MJMATHI-70" x="1407" y="0"></use></g></svg></span><script type="math/tex">map</script><span>, qui permet d&#39;appliquer une opération sur les fichiers. C&#39;est pas exactement le même map qu&#39;en fonctionnel. Il y a trois étapes : </span></p><ol start='' ><li><span>L&#39;initialisation : Avant de lire le bloc, on peut faire ce qu&#39;on veut.</span></li><li><span>Le Mapper : Il reçoit les lignes du fichiers, doit renvoyer des couples </span><code>&lt;key, value&gt;</code><span>. On peut renvoyer autant de couple qu&#39;on veut par ligne.</span></li><li><span>Le cleanup : la fin des opérations.</span></li></ol></li><li><p><span class="MathJax_SVG" tabindex="-1" style="font-size: 100%; display: inline-block;"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="6.761ex" height="2.074ex" viewBox="0 -792.3 2911 893.1" role="img" focusable="false" style="vertical-align: -0.234ex;"><defs><path stroke-width="0" id="E7-MJMATHI-72" d="M21 287Q22 290 23 295T28 317T38 348T53 381T73 411T99 433T132 442Q161 442 183 430T214 408T225 388Q227 382 228 382T236 389Q284 441 347 441H350Q398 441 422 400Q430 381 430 363Q430 333 417 315T391 292T366 288Q346 288 334 299T322 328Q322 376 378 392Q356 405 342 405Q286 405 239 331Q229 315 224 298T190 165Q156 25 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 114 189T154 366Q154 405 128 405Q107 405 92 377T68 316T57 280Q55 278 41 278H27Q21 284 21 287Z"></path><path stroke-width="0" id="E7-MJMATHI-65" d="M39 168Q39 225 58 272T107 350T174 402T244 433T307 442H310Q355 442 388 420T421 355Q421 265 310 237Q261 224 176 223Q139 223 138 221Q138 219 132 186T125 128Q125 81 146 54T209 26T302 45T394 111Q403 121 406 121Q410 121 419 112T429 98T420 82T390 55T344 24T281 -1T205 -11Q126 -11 83 42T39 168ZM373 353Q367 405 305 405Q272 405 244 391T199 357T170 316T154 280T149 261Q149 260 169 260Q282 260 327 284T373 353Z"></path><path stroke-width="0" id="E7-MJMATHI-64" d="M366 683Q367 683 438 688T511 694Q523 694 523 686Q523 679 450 384T375 83T374 68Q374 26 402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487H491Q506 153 506 145Q506 140 503 129Q490 79 473 48T445 8T417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157Q33 205 53 255T101 341Q148 398 195 420T280 442Q336 442 364 400Q369 394 369 396Q370 400 396 505T424 616Q424 629 417 632T378 637H357Q351 643 351 645T353 664Q358 683 366 683ZM352 326Q329 405 277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q233 26 290 98L298 109L352 326Z"></path><path stroke-width="0" id="E7-MJMATHI-75" d="M21 287Q21 295 30 318T55 370T99 420T158 442Q204 442 227 417T250 358Q250 340 216 246T182 105Q182 62 196 45T238 27T291 44T328 78L339 95Q341 99 377 247Q407 367 413 387T427 416Q444 431 463 431Q480 431 488 421T496 402L420 84Q419 79 419 68Q419 43 426 35T447 26Q469 29 482 57T512 145Q514 153 532 153Q551 153 551 144Q550 139 549 130T540 98T523 55T498 17T462 -8Q454 -10 438 -10Q372 -10 347 46Q345 45 336 36T318 21T296 6T267 -6T233 -11Q189 -11 155 7Q103 38 103 113Q103 170 138 262T173 379Q173 380 173 381Q173 390 173 393T169 400T158 404H154Q131 404 112 385T82 344T65 302T57 280Q55 278 41 278H27Q21 284 21 287Z"></path><path stroke-width="0" id="E7-MJMATHI-63" d="M34 159Q34 268 120 355T306 442Q362 442 394 418T427 355Q427 326 408 306T360 285Q341 285 330 295T319 325T330 359T352 380T366 386H367Q367 388 361 392T340 400T306 404Q276 404 249 390Q228 381 206 359Q162 315 142 235T121 119Q121 73 147 50Q169 26 205 26H209Q321 26 394 111Q403 121 406 121Q410 121 419 112T429 98T420 83T391 55T346 25T282 0T202 -11Q127 -11 81 37T34 159Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)"><use xlink:href="#E7-MJMATHI-72" x="0" y="0"></use><use xlink:href="#E7-MJMATHI-65" x="451" y="0"></use><use xlink:href="#E7-MJMATHI-64" x="917" y="0"></use><use xlink:href="#E7-MJMATHI-75" x="1440" y="0"></use><use xlink:href="#E7-MJMATHI-63" x="2012" y="0"></use><use xlink:href="#E7-MJMATHI-65" x="2445" y="0"></use></g></svg></span><script type="math/tex">reduce</script><span>, qui récupère ce qui est calculé par l&#39;opération map.</span></p></li></ol><p><span>Avant que le reduce ne récupère les couples générés par le Mapper, on a le </span><em><span>shuffling</span></em><span>. Il fait un </span><em><span>group by key</span></em><span> de tous les messages.</span></p><p>&nbsp;</p><p><span>On peut faire un reduce à la fin des mapper pour moins utiliser le réseau. C&#39;est ce qu&#39;on appel les </span><em><span>Combiner</span></em><span>.</span></p><p>&nbsp;</p><p><span>Read, Map, Combine, Shuffle, Reduce, Write</span></p><p>&nbsp;</p><p><span>Ces différents éléments ont les noms suivant dans hadoop : </span></p><ul><li><span>Le reader : appelé </span><em><span>InputFormat</span></em></li><li><span>map : </span><em><span>Mapper</span></em></li><li><span>combine: </span><em><span>Combiner</span></em></li><li><span>shuggling: </span><em><span>Partitionner</span></em></li><li><span>reduce: </span><em><span>Reducer</span></em></li><li><span>writer: </span><em><span>OutputFormat</span></em></li></ul><p><span>Ou peut suivre l&#39;exécution des jobs avec YARN via l&#39;interface web :8088</span></p><p>&nbsp;</p></div>
 </body>
 </html>

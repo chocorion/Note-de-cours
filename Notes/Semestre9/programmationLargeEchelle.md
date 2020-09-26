@@ -115,4 +115,85 @@ Tout ce qui est dans le speed layer va être recalculé dans le master dataset. 
 
 ### HDFS
 
-Tout est orienté sur le débit. Le but, c'est de lire le plus rapidement les données. Fonctionne par block de 128Mo
+Tout est orienté sur le débit. Le but, c'est de lire le plus rapidement les données. Fonctionne par block de 128Mo. 
+
+
+
+```java
+public class MonApplication {
+    public static class MonProg extends Configured implements Tool {
+        public int run(String[] args throws Exception) {
+            // Code du programme ici
+            return 0;
+        }
+    }
+    
+    public static void main(String[] args) throws Exception {
+        ToolRunner.run(new MonApplication.MonProg(), args);
+    }
+}
+```
+
+On lance avec `hadoop jar MonAplication.jar args...` Le classe *Configured* permet de récupérer la configuration du serveur automatiquement. Ce programme est appelé un *Driver*. On peut l'envoyer sur une machine du cluster, mais il peut aussi rester sur la machine avec un mode hybride. Avec MapReduce, on enverra le programme sur toutes les machines du cluster.
+
+### Exemple - Copie de fichier
+
+```java
+public int run(String[] args) throws Exception {
+    String localInputPath = arg1[0];
+    URI uri = new URI(args[1]);
+    uri = uri.normalize();
+    
+    Configuration conf = getConf();
+    FileSystem fs = FileSystem.get(uri, conf, "hadoop");
+    Path outputPath = new Path(uri.getPath());
+    
+    OutputStream os = fs.create(outputPath);
+    InputSteam is = new BufferedInputStream(new FileInputStream(localInputPath));
+    IOUtils.copyBytes(is, os, conf);
+    os.close();
+    is.close();
+    
+    return 0;
+}
+```
+
+
+
+## Map/Reduce
+
+
+
+Par exemple pour la recherche d'un mot dans un fichier, comme le fichier est découpé en bloc de taille fixe, partagés sur différentes machines, on peut lancer les recherche en parallèle sur chaque bloc. Au lieux d'être en $\mathcal{O}(n) $, on est en $\mathcal{O}(n/nb \_bloc)$.
+
+Pour pouvoir faire ce type de calcul parallèle, il faut simplement deux opérations : 
+
+1.  $map$, qui permet d'appliquer une opération sur les fichiers. C'est pas exactement le même map qu'en fonctionnel. Il y a trois étapes : 
+   1. L'initialisation : Avant de lire le bloc, on peut faire ce qu'on veut.
+   2. Le Mapper : Il reçoit les lignes du fichiers, doit renvoyer des couples `<key, value>`. On peut renvoyer autant de couple qu'on veut par ligne.
+   3. Le cleanup : la fin des opérations.
+2. $reduce$, qui récupère ce qui est calculé par l'opération map.
+
+Avant que le reduce ne récupère les couples générés par le Mapper, on a le *shuffling*. Il fait un *group by key* de tous les messages.
+
+
+
+On peut faire un reduce à la fin des mapper pour moins utiliser le réseau. C'est ce qu'on appel les *Combiner*.
+
+
+
+Read, Map, Combine, Shuffle, Reduce, Write
+
+
+
+Ces différents éléments ont les noms suivant dans hadoop : 
+
+* Le reader : appelé *InputFormat*
+* map : *Mapper*
+* combine: *Combiner*
+* shuggling: *Partitionner*
+* reduce: *Reducer*
+* writer: *OutputFormat*
+
+Ou peut suivre l'exécution des jobs avec YARN via l'interface web :8088
+

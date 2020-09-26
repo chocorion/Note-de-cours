@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
-<title>conduiteDeProjet</title><link href='https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; }
+<title>conduiteDeProjet</title><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; }
 html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
 body { margin: 0px; padding: 0px; height: auto; bottom: 0px; top: 0px; left: 0px; right: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
 iframe { margin: auto; }
@@ -232,384 +232,290 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket { color: rgb(255, 34, 34); }
 }
 
 
-:root {
-    --side-bar-bg-color: #fafafa;
-    --control-text-color: #777;
+html {
+	font-size: 19px;
 }
 
-@include-when-export url(https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext);
-
-/* open-sans-regular - latin-ext_latin */
-  /* open-sans-italic - latin-ext_latin */
-    /* open-sans-700 - latin-ext_latin */
-    /* open-sans-700italic - latin-ext_latin */
-  html {
-    font-size: 16px;
+html, body {
+	margin: auto;
+	background: #fefefe;
 }
-
 body {
-    font-family: "Open Sans","Clear Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    color: rgb(51, 51, 51);
-    line-height: 1.6;
+	font-family: "Vollkorn", Palatino, Times;
+	color: #333;
+	line-height: 1.4;
+	text-align: justify;
 }
 
 #write {
-    max-width: 860px;
-  	margin: 0 auto;
-  	padding: 30px;
-    padding-bottom: 100px;
+	max-width: 960px;
+	margin: 0 auto;
+	margin-bottom: 2em;
+	line-height: 1.53;
+	padding-top: 40px;
 }
 
 @media only screen and (min-width: 1400px) {
 	#write {
-		max-width: 1024px;
+		max-width: 1100px;
 	}
 }
 
-@media only screen and (min-width: 1800px) {
-	#write {
-		max-width: 1200px;
-	}
+/* Typography
+-------------------------------------------------------- */
+
+#write>h1:first-child,
+h1 {
+	margin-top: 1.6em;
+	font-weight: normal;
 }
 
-#write > ul:first-child,
-#write > ol:first-child{
-    margin-top: 30px;
+h1 {
+	font-size:3em;
+}
+
+h2 {
+	margin-top:2em;
+	font-weight: normal;
+}
+
+h3 {
+	font-weight: normal;
+	font-style: italic;
+	margin-top: 3em;
+}
+
+h1, 
+h2, 
+h3{
+	text-align: center;
+}
+
+h2:after{
+	border-bottom: 1px solid #2f2f2f;
+    content: '';
+    width: 100px;
+    display: block;
+    margin: 0 auto;
+    height: 1px;
+}
+
+h1+h2, h2+h3 {
+	margin-top: 0.83em;
+}
+
+p,
+.mathjax-block {
+	margin-top: 0;
+	-webkit-hypens: auto;
+	-moz-hypens: auto;
+	hyphens: auto;
+}
+ul {
+	list-style: square;
+	padding-left: 1.2em;
+}
+ol {
+	padding-left: 1.2em;
+}
+blockquote {
+	margin-left: 1em;
+	padding-left: 1em;
+	border-left: 1px solid #ddd;
+}
+code,
+pre {
+	font-family: "Consolas", "Menlo", "Monaco", monospace, serif;
+	font-size: .9em;
+	background: white;
+}
+.md-fences{
+	margin-left: 1em;
+	padding-left: 1em;
+	border: 1px solid #ddd;
+	padding-bottom: 8px;
+	padding-top: 6px;
+	margin-bottom: 1.5em;
 }
 
 a {
-    color: #4183C4;
+	color: #2484c1;
+	text-decoration: none;
 }
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    position: relative;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    font-weight: bold;
-    line-height: 1.4;
-    cursor: text;
+a:hover {
+	text-decoration: underline;
 }
-h1:hover a.anchor,
-h2:hover a.anchor,
-h3:hover a.anchor,
-h4:hover a.anchor,
-h5:hover a.anchor,
-h6:hover a.anchor {
-    text-decoration: none;
+a img {
+	border: none;
 }
-h1 tt,
-h1 code {
-    font-size: inherit;
-}
-h2 tt,
-h2 code {
-    font-size: inherit;
-}
-h3 tt,
-h3 code {
-    font-size: inherit;
-}
-h4 tt,
-h4 code {
-    font-size: inherit;
-}
-h5 tt,
-h5 code {
-    font-size: inherit;
-}
-h6 tt,
-h6 code {
-    font-size: inherit;
-}
-h1 {
-    font-size: 2.25em;
-    line-height: 1.2;
-    border-bottom: 1px solid #eee;
-}
-h2 {
-    font-size: 1.75em;
-    line-height: 1.225;
-    border-bottom: 1px solid #eee;
-}
-
-/*@media print {
-    .typora-export h1,
-    .typora-export h2 {
-        border-bottom: none;
-        padding-bottom: initial;
-    }
-
-    .typora-export h1::after,
-    .typora-export h2::after {
-        content: "";
-        display: block;
-        height: 100px;
-        margin-top: -96px;
-        border-top: 1px solid #eee;
-    }
-}*/
-
-h3 {
-    font-size: 1.5em;
-    line-height: 1.43;
-}
-h4 {
-    font-size: 1.25em;
-}
-h5 {
-    font-size: 1em;
-}
-h6 {
-   font-size: 1em;
-    color: #777;
-}
-p,
-blockquote,
-ul,
-ol,
-dl,
-table{
-    margin: 0.8em 0;
-}
-li>ol,
-li>ul {
-    margin: 0 0;
+h1 a,
+h1 a:hover {
+	color: #333;
+	text-decoration: none;
 }
 hr {
-    height: 2px;
-    padding: 0;
-    margin: 16px 0;
-    background-color: #e7e7e7;
-    border: 0 none;
-    overflow: hidden;
-    box-sizing: content-box;
+	color: #ddd;
+	height: 1px;
+	margin: 2em 0;
+	border-top: solid 1px #ddd;
+	border-bottom: none;
+	border-left: 0;
+	border-right: 0;
 }
-
-li p.first {
-    display: inline-block;
-}
-ul,
-ol {
-    padding-left: 30px;
-}
-ul:first-child,
-ol:first-child {
-    margin-top: 0;
-}
-ul:last-child,
-ol:last-child {
-    margin-bottom: 0;
-}
-blockquote {
-    border-left: 4px solid #dfe2e5;
-    padding: 0 15px;
-    color: #777777;
-}
-blockquote blockquote {
-    padding-right: 0;
+.ty-table-edit {
+	background: #ededed;
+    padding-top: 4px;
 }
 table {
-    padding: 0;
-    word-break: initial;
+	margin-bottom: 1.333333rem
 }
-table tr {
-    border-top: 1px solid #dfe2e5;
-    margin: 0;
-    padding: 0;
+table th,
+table td {
+	padding: 8px;
+	line-height: 1.333333rem;
+	vertical-align: top;
+	border-top: 1px solid #ddd
 }
-table tr:nth-child(2n),
-thead {
-    background-color: #f8f8f8;
+table th {
+	font-weight: bold
 }
-table tr th {
-    font-weight: bold;
-    border: 1px solid #dfe2e5;
-    border-bottom: 0;
-    margin: 0;
-    padding: 6px 13px;
+table thead th {
+	vertical-align: bottom
 }
-table tr td {
-    border: 1px solid #dfe2e5;
-    margin: 0;
-    padding: 6px 13px;
+table caption+thead tr:first-child th,
+table caption+thead tr:first-child td,
+table colgroup+thead tr:first-child th,
+table colgroup+thead tr:first-child td,
+table thead:first-child tr:first-child th,
+table thead:first-child tr:first-child td {
+	border-top: 0
 }
-table tr th:first-child,
-table tr td:first-child {
-    margin-top: 0;
-}
-table tr th:last-child,
-table tr td:last-child {
-    margin-bottom: 0;
+table tbody+tbody {
+	border-top: 2px solid #ddd
 }
 
-.CodeMirror-lines {
-    padding-left: 4px;
+.task-list{
+	padding:0;
 }
 
-.code-tooltip {
-    box-shadow: 0 1px 1px 0 rgba(0,28,36,.3);
-    border-top: 1px solid #eef2f2;
+.md-task-list-item {
+	padding-left: 1.6rem;
 }
 
-.md-fences,
-code,
-tt {
-    border: 1px solid #e7eaed;
-    background-color: #f8f8f8;
-    border-radius: 3px;
-    padding: 0;
-    padding: 2px 4px 0px 4px;
-    font-size: 0.9em;
+.md-task-list-item > input:before {
+	content: '\221A';
+	display: inline-block;
+	width: 1.33333333rem;
+  	height: 1.6rem;
+	vertical-align: middle;
+	text-align: center;
+	color: #ddd;
+	background-color: #fefefe;
 }
 
-code {
-    background-color: #f3f4f4;
-    padding: 0 2px 0 2px;
+.md-task-list-item > input:checked:before,
+.md-task-list-item > input[checked]:before{
+	color: inherit;
 }
-
-.md-fences {
-    margin-bottom: 15px;
-    margin-top: 15px;
-    padding-top: 8px;
-    padding-bottom: 6px;
-}
-
-
-.md-task-list-item > input {
-  margin-left: -1.3em;
-}
-
-@media print {
-    html {
-        font-size: 13px;
-    }
-    table,
-    pre {
-        page-break-inside: avoid;
-    }
-    pre {
-        word-wrap: break-word;
-    }
-}
-
-.md-fences {
-	background-color: #f8f8f8;
+.md-tag {
+	color: inherit;
+	font: inherit;
 }
 #write pre.md-meta-block {
-	padding: 1rem;
-    font-size: 85%;
-    line-height: 1.45;
-    background-color: #f7f7f7;
-    border: 0;
-    border-radius: 3px;
-    color: #777777;
-    margin-top: 0 !important;
+	min-height: 35px;
+	padding: 0.5em 1em;
+}
+#write pre.md-meta-block {
+	white-space: pre;
+	background: #f8f8f8;
+	border: 0px;
+	color: #999;
+	
+	width: 100vw;
+	max-width: calc(100% + 60px);
+	margin-left: -30px;
+	border-left: 30px #f8f8f8 solid;
+	border-right: 30px #f8f8f8 solid;
+
+	margin-bottom: 2em;
+	margin-top: -1.3333333333333rem;
+	padding-top: 26px;
+	padding-bottom: 10px;
+	line-height: 1.8em;
+	font-size: 0.9em;
+	font-size: 0.76em;
+	padding-left: 0;
+}
+.md-img-error.md-image>.md-meta{
+	vertical-align: bottom;
+}
+#write>h5.md-focus:before {
+	top: 2px;
 }
 
-.mathjax-block>.code-tooltip {
-	bottom: .375rem;
+.md-toc {
+	margin-top: 40px;
+}
+
+.md-toc-content {
+	padding-bottom: 20px;
+}
+
+.outline-expander:before {
+	color: inherit;
+	font-size: 14px;
+	top: auto;
+	content: "\f0da";
+	font-family: FontAwesome;
+}
+
+.outline-expander:hover:before,
+.outline-item-open>.outline-item>.outline-expander:before {
+  	content: "\f0d7";
+}
+
+/** source code mode */
+#typora-source {
+	font-family: Courier, monospace;
+    color: #6A6A6A;
+}
+
+.html-for-mac #typora-sidebar {
+    -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+}
+
+.cm-s-typora-default .cm-header, 
+.cm-s-typora-default .cm-property,
+.CodeMirror.cm-s-typora-default div.CodeMirror-cursor {
+	color: #428bca;
+}
+
+.cm-s-typora-default .cm-atom, .cm-s-typora-default .cm-number {
+	color: #777777;
+}
+
+.typora-node .file-list-item-parent-loc, 
+.typora-node .file-list-item-time, 
+.typora-node .file-list-item-summary {
+	font-family: arial, sans-serif;
+}
+
+.md-task-list-item>input {
+    margin-left: -1.3em;
+    margin-top: calc(1rem - 12px);
 }
 
 .md-mathjax-midline {
-    background: #fafafa;
+	background: #fafafa;
 }
 
-#write>h3.md-focus:before{
-	left: -1.5625rem;
-	top: .375rem;
-}
-#write>h4.md-focus:before{
-	left: -1.5625rem;
-	top: .285714286rem;
-}
-#write>h5.md-focus:before{
-	left: -1.5625rem;
-	top: .285714286rem;
-}
-#write>h6.md-focus:before{
-	left: -1.5625rem;
-	top: .285714286rem;
-}
-.md-image>.md-meta {
-    /*border: 1px solid #ddd;*/
-    border-radius: 3px;
-    padding: 2px 0px 0px 4px;
-    font-size: 0.9em;
-    color: inherit;
-}
-
-.md-tag {
-    color: #a7a7a7;
-    opacity: 1;
-}
-
-.md-toc { 
-    margin-top:20px;
-    padding-bottom:20px;
-}
-
-.sidebar-tabs {
-    border-bottom: none;
-}
-
-#typora-quick-open {
-    border: 1px solid #ddd;
-    background-color: #f8f8f8;
-}
-
-#typora-quick-open-item {
-    background-color: #FAFAFA;
-    border-color: #FEFEFE #e5e5e5 #e5e5e5 #eee;
-    border-style: solid;
-    border-width: 1px;
-}
-
-/** focus mode */
-.on-focus-mode blockquote {
-    border-left-color: rgba(85, 85, 85, 0.12);
-}
-
-header, .context-menu, .megamenu-content, footer{
-    font-family: "Segoe UI", "Arial", sans-serif;
-}
-
-.file-node-content:hover .file-node-icon,
-.file-node-content:hover .file-node-open-state{
-    visibility: visible;
-}
-
-.mac-seamless-mode #typora-sidebar {
-    background-color: #fafafa;
-    background-color: var(--side-bar-bg-color);
-}
-
-.md-lang {
-    color: #b4654d;
-}
-
-.html-for-mac .context-menu {
-    --item-hover-bg-color: #E6F0FE;
-}
-
-#md-notification .btn {
-    border: 0;
+.md-fences .code-tooltip {
+	bottom: -2em !important;
 }
 
 .dropdown-menu .divider {
-    border-color: #e5e5e5;
-}
-
-.ty-preferences .window-content {
-    background-color: #fafafa;
-}
-
-.ty-preferences .nav-group-item.active {
-    color: white;
-    background: #999;
+	border-color: #e5e5e5;
 }
 
 
@@ -623,6 +529,6 @@ gtag('config', 'UA-151907906-1');
 </script>
 </head>
 <body class='typora-export'>
-<div id='write'  class=''><h1><a name="conduite-de-projet" class="md-header-anchor"></a><span>Conduite de Projet</span></h1><p>&nbsp;</p><p><span>Deux petites vidéos du prof en lien avec le cours : </span></p><iframe width="560" height="315" src="https://www.youtube.com/embed/vhpcngRVE_A" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe><iframe width="560" height="315" src="https://www.youtube.com/embed/VWhLcgo9z74" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe><p>&nbsp;</p><h2><a name="introduction" class="md-header-anchor"></a><span>Introduction</span></h2><h3><a name="comment-se-déroulera-le-cours-" class="md-header-anchor"></a><span>Comment se déroulera le cours ?</span></h3><p><a href='Lien du site du prof'><span>https://www.labri.fr/perso/xblanc/teaching.html</span></a></p><p><a href='https://github.com/xblanc33/QualiteDev'><span>Cours sur github</span></a></p><p><span>Il y a 6 fichiers, avec des 5 éléments de qualités sur chaque fichier. Ça fait 30 points de contrôle. On sera noté sur 30, il faut donc tout connaître par coeur.</span></p><blockquote><p><span>Bien faire les choses vs faire bien</span></p></blockquote><p><span>Dans ce cours, c&#39;est </span><em><span>Bien faire les choses</span></em><span>, plutôt que faire les choses bien.</span></p><p><span>Les 6 artefacts sont : </span></p><ul><li><span>Issue</span></li><li><span>Task</span></li><li><span>Test</span></li><li><span>Code</span></li><li><span>Doc</span></li><li><span>Release</span></li></ul><p><span>Une semaine par artefact, puis 6 semaines de projet. Équipe de 3, tirées aléatoirement. Le but de projet, c&#39;est de créer notre propre jira. Outils qui permet de gérer les 6 artefacts. Obligation de moyens (vs obligation de résultat), le projet sera à priori impossible à réaliser en 6 semaines. 3 sprints de 2 semaines. Il y aura des revues à la fin de chaque sprint.</span></p><p>&nbsp;</p><h2><a name="premier-artefact--issue" class="md-header-anchor"></a><span>Premier artefact : Issue</span></h2><p>&nbsp;</p><blockquote><p><span>Aussi </span><em><span>user story</span></em><span> dans scrum. Backlog, liste des issues</span></p></blockquote><p><span>Génie logiciel </span><span class="MathJax_SVG" tabindex="-1" style="font-size: 100%; display: inline-block;"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="2.323ex" height="1.644ex" viewBox="0 -605.1 1000 707.6" role="img" focusable="false" style="vertical-align: -0.238ex;"><defs><path stroke-width="0" id="E2-MJMAIN-2192" d="M56 237T56 250T70 270H835Q719 357 692 493Q692 494 692 496T691 499Q691 511 708 511H711Q720 511 723 510T729 506T732 497T735 481T743 456Q765 389 816 336T935 261Q944 258 944 250Q944 244 939 241T915 231T877 212Q836 186 806 152T761 85T740 35T732 4Q730 -6 727 -8T711 -11Q691 -11 691 0Q691 7 696 25Q728 151 835 230H70Q56 237 56 250Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)"><use xlink:href="#E2-MJMAIN-2192" x="0" y="0"></use></g></svg></span><script type="math/tex">\rightarrow</script><span> Production Logiciel, donc production.</span></p><ul><li><strong><span>MOA</span></strong><span> : Maitrise d&#39;ouvrage. C&#39;est l&#39;entité qui a un besoin, le financement, mais qui n&#39;a pas les compétences pour le faire.</span></li><li><strong><span>MOE</span></strong><span> : Maitrise d&#39;oeuvre. C&#39;est l&#39;entité qui possède les compétences techniques.</span></li><li><strong><span>MEP</span></strong><span> : Mise en production, moment où les utilisateurs peuvent utiliser le logiciel. Avant la prod, pre-prod (tests, etc...).</span></li><li><strong><span>TMA</span></strong><span> : Tierce Maintenance applicative. Le logiciel retourne dans le cycle de dev, pour traiter les anomalies. Mort du logiciel ? Quand on coupe la machine, et que personne n&#39;appel. </span></li></ul><p><span>Être bon, c&#39;est faire la mise en prod le plus rapidement possible, tout en ayant un logiciel de qualité (</span><em><span>Accelerate</span></em><span> | </span><em><span>Quality</span></em><span>). Le tout est de trouver le bon équilibre enter les deux.</span></p><p><span>Dans cette ue, on va ne s&#39;occuper que du cycle de dev. On s&#39;arrête avant la pre-prod. </span></p><p>&nbsp;</p><p><span>L&#39;</span><em><span>owner</span></em><span> (MOA, maitrise d&#39;ouvrage) exprime un besoin, réalisé par le développeur (MOE, maitrise d&#39;oeuvre). Il faut plutôt utiliser les termes Propriétaire/Utilisateur/Développeur à la place de client etc. Le client est un rôle qui peut changer. L&#39;utilisateur est le client du propriétaire, mais le propriétaire est le client du développeur.</span></p><p><span>Le logiciel nait quand le propriétaire exprime le besoin. Le besoin est ensuite validé, puis spécifié (on rentre dans les détails). Il pourrait également être prototypé. Et à un moment donné, il est réalisé.  Dans les besoins, on va principalement travailler sur les besoins de nouvelle fonctionnalitées. Pas les bugfixs ou améliorations.</span></p><p><span>(Jira est un outil qui permet de gérer les étapes de ces besoins, surtout </span><em><span>Issue</span></em><span> et </span><em><span>Task</span></em><span> )</span></p><p>&nbsp;</p><h3><a name="les-règles-des-issues" class="md-header-anchor"></a><span>Les règles des issues</span></h3><p>&nbsp;</p><ol start='' ><li><span>Les issues doivent avoir un </span><em><span>id unique</span></em><span>, qui permet de suivre leur évolution.</span></li><li><span>Les issues doivent être précises. Si c&#39;est pas assez précis, on ne peut pas tester, et donc on ne peut pas vérifier que c&#39;est bon.</span></li><li><span>Les issues doivent être homogènes. Au lieux de #1 jouter, #2 modifier, #3 supprimer : #1 CRUD. CRUD peut-être un peu trop d&#39;un coup, faut une juste millieu. Scénario à valeur ajoutée. Donc crud, pas bon.</span></li><li><span>Qualifier type, importance, coût. Le type peut être par exemple </span><em><span>BugFix</span></em><span>, </span><em><span>New feature</span></em><span>, ... Certaines issues sont plus importantes que d&#39;autres pour le propriétaire. Les issues doivent être classées par importance (High, Medium, Low). Le coût n&#39;est pas en euro, mais en </span><em><span>comparaison</span></em><span>. On suit la suite de fibonacci (1, 2, 3, 5, ...).</span></li><li><span>Planification.</span></li></ol><p><span>Liste des issues que les devs espèrent pouvoir réaliser (spécifiées en lisant le cdc) = </span><strong><span>backlog</span></strong><span>.</span></p><p><span>Pour le premier td, il faudra créer </span><code>issue.md</code><span>. Ensuite  il faut la planification, c&#39;est-à-dire pour chaque sprint, mettre les issues à réaliser.</span></p><p><span>Le dev doit spécifier les besoins, c&#39;est-à-dire rédiger les </span><em><span>User Stories</span></em><span>. Ce processus s&#39;appel </span><em><span>l&#39;analyse du besoins</span></em><span>. Le backlog contient les issues rédigées par les dev, donc la version spécifié. Il est validé par le propriétaire (</span><em><span>PO</span></em><span>). </span></p><p><span>Pour pouvoir chiffrer le projet, on fait la somme des difficultées des issues dans le back log. Il faut ensuite mesurer le coût de </span><em><span>1</span></em><span>. C&#39;est fait </span><em><span>au doigt mouillé</span></em><span> par le chef de projet. On utiliser généralement le jour-homme. (2jh = 1 dev pendant 2j, ou 2 dev pendant 1j). On utilise le jmois, 20jh, et le ja, 12jm.</span></p><p><span>Aujourd&#39;hui, dans bdx, 1jh c&#39;est vendu en moyenne 400euros. (Donc projet pdp, 10semaines = 50jh, 20k).</span></p><p>&nbsp;</p><p>&nbsp;</p><h2><a name="deuxième-artefact--task" class="md-header-anchor"></a><span>Deuxième artefact : Task</span></h2><p>&nbsp;</p><blockquote><p><span>Le digramme de Gantt, c&#39;est nul.</span></p></blockquote><p><span>La task n&#39;est pas l&#39;issue. L&#39;issue, c&#39;est la finalité. L&#39;issue c&#39;est </span><em><span>quoi</span></em><span>, et la task </span><em><span>comment</span></em><span>.</span></p><p><span>Pour faire la liste des taches : </span></p><ol start='' ><li><span>Faire l&#39;architecture.</span></li><li><span>Quels fichiers sources à écrire.</span></li><li><span>Dépendances.</span></li></ol><p>&nbsp;</p><p><span>Exemple formulaire covid:</span></p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang=""><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang=""><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">1. covid.css</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">2. covidBD.sql</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">3. receiveFromPOSTAndGeneratePdf.php</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">4. forumaire.html</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 92px;"></div><div class="CodeMirror-gutters" style="display: none; height: 92px;"></div></div></div></pre><p><span>3 et 4 dépendent de la définition du formulaire. C&#39;est une tâche supplémentaire. On passe de l&#39;user story &quot;En tant que français je veux pouvoir génere le formulaire&quot; à 5 tâches.</span></p><p><span>On peut rajouter x2 pour chaque tache, si on ajoute un test par tache.</span></p><p>&nbsp;</p><p><strong><span>Tache id 1 - Faire le formulaire html pour le covid</span></strong></p><p><span>Definition of done: Contruire un fichier index.html à la racine du projet. La page html contient un form post vers l&#39;url genPDF.php. Le forumaire contient les champs suivant : </span></p><ul><li><span>Name - String 50 char</span></li><li><span>...</span></li></ul><p><span>Il faut un Definition Of Done précis, pour définir le RAF (Reste à faire).</span></p><p>&nbsp;</p><p><strong><span>Tache id 2 - Tester le formulaire html</span></strong></p><p><span>Definition Of Done: Ouvrir index.html avec votre navigateur. Saisir un nom, ... Cliquer sur Submit, et vérifier à l&#39;aide de l&#39;outil DevTool qu&#39;une requête post vers genPDF.php a été envoyée.</span></p><p>&nbsp;</p><p><span>Pour rédiger une tâche :</span></p><ol start='' ><li><span>Chaque tache doit avoir une durée relativement courte. Maximum un jour, soit 8h.</span></li><li><span>Préciser le travail à faire.</span></li><li><span>Chaque tache est liée à une userStory. On ne fait pas de tache pour rien.</span></li></ol><p>&nbsp;</p><p><span>Liste des tâches :</span></p><figure><table><thead><tr><th><span>Id</span></th><th><span>Charge</span></th><th><span>Depend</span></th><th><span>User Story</span></th></tr></thead><tbody><tr><td><span>1</span></td><td><span>index.html</span><br><span>4 heures</span></td><td>&nbsp;</td><td><span>US1Gen</span></td></tr><tr><td><span>2</span></td><td><span>Tester Id 1 </span><br><span>4 heures</span></td><td><span>1</span></td><td><span>US1</span></td></tr></tbody></table></figure><p>&nbsp;</p><p><span>Planification :</span></p><figure><table><thead><tr><th>&nbsp;</th><th><span>L</span></th><th><span>M</span></th><th><span>M</span></th><th><span>J</span></th><th><span>V</span></th></tr></thead><tbody><tr><td><span>Alice</span></td><td><span>T1</span></td><td><span>T3</span></td><td><span>T3</span></td><td><span>X</span></td><td><span>X</span></td></tr><tr><td><span>Bob</span></td><td><span>X</span></td><td><span>T2</span></td><td><span>T4</span></td><td><span>X</span></td><td><span>X</span></td></tr><tr><td><span>Joh</span></td><td><span>X</span></td><td><span>X</span></td><td><span>T6</span></td><td><span>X</span></td><td><span>X</span></td></tr></tbody></table></figure><p><span>X = temps mort = Perte d&#39;argent.</span></p><p>&nbsp;</p><p><span>Diagramme de Pert : </span></p><p>&nbsp;</p><figure><table><thead><tr><th><span>Id</span></th><th><span>Charge</span></th><th><span>Depend</span></th><th><span>US</span></th></tr></thead><tbody><tr><td><span>1</span></td><td><span>1</span></td><td><span>X</span></td><td>&nbsp;</td></tr><tr><td><span>2</span></td><td><span>1</span></td><td><span>1</span></td><td>&nbsp;</td></tr><tr><td><span>3</span></td><td><span>3</span></td><td><span>4</span></td><td>&nbsp;</td></tr><tr><td><span>4</span></td><td><span>2</span></td><td><span>X</span></td><td>&nbsp;</td></tr><tr><td><span>5</span></td><td><span>1</span></td><td><span>1, 2, 3</span></td><td>&nbsp;</td></tr><tr><td><span>6</span></td><td><span>2</span></td><td><span>5</span></td><td>&nbsp;</td></tr><tr><td><span>7</span></td><td><span>1</span></td><td><span>5</span></td><td>&nbsp;</td></tr></tbody></table></figure><p>&nbsp;</p><p><img src="/images/CDC/pert.png" /></p><p>&nbsp;</p><p><span>Version à la main : </span></p><figure><table><thead><tr><th>&nbsp;</th><th><span>1</span></th><th><span>2</span></th><th><span>3</span></th><th><span>4</span></th><th><span>5</span></th><th><span>6</span></th><th><span>7</span></th><th><span>8</span></th><th>&nbsp;</th></tr></thead><tbody><tr><td><span>Alice</span></td><td><span>X</span></td><td><span>X</span></td><td><span>X</span></td><td><span>T1</span></td><td><span>X</span></td><td><span>X</span></td><td><span>T5</span></td><td><span>T6</span></td><td>&nbsp;</td></tr><tr><td><span>Bob</span></td><td><span>T4</span></td><td><span>T4</span></td><td><span>T3</span></td><td><span>T3</span></td><td><span>X</span></td><td><span>X</span></td><td><span>T7</span></td><td><span>X</span></td><td>&nbsp;</td></tr></tbody></table></figure><p>&nbsp;</p></div>
+<div id='write'  class=''><h1><a name="conduite-de-projet" class="md-header-anchor"></a><span>Conduite de Projet</span></h1><p>&nbsp;</p><p><span>Deux petites vidéos du prof en lien avec le cours : </span></p><iframe width="560" height="315" src="https://www.youtube.com/embed/vhpcngRVE_A" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe><iframe width="560" height="315" src="https://www.youtube.com/embed/VWhLcgo9z74" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe><p>&nbsp;</p><h2><a name="introduction" class="md-header-anchor"></a><span>Introduction</span></h2><h3><a name="comment-se-déroulera-le-cours-" class="md-header-anchor"></a><span>Comment se déroulera le cours ?</span></h3><p><a href='Lien du site du prof'><span>https://www.labri.fr/perso/xblanc/teaching.html</span></a></p><p><a href='https://github.com/xblanc33/QualiteDev'><span>Cours sur github</span></a></p><p><span>Il y a 6 fichiers, avec des 5 éléments de qualités sur chaque fichier. Ça fait 30 points de contrôle. On sera noté sur 30, il faut donc tout connaître par coeur.</span></p><blockquote><p><span>Bien faire les choses vs faire bien</span></p></blockquote><p><span>Dans ce cours, c&#39;est </span><em><span>Bien faire les choses</span></em><span>, plutôt que faire les choses bien.</span></p><p><span>Les 6 artefacts sont : </span></p><ul><li><span>Issue</span></li><li><span>Task</span></li><li><span>Test</span></li><li><span>Code</span></li><li><span>Doc</span></li><li><span>Release</span></li></ul><p><span>Une semaine par artefact, puis 6 semaines de projet. Équipe de 3, tirées aléatoirement. Le but de projet, c&#39;est de créer notre propre jira. Outils qui permet de gérer les 6 artefacts. Obligation de moyens (vs obligation de résultat), le projet sera à priori impossible à réaliser en 6 semaines. 3 sprints de 2 semaines. Il y aura des revues à la fin de chaque sprint.</span></p><p>&nbsp;</p><h2><a name="premier-artefact--issue" class="md-header-anchor"></a><span>Premier artefact : Issue</span></h2><p>&nbsp;</p><blockquote><p><span>Aussi </span><em><span>user story</span></em><span> dans scrum. Backlog, liste des issues</span></p></blockquote><p><span>Génie logiciel </span><span class="MathJax_SVG" tabindex="-1" style="font-size: 100%; display: inline-block;"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="2.323ex" height="1.615ex" viewBox="0 -594.7 1000 695.5" role="img" focusable="false" style="vertical-align: -0.234ex;"><defs><path stroke-width="0" id="E2-MJMAIN-2192" d="M56 237T56 250T70 270H835Q719 357 692 493Q692 494 692 496T691 499Q691 511 708 511H711Q720 511 723 510T729 506T732 497T735 481T743 456Q765 389 816 336T935 261Q944 258 944 250Q944 244 939 241T915 231T877 212Q836 186 806 152T761 85T740 35T732 4Q730 -6 727 -8T711 -11Q691 -11 691 0Q691 7 696 25Q728 151 835 230H70Q56 237 56 250Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)"><use xlink:href="#E2-MJMAIN-2192" x="0" y="0"></use></g></svg></span><script type="math/tex">\rightarrow</script><span> Production Logiciel, donc production.</span></p><ul><li><strong><span>MOA</span></strong><span> : Maitrise d&#39;ouvrage. C&#39;est l&#39;entité qui a un besoin, le financement, mais qui n&#39;a pas les compétences pour le faire.</span></li><li><strong><span>MOE</span></strong><span> : Maitrise d&#39;oeuvre. C&#39;est l&#39;entité qui possède les compétences techniques.</span></li><li><strong><span>MEP</span></strong><span> : Mise en production, moment où les utilisateurs peuvent utiliser le logiciel. Avant la prod, pre-prod (tests, etc...).</span></li><li><strong><span>TMA</span></strong><span> : Tierce Maintenance applicative. Le logiciel retourne dans le cycle de dev, pour traiter les anomalies. Mort du logiciel ? Quand on coupe la machine, et que personne n&#39;appel. </span></li></ul><p><span>Être bon, c&#39;est faire la mise en prod le plus rapidement possible, tout en ayant un logiciel de qualité (</span><em><span>Accelerate</span></em><span> | </span><em><span>Quality</span></em><span>). Le tout est de trouver le bon équilibre enter les deux.</span></p><p><span>Dans cette ue, on va ne s&#39;occuper que du cycle de dev. On s&#39;arrête avant la pre-prod. </span></p><p>&nbsp;</p><p><span>L&#39;</span><em><span>owner</span></em><span> (MOA, maitrise d&#39;ouvrage) exprime un besoin, réalisé par le développeur (MOE, maitrise d&#39;oeuvre). Il faut plutôt utiliser les termes Propriétaire/Utilisateur/Développeur à la place de client etc. Le client est un rôle qui peut changer. L&#39;utilisateur est le client du propriétaire, mais le propriétaire est le client du développeur.</span></p><p><span>Le logiciel nait quand le propriétaire exprime le besoin. Le besoin est ensuite validé, puis spécifié (on rentre dans les détails). Il pourrait également être prototypé. Et à un moment donné, il est réalisé.  Dans les besoins, on va principalement travailler sur les besoins de nouvelle fonctionnalitées. Pas les bugfixs ou améliorations.</span></p><p><span>(Jira est un outil qui permet de gérer les étapes de ces besoins, surtout </span><em><span>Issue</span></em><span> et </span><em><span>Task</span></em><span> )</span></p><p>&nbsp;</p><h3><a name="les-règles-des-issues" class="md-header-anchor"></a><span>Les règles des issues</span></h3><p>&nbsp;</p><ol start='' ><li><span>Les issues doivent avoir un </span><em><span>id unique</span></em><span>, qui permet de suivre leur évolution.</span></li><li><span>Les issues doivent être précises. Si c&#39;est pas assez précis, on ne peut pas tester, et donc on ne peut pas vérifier que c&#39;est bon.</span></li><li><span>Les issues doivent être homogènes. Au lieux de #1 jouter, #2 modifier, #3 supprimer : #1 CRUD. CRUD peut-être un peu trop d&#39;un coup, faut une juste millieu. Scénario à valeur ajoutée. Donc crud, pas bon.</span></li><li><span>Qualifier type, importance, coût. Le type peut être par exemple </span><em><span>BugFix</span></em><span>, </span><em><span>New feature</span></em><span>, ... Certaines issues sont plus importantes que d&#39;autres pour le propriétaire. Les issues doivent être classées par importance (High, Medium, Low). Le coût n&#39;est pas en euro, mais en </span><em><span>comparaison</span></em><span>. On suit la suite de fibonacci (1, 2, 3, 5, ...).</span></li><li><span>Planification.</span></li></ol><p><span>Liste des issues que les devs espèrent pouvoir réaliser (spécifiées en lisant le cdc) = </span><strong><span>backlog</span></strong><span>.</span></p><p><span>Pour le premier td, il faudra créer </span><code>issue.md</code><span>. Ensuite  il faut la planification, c&#39;est-à-dire pour chaque sprint, mettre les issues à réaliser.</span></p><p><span>Le dev doit spécifier les besoins, c&#39;est-à-dire rédiger les </span><em><span>User Stories</span></em><span>. Ce processus s&#39;appel </span><em><span>l&#39;analyse du besoins</span></em><span>. Le backlog contient les issues rédigées par les dev, donc la version spécifié. Il est validé par le propriétaire (</span><em><span>PO</span></em><span>). </span></p><p><span>Pour pouvoir chiffrer le projet, on fait la somme des difficultées des issues dans le back log. Il faut ensuite mesurer le coût de </span><em><span>1</span></em><span>. C&#39;est fait </span><em><span>au doigt mouillé</span></em><span> par le chef de projet. On utiliser généralement le jour-homme. (2jh = 1 dev pendant 2j, ou 2 dev pendant 1j). On utilise le jmois, 20jh, et le ja, 12jm.</span></p><p><span>Aujourd&#39;hui, dans bdx, 1jh c&#39;est vendu en moyenne 400euros. (Donc projet pdp, 10semaines = 50jh, 20k).</span></p><p>&nbsp;</p><blockquote><p><span>De ce que j&#39;ai compris pour la méthodologie agile, une </span><em><span>user story</span></em><span> est une </span><em><span>issue</span></em><span>, mais une </span><em><span>issue</span></em><span> n&#39;est pas une </span><em><span>user story</span></em><span>. Issue est un  terme générique, ça peut être une </span><em><span>Story</span></em><span>, un </span><em><span>Bug,</span></em><span> ...</span></p></blockquote><p>&nbsp;</p><p><strong><span>User stories</span></strong><span> are short, simple descriptions of a  feature told from the perspective of the person who desires the new  capability, usually a user or customer of the system. They typically  follow a simple template:</span></p><p><span>As a &lt; type of user &gt;, I want &lt; some goal &gt; so that &lt; some reason &gt;.</span></p><p>&nbsp;</p><p>&nbsp;</p><h2><a name="deuxième-artefact--task" class="md-header-anchor"></a><span>Deuxième artefact : Task</span></h2><p>&nbsp;</p><blockquote><p><span>Le digramme de Gantt, c&#39;est nul.</span></p></blockquote><p><span>La task n&#39;est pas l&#39;issue. L&#39;issue, c&#39;est la finalité. L&#39;issue c&#39;est </span><em><span>quoi</span></em><span>, et la task </span><em><span>comment</span></em><span>.</span></p><p><span>Pour faire la liste des taches : </span></p><ol start='' ><li><span>Faire l&#39;architecture.</span></li><li><span>Quels fichiers sources à écrire.</span></li><li><span>Dépendances.</span></li></ol><p>&nbsp;</p><p><span>Exemple formulaire covid:</span></p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang=""><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang=""><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">1. covid.css</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">2. covidBD.sql</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">3. receiveFromPOSTAndGeneratePdf.php</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">4. forumaire.html</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 104px;"></div><div class="CodeMirror-gutters" style="display: none; height: 104px;"></div></div></div></pre><p><span>3 et 4 dépendent de la définition du formulaire. C&#39;est une tâche supplémentaire. On passe de l&#39;user story &quot;En tant que français je veux pouvoir génere le formulaire&quot; à 5 tâches.</span></p><p><span>On peut rajouter x2 pour chaque tache, si on ajoute un test par tache.</span></p><p>&nbsp;</p><p><strong><span>Tache id 1 - Faire le formulaire html pour le covid</span></strong></p><p><span>Definition of done: Contruire un fichier index.html à la racine du projet. La page html contient un form post vers l&#39;url genPDF.php. Le forumaire contient les champs suivant : </span></p><ul><li><span>Name - String 50 char</span></li><li><span>...</span></li></ul><p><span>Il faut un Definition Of Done précis, pour définir le RAF (Reste à faire).</span></p><p>&nbsp;</p><p><strong><span>Tache id 2 - Tester le formulaire html</span></strong></p><p><span>Definition Of Done: Ouvrir index.html avec votre navigateur. Saisir un nom, ... Cliquer sur Submit, et vérifier à l&#39;aide de l&#39;outil DevTool qu&#39;une requête post vers genPDF.php a été envoyée.</span></p><p>&nbsp;</p><p><span>Pour rédiger une tâche :</span></p><ol start='' ><li><span>Chaque tache doit avoir une durée relativement courte. Maximum un jour, soit 8h.</span></li><li><span>Préciser le travail à faire.</span></li><li><span>Chaque tache est liée à une userStory. On ne fait pas de tache pour rien.</span></li></ol><p>&nbsp;</p><p><span>Liste des tâches :</span></p><figure><table><thead><tr><th><span>Id</span></th><th><span>Charge</span></th><th><span>Depend</span></th><th><span>User Story</span></th></tr></thead><tbody><tr><td><span>1</span></td><td><span>index.html</span><br><span>4 heures</span></td><td>&nbsp;</td><td><span>US1Gen</span></td></tr><tr><td><span>2</span></td><td><span>Tester Id 1 </span><br><span>4 heures</span></td><td><span>1</span></td><td><span>US1</span></td></tr></tbody></table></figure><p>&nbsp;</p><p><span>Planification :</span></p><figure><table><thead><tr><th>&nbsp;</th><th><span>L</span></th><th><span>M</span></th><th><span>M</span></th><th><span>J</span></th><th><span>V</span></th></tr></thead><tbody><tr><td><span>Alice</span></td><td><span>T1</span></td><td><span>T3</span></td><td><span>T3</span></td><td><span>X</span></td><td><span>X</span></td></tr><tr><td><span>Bob</span></td><td><span>X</span></td><td><span>T2</span></td><td><span>T4</span></td><td><span>X</span></td><td><span>X</span></td></tr><tr><td><span>Joh</span></td><td><span>X</span></td><td><span>X</span></td><td><span>T6</span></td><td><span>X</span></td><td><span>X</span></td></tr></tbody></table></figure><p><span>X = temps mort = Perte d&#39;argent.</span></p><p>&nbsp;</p><p><span>Diagramme de Pert (pas très utile dans le cadre du cours) : </span></p><p>&nbsp;</p><figure><table><thead><tr><th><span>Id</span></th><th><span>Charge</span></th><th><span>Depend</span></th><th><span>US</span></th></tr></thead><tbody><tr><td><span>1</span></td><td><span>1</span></td><td><span>X</span></td><td>&nbsp;</td></tr><tr><td><span>2</span></td><td><span>1</span></td><td><span>1</span></td><td>&nbsp;</td></tr><tr><td><span>3</span></td><td><span>3</span></td><td><span>4</span></td><td>&nbsp;</td></tr><tr><td><span>4</span></td><td><span>2</span></td><td><span>X</span></td><td>&nbsp;</td></tr><tr><td><span>5</span></td><td><span>1</span></td><td><span>1, 2, 3</span></td><td>&nbsp;</td></tr><tr><td><span>6</span></td><td><span>2</span></td><td><span>5</span></td><td>&nbsp;</td></tr><tr><td><span>7</span></td><td><span>1</span></td><td><span>5</span></td><td>&nbsp;</td></tr></tbody></table></figure><p>&nbsp;</p><p><img src="/images/CDC/pert.png" /></p><p>&nbsp;</p><p><span>Version à la main (C&#39;est ce qu&#39;on utilisera dans ce cours) : </span></p><figure><table><thead><tr><th>&nbsp;</th><th><span>1</span></th><th><span>2</span></th><th><span>3</span></th><th><span>4</span></th><th><span>5</span></th><th><span>6</span></th><th><span>7</span></th><th><span>8</span></th><th>&nbsp;</th></tr></thead><tbody><tr><td><span>Alice</span></td><td><span>X</span></td><td><span>X</span></td><td><span>X</span></td><td><span>T1</span></td><td><span>X</span></td><td><span>X</span></td><td><span>T5</span></td><td><span>T6</span></td><td>&nbsp;</td></tr><tr><td><span>Bob</span></td><td><span>T4</span></td><td><span>T4</span></td><td><span>T3</span></td><td><span>T3</span></td><td><span>X</span></td><td><span>X</span></td><td><span>T7</span></td><td><span>X</span></td><td>&nbsp;</td></tr></tbody></table></figure><p>&nbsp;</p><h2><a name="troisième-artefact--tests" class="md-header-anchor"></a><span>Troisième artefact : Tests</span></h2><p>&nbsp;</p><p><span>Principe : Si on observe une faute alors il y a une défaillance. Le but n&#39;est pas d&#39;écrire un test qui montre que ça marche, mais d&#39;écrire un test qui montre que ça ne marche pas.</span></p><p><span>(RO: Résultat Obtenu, RA: Résultat Attendu(Oracle))</span></p><p><span>Pour chaque test, au moins deux taches : </span></p><ul><li><span>Définir l&#39;oracle</span></li><li><span>Lancer le test</span></li></ul><p><span>2 métiers, celui qui rédite, celui qui exécute.</span></p><p><span>Au moins un tier du budget total passe dans les tests normalement.</span></p><p>&nbsp;</p><h4><a name="quels-tests-et-quand-" class="md-header-anchor"></a><span>Quels tests et quand ?</span></h4><p><span>Il y a trois niveau de test:</span></p><ol start='' ><li><span>Test unitaire : Tester un élément individuel</span></li><li><span>Test d&#39;intégration : Tester les intéractions entre deux éléments</span></li><li><span>Test fonctionnel : Tester tout le système</span></li></ol><p>&nbsp;</p><h4><a name="tests-unitaires" class="md-header-anchor"></a><span>Tests Unitaires</span></h4><p><span>On test l&#39;unité, c&#39;est-à-dire un fichier source. Pour tester si un test est bon, on peut tester la couverture du test. Il faut au moins 80% de couverture.</span></p><p><em><span>Mutation testing</span></em><span> : On change le contenu du code, et on regarde si les tests passent toujours. Normalement, ils ne doivent pas tester.</span></p><p>&nbsp;</p><h4><a name="tests-fonctionnels-e2e" class="md-header-anchor"></a><span>Tests fonctionnels (E2E)</span></h4><p><span>Tester l&#39;applicationi de bout en bout (sur une user story). Est-ce que c&#39;est un vrai test ? Parcequ&#39;on vérifie juste que ça marche (une démo). Il faut un modèle de scénario bout en bout (Event Sourcing) </span><span class="MathJax_SVG" tabindex="-1" style="font-size: 100%; display: inline-block;"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="2.323ex" height="1.615ex" viewBox="0 -594.7 1000 695.5" role="img" focusable="false" style="vertical-align: -0.234ex;"><defs><path stroke-width="0" id="E3-MJMAIN-21D2" d="M580 514Q580 525 596 525Q601 525 604 525T609 525T613 524T615 523T617 520T619 517T622 512Q659 438 720 381T831 300T927 263Q944 258 944 250T935 239T898 228T840 204Q696 134 622 -12Q618 -21 615 -22T600 -24Q580 -24 580 -17Q580 -13 585 0Q620 69 671 123L681 133H70Q56 140 56 153Q56 168 72 173H725L735 181Q774 211 852 250Q851 251 834 259T789 283T735 319L725 327H72Q56 332 56 347Q56 360 70 367H681L671 377Q638 412 609 458T580 514Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)"><use xlink:href="#E3-MJMAIN-21D2" x="0" y="0"></use></g></svg></span><script type="math/tex">\Rightarrow</script><span> Maquette (PRETOTYPE). La maquette du scénario c&#39;est montrer commence on passe d&#39;une étape à une autre. Il faut aussi préciser le résultat attendu à chaque étape. (Figma) (voir gherkin, selenium/cypress?)</span></p><p>&nbsp;</p><h4><a name="synthèse-test" class="md-header-anchor"></a><span>Synthèse Test</span></h4><ul><li><span>Trouver les erreurs qui gènent</span></li><li><span>Pyramide test (yt caverne du testeur)</span></li><li><span>2 tâches (Design | Execute)</span></li><li><span>Automatiser (Selenium, Cypress)</span></li><li><span>Couverture des tests/mutation testing</span></li></ul><p>&nbsp;</p></div>
 </body>
 </html>

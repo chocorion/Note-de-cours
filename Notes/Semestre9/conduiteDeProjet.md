@@ -202,3 +202,56 @@ Version à la main (C'est ce qu'on utilisera dans ce cours) :
 | Alice | X    | X    | X    | T1   | X    | X    | T5   | T6   |      |
 | Bob   | T4   | T4   | T3   | T3   | X    | X    | T7   | X    |      |
 
+
+
+## Troisième artefact : Tests
+
+
+
+Principe : Si on observe une faute alors il y a une défaillance. Le but n'est pas d'écrire un test qui montre que ça marche, mais d'écrire un test qui montre que ça ne marche pas.
+
+(RO: Résultat Obtenu, RA: Résultat Attendu(Oracle))
+
+Pour chaque test, au moins deux taches : 
+
+- Définir l'oracle
+- Lancer le test
+
+2 métiers, celui qui rédite, celui qui exécute.
+
+Au moins un tier du budget total passe dans les tests normalement.
+
+
+
+#### Quels tests et quand ?
+
+Il y a trois niveau de test:
+
+1. Test unitaire : Tester un élément individuel
+2. Test d'intégration : Tester les intéractions entre deux éléments
+3. Test fonctionnel : Tester tout le système
+
+
+
+#### Tests Unitaires
+
+On test l'unité, c'est-à-dire un fichier source. Pour tester si un test est bon, on peut tester la couverture du test. Il faut au moins 80% de couverture.
+
+*Mutation testing* : On change le contenu du code, et on regarde si les tests passent toujours. Normalement, ils ne doivent pas tester.
+
+
+
+#### Tests fonctionnels (E2E)
+
+Tester l'applicationi de bout en bout (sur une user story). Est-ce que c'est un vrai test ? Parcequ'on vérifie juste que ça marche (une démo). Il faut un modèle de scénario bout en bout (Event Sourcing) $\Rightarrow$ Maquette (PRETOTYPE). La maquette du scénario c'est montrer commence on passe d'une étape à une autre. Il faut aussi préciser le résultat attendu à chaque étape. (Figma) (voir gherkin, selenium/cypress?)
+
+
+
+#### Synthèse Test
+
+* Trouver les erreurs qui gènent
+* Pyramide test (yt caverne du testeur)
+* 2 tâches (Design | Execute)
+* Automatiser (Selenium, Cypress)
+* Couverture des tests/mutation testing
+
