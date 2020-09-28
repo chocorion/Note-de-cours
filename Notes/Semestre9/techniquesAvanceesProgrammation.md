@@ -132,3 +132,67 @@ La pureté est donc un indépendance encapsulée.
 $f$ pure : $f(1)$ - $f(1)$ = 0.
 
 $g$ non pure : $g(1)$ - $g(1)$ = ?
+
+
+
+#### Petite révision sur la pureté
+
+Une fonction pure ne doit pas forément être total, c'est un peu flou. Mais par exemple :
+
+```c
+int f(int j) {
+    return j + 4;
+}
+```
+
+Cette fonction est pure. Mais en réalité, elle n'est pas totale. Il est possible de réaliser un overflow. Donc 1/x, pure aussi, même si ça plante en 0.
+
+Si les effets de bord sont confinés, c'est ok. Car on veut juste une correspondance, sans ne rien observer à l'extérieur.
+
+
+
+#### Formes de la partialité
+
+- Boucle infinie, non-terminaison.
+- arrêt impromptu.
+- Non spécifié (division par 0), donc arbitraire.
+- Levée d'exceptions
+- résultats sous forme de valeur spéciales. (1/0 qui renvoi *inf*).
+
+
+
+#### Transparence référentielle
+
+$h(f(x_1, x_2), z(y_2), p(3, 4, 5), 7)$, quel que soit l'ordre d'évaluation, même résultat. Si une expression est composée d'appels à des fonctions pures totales, alors il y a transparence référentielle. Il y a donc une différence avec l'impératif, l'ordre des choses n'a plus d'importance. Car avec les effets de bords, il faut contrôler l'ordre des changements d'états. 
+
+Ici, nous avons ce qu'on appel de la programmation *déclarative*. 
+
+
+
+*Théorème Church-Rosser:* Si une expression est constituée de fonctions pures (pas necessairement totale), si on obtiens un résultat, c'est toujours le même.
+
+Les bonnes propriétées de induites par la pureté :
+
+- parallélisation "gratuite"
+- raisonnement équationnel (Si on a une fonction pure, $f(1) - f(1) = 0$, equationnel car on est sur de l'égalité.)
+- optimisations (mémoïsation)
+- tests plus simple
+- vérifiabilité facilitée
+
+Mais il y a égalemment des contraintes (liste dans le poly).
+
+
+
+### Première classe
+
+> Un type de bloc de construction (des instruction, des fonctions, des objets, des classes, des modules...) est de première classe, s'il possède 5 propriétées : 
+>
+> 1. Le boc peut être nommé.
+> 2. On peut le définir n'importe où dans un programme (on peut donc avoir une forme anonyme).
+> 3. On peut le passer en paramètre d'une fonction
+> 4. On peut le recevoir en retour de l'appel d'une fonction. Ça peut être un résultat.
+> 5. On peut le stocker dans n'importe qu'elle structure de donnée.
+
+En anglais, on parle de *first class citizen*. Un entier est de première classe.
+
+**Remarque :** Les fonctions peuvent être de première classe.
