@@ -197,3 +197,59 @@ Ces différents éléments ont les noms suivant dans hadoop :
 
 Ou peut suivre l'exécution des jobs avec YARN via l'interface web :8088
 
+### Writable
+
+Hadoop utilise son propre système de type. Ces types sont des surcouches qui permettent de sérialiser/deserialiser sur le réseau. On peut bien sure créer nos propre types. Il suffet d'étendre de `Writable`.
+
+Il faut les deux méthodes suivantes : 
+
+```java
+public void write(DataOutput out) throws IOException;
+public void readFields(DataInput in) throws IOException;
+```
+
+Il faut bien penser à lire dans l'ordre dans lequel on a envoyé les champs. Sinon, inversion des valeurs. Il n'y a pas de vérification par hadoop.
+
+
+
+### Combiner
+
+Les combiners sont des reducer, mais qui tirent partie de la scalabilité horizontale. Ils sont présents à la sorti du mapper sur un bloc.
+
+### Distributed Cache
+
+Il est possible de partager un fichier entre les différentes machines.
+
+```java
+public static class AMapper extends Mapper<KeyIn, ValueIn, KeyOut, ValueOut> {
+    protected void setup(Context context) {
+        URI[] files ) context.getCacheFiles(context.getConfiguration());
+        DataInputStream strm = new DataInputStream(new FileInputStream(files[0].getPath()));
+        MyDataWritable data = new MyDataWritables();
+        data.readFields(strm);
+        strm.close();
+    }
+}
+```
+
+On verra des exemples en td.
+
+
+
+### Modèle de Partionner
+
+
+
+```java
+public abstract class Partitioner<KEY, VALUE> {
+    public abstract int getPartition(KEY key, VALUE value, int numPartitions);
+}
+
+public class HashPartitioner<K, V> extends Partitioner<K, V> {
+    public int getPartition(K key, V value, int numReduceTasks) {
+        return (key.hashCode() & Integer.MAX_VALUE) % numReduceTasks;
+    }
+}
+```
+
+On peut avoir un nombre de reducer variable. Mais alors il faut équilibrer la charge entre nos différents reducer. C'est la que le partionner intervient. Imaginons qu'on fasse une opération sur des lettres. On a par exemple bien plus de *e* que de *z*. On peut donc utiliser cette information pour mieux utiliser nos différents reducers.
