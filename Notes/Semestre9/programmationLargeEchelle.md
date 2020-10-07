@@ -253,3 +253,47 @@ public class HashPartitioner<K, V> extends Partitioner<K, V> {
 ```
 
 On peut avoir un nombre de reducer variable. Mais alors il faut équilibrer la charge entre nos différents reducer. C'est la que le partionner intervient. Imaginons qu'on fasse une opération sur des lettres. On a par exemple bien plus de *e* que de *z*. On peut donc utiliser cette information pour mieux utiliser nos différents reducers.
+
+
+
+> Petit devoir sur Map Reduce ! L'objectif, c'est de faire un truc qui compile et qui marche, histoire d'avancer.
+
+
+
+### Input format
+
+Ce qu'on fesait pour le moment, c'était utiliser un *FileInputFormat*. Ça nous permet de recevoir dans le mapper les lignes d'un fichier. Mais on ne va pas toujours vouloire travailler avec des fichiers en entrée. 
+
+Un InputFormat, ça génère les inputSplits, il construit le recordReader. Le recordReader, il reçoit les inputSplit et il créé les couples clef/valeurs pour le mapper.
+
+L'inputsplit représente les sous-ensemble de données qui sront traitées par un unique Mapper. Il donne une vue binaire des données, c'est au recordreader de donner une vue clé/valeur aux données.
+
+FileSplit est l'inputSplit par défaut. Il positionne la variable mapreduce.map.input.file sur le path du fichier découpé.
+
+Le recordReadr lit des <key, value> à partir de l'inputsplit. Généralement, le recordreader convertit les données de l'inputsplit pour qu'elles puissent être traitées par les mappers. Il a donc la responsabilité de redécouper les inputsplit en bloc keys and values. Mais on peut générer autre chose.
+
+
+
+#### Exemple inputFormat : Pi
+
+Méthode de Monté Carlo: On tire un des pints au  hasard dans le quart de cercle supérieur. Pour chaque point, on test s'il est dans le cercle $x^2 + y^2 < 1$. Le ratio entre le nombre de points dans le cercle et celui en dohors du cercle est égal à $\frac{\pi}{4}$. Pour gagner en précision, il faut tirer énormément de points.
+
+
+
+Un première méthode : On génère des points avec notre inputFormat, puis à chaque fois si un point est dans p, on incrémente un compteur. Pas très opti, car on génère les points sur une machine, puis on les balances sur le réseau pour les envoyer sur les datanodes.
+
+
+
+> Le nombre de reducer, c'est le nombre de fichier part-r-000 à la fin. Si on a des gigas de données, mais qu'on seul reducer, on a un reducer qui va se tapper les 100Go, il faut donc que le nombre de reducer soit proportionnel.
+
+
+
+### Output format
+
+Il décrit les sorties d'un job MapReduce. Il fournit un RecordWriter, utilisé pour écrire <key, value> dans la sortie.
+
+Exemple de format existant:
+
+1. SequenceFileInputFormat/SequenceFileOutputFormat: Format binaire de stockage <key, value>, beaucoup plus performant que le format texte. A privilégier pour stocker les données dans HDFS.
+2. TableOuputFormat/TableInputFormat: Format d'entrée sortie poru lire et écrire dans la base de données NoSQL HBase fournit dans l'écosystème hadoop.
+3. DBInputFormat/DBOuputFormat : Format d'entrée sortie vers des bases de données SQL.

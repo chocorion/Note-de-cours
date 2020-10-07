@@ -196,3 +196,59 @@ Mais il y a égalemment des contraintes (liste dans le poly).
 En anglais, on parle de *first class citizen*. Un entier est de première classe.
 
 **Remarque :** Les fonctions peuvent être de première classe.
+
+La première classe nécessite les types. Si le typage est statique, il faut des notations pour ces types.
+
+Java 8, interfaces fonctionnelles : Ce sont juste des interfaces qui définissent une seule méthode abstraite. On se retrouve un peu dans le cas du délégué en C#. Ça devient un type de valeur fonctionnelle.
+
+
+
+```ocaml
+let f = sin;;; (* named *)
+
+let f = fun x -> x + 3;; (* anonymous function *)
+
+let approx_deriv (f, epsilon, x) =
+	(f (x +. epsilon) -. f (x -. epsilon)) /. (2. *. epsilon);; (* parameter *)
+	
+```
+
+
+
+En C, les pointeurs sont de première classe, pas les fonctions elle-même. On peut passer un pointeur sur une fonction existante, mais pas directement une fonction. Pas de lambda expression.
+
+
+
+```c++
+struct my_fun {
+    int val;
+    void initialize (int n);
+    int operator() (int n, in tp);
+}
+
+int my_fun::operator() (int n, int p) {
+    return n + p + val;
+}
+
+my_fun f_obj;
+f_obj(2, 3);
+```
+
+En C++, redéfinition de l'opérateur ().
+
+
+
+### Closures (fermetures)
+
+
+
+*Définition :* Une fermeture est une fonction avec un environnement privé.
+
+```ocaml
+let a = 10;
+
+let f = fun x -> a + x;;
+
+(* Changer a ne change pas le comportement de f *)
+```
+

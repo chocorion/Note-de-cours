@@ -100,5 +100,45 @@ e.preventdefault
 
 
 
-### Same origin policy
+`use strict` permet d'activer le mode strict de javascript.
 
+```javascript
+function counter() {
+    let val = 0;
+    
+    return function() {
+        return val++;
+    }
+}
+```
+
+Permet d'encapsuler val dans le fonction counter. La fonction retournée agira sur le context dans lequel val a été déclaré. Mais ici il faut lancer deux fonctions. On va donc faire des *IIFE*. 
+
+```javascript
+let counter = function () {
+    let val = 0;
+    
+    return function() {
+        return val++;
+    }
+}();
+```
+
+
+
+```javascript
+let counter = function(init = 0) {
+    let val = init;
+    let next = function() { ... };
+    let reset = function() {
+        val = init;
+    };
+    
+    return {
+        "next": next,
+        "reset": reset
+    };
+}
+```
+
+Prototype : Référence à un autre objet.

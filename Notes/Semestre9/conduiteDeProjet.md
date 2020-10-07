@@ -255,3 +255,114 @@ Tester l'applicationi de bout en bout (sur une user story). Est-ce que c'est un 
 * Automatiser (Selenium, Cypress)
 * Couverture des tests/mutation testing
 
+
+
+## Quatrième artefact : Code
+
+Nous allons voir surtout le code en équipe avec :
+
+1. l'écriture du code
+2. l'échange de code
+
+### L' Échange de code
+
+
+
+Fonctionnement de l'ancêtre, *SVN*. Il y a u dépôt, un utilisateur, et un workbench. Le workbench est le répertoire locale, plus des méta-informations. Dans le dépôt, il y a des repertoire plus des méta-informations. Les méta-informations sont des numéros. Ils servent à savoir si ce qu'il y a dans le workbench est plus récent, ou moins récent que dans le dépôt. Si le numéro du workbench est inférieur à celui du dépôt, interdit de commit.
+
+
+
+Contrainte pour cette ue : 1 dépôt clean, avec un responsable. C'est-à-dire, un seul à le droit de push.
+
+Comment s'organiser ? Plusieurs solutions.
+
+**A (interdit dans cette ue):** Tout le monde peut push/pull sur le dépôt github. Organisation qui change peut par rapport à snv.
+
+**B : ** Deux dépôts dans github, un dépot travail et un dépôt clean. Un seul dev peut écrire sur clean. C'est l'intégrateur.
+
+**C :** *Feature branching* Chaque dévelopeur sur sa branche, puis quelqu'un intégre les branches sur ls branche principale
+
+**D :** Deux branches, main et clean. Tout le monde push sur main, et quelqu'un fait le merge sur la branche clean.
+
+
+
+### Comment écrire le code
+
+
+
+Mise en situation : Tâche 1, produire Form.php. Première chose à faire, la gestion de configuration, c'est-à-dire définir les répertoires de votre dépôt. Les répertoires doivent être alignés avec l'architecture.
+
+Version du prof (DDD) :
+
+```
+src/
+	infra/
+	UI/
+	domain/
+	application/
+```
+
+Un truc qui marche pas, c'est un repertoire par type de fichier.
+
+Customisation de l'éditeur, est-ce qu'on la partage ? caractère retour ligne, nom fichier, linter (voir SONAR)
+
+
+
+
+
+## Cinquième artefect : La doc
+
+
+
+|         Type de doc          |     Qui l'écrit      | Qui la lit  |                           Remarque                           |
+| :--------------------------: | :------------------: | :---------: | :----------------------------------------------------------: |
+|    Documentation de code     |     Developpeur      | Developpeur | Clean Code : Il vaut mieux réécrire que documenter. C'est ce qu'on fait dans ce cours, donc pas besoin de javaDoc ou autre truc. Sauf si on écrit une lib. |
+|  Documentation utilisateur   |          ?           | Utilisateur | UX (ex: Call to action) (ce qui est bien c'est le how to dans l'appli) |
+| Documentation d'installation | DevOps, Dev/Sysadmin |   DevOps    |                                                              |
+
+
+
+> Lire HooKed (petit bouquin jaune)
+
+
+
+## Sixième artefact : Release
+
+
+
+Qu'est-ce qu'une release ? Le prduit pret à être installé (serveur/utilisateur). En gros, fichier zip avec un script d'installation.
+
+1. Construire le fichier Zip
+2. Faire le script d'installation
+3. Déposer le fichier sur une page
+
+### Le script deploy.sh
+
+> .sh $\rightarrow$ machine linux
+
+1. Le deploy va devoir installer toute les dépendances. `apt get install ..`
+2. On met les fichiers au bon endroit `cp ./src/app/apache /www`
+3. mysql start, on démarre la base de donnée
+4. mysql_client ./src/bd/start.sql On créé la table dans la base de donnée
+5. Démarrer apache
+6. Démarre nginx
+
+> On va être jugé sur ce script. Toute les semaine, il prend des équipes au hasard, et lance la release.
+
+
+
+Mais on va faire ça dans un conteneur, docker.
+
+### Docker
+
+On va donc faire un script docker à la place du *deploy.sh*.
+
+Docker-Compose: C'est un fichier .yml
+
+
+
+### Points de contrôle sur la release
+
+* Il faut absolument une page sur laquelle on peut télécharger la release. Et aussi les anciennes release
+* Chaque release a une date de sortie, et la liste des issues réalisées.
+* SemVer: C'est la manière de numéroter. Majeur, Mineur, Patch
