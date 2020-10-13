@@ -252,3 +252,58 @@ let f = fun x -> a + x;;
 (* Changer a ne change pas le comportement de f *)
 ```
 
+Remarque : Si une ref est capturé dans une fermeture, le ramasse-miette ne peux pas travailler.
+
+Si on a les notions de fermeture, et d'impératife, on a possiblement une notion d'objets avec états.
+
+
+
+## Techniques de programmation fonctionnelle
+
+### Utilisation des $\lambda-expression$
+
+Propriété 2 de la première classe implique les $\lambda-expression$. C'est la forme anonyme d'une fonction. Mais également la propriété 3, qui permet l'insertion rapide de code. Ça permet la simplification de l'architecture.
+
+Inconvénients : 
+
+1. Manque de réutilisabilité, pas de nom.
+2. Destructuration du code, car les lambda expression apparaissent partout.
+
+Il y a une règle implicite, les $\lambda-exp$ sont courtes.
+
+### Curryfication et les l'applications partielles
+
+Quand les fonctions sont longues, n argument, on peut les voire comme n fonctions unaire emboitées (Propriété 4 et 1). Prenons la fontion binaire : `fun (x, y) -> x + y`, on va faire `fun x -> (fun y -> x + y)`.
+
+```ocaml
+let f1 x y = x + y + 1;;
+
+let f_partial = f1 3;; (* partial application *)
+f_partial 4;; (* 8 *)
+```
+
+Il y a un inconvénient : Il faut composer dans un certain ordre. Pour résoudre ce problème, on peut utiliser l'inversion `let inv f x y = f y x;;`. En ocaml, on peut aussi mettre un label sur les paramètres pour pouvoir les cibler directement.
+
+
+
+### Généralisation fonctionnelles
+
+On transforme 
+
+```javascript
+function twiceSqrt(x) {
+    return sqrt(sqrt(x));
+}
+```
+
+en
+
+```javascript
+function twiceGen(g, x) {
+    return g(g(x));
+}
+```
+
+
+
+Une fonction générique est une fonction dont le type est générique. La fonction identitée `let id x = x;;` Comment typer x ? $'a$.

@@ -297,3 +297,225 @@ Exemple de format existant:
 1. SequenceFileInputFormat/SequenceFileOutputFormat: Format binaire de stockage <key, value>, beaucoup plus performant que le format texte. A privilégier pour stocker les données dans HDFS.
 2. TableOuputFormat/TableInputFormat: Format d'entrée sortie poru lire et écrire dans la base de données NoSQL HBase fournit dans l'écosystème hadoop.
 3. DBInputFormat/DBOuputFormat : Format d'entrée sortie vers des bases de données SQL.
+
+
+
+## Patterns
+
+### Résumé
+
+Ce pattern simple conciste à envoyer un *résumé* des informations aux reducers, c'est à dire un couple `<clé, résuméTemporaire>`. Les reducers s'occupent de faire le calcul finale. Ça fonctionne bien pour des trucs style moyennes, max, min. Mais dans certain cas ce n'est pas possible de faire un résumé, par exemple dans le cas de la médiane. Dans ce cas les mappers *compressent* les données, avec par exemple un histogramme.
+
+
+
+### Filtrage
+
+#### Simple
+
+Le mapper peut être utilisé directement comme un filtre. Il suffit de ne pas renvoyer les `<key, value>` qu'on ne veut pas garder. Ni besoin de combiner, ni de reducer pour ce type de filtrage simple. 
+
+
+
+#### Top K
+
+On veut sélectionner les K plus grands/petits/... éléments d'un ensemble. On attends de tout recevoir, puis dans le cleanup on envoit les données intéressantes
+
+
+
+#### Element distinct
+
+Pour supprimer les doublons, il suffit de tirer parti du *shuffling* réalisé par hadoop.
+
+```java
+public static class DistincMapper extends Mapper<Object, Text, Text, NullWritable> {
+    public void Map(Object key, Text value, Context context) throws Exception {
+        context.write(value, NullWritable.get());
+    }
+}
+
+public static class DistinctReducer extends Reducer<Text, NullWritable, Text, NullWritable> {
+    public void reduce(Text key, Iterable<NullWritable> values, Context context) throws Exception {
+        context.write(key, NullWritable.get());
+    }
+}
+```
+
+
+
+### Jointures
+
+(voire diapo du prof, y'a des jolies shémas)
+
+
+
+Pour pouvoir faire ces jointures dans hadoop, nous allons utiliser les **Multiple InputFormat**.
+
+```java
+public static void main(String[] args) throws Exception {
+    Configuration conf = getConf();
+    Job job = Job.getInstance(conf, "MultipleInputExemple");
+    job.setJarByClass(PostCommentBuildingDriver.class);
+    
+    MultipleInputs.addInputPath(
+    	job,
+    	new Path(args[0], InputFormat1.class, MapperA.class)
+    );
+    
+    MultipleInputs.addInputPath(
+    	job,
+    	new Path(args[1], InputFormat2.class, MapperB.class)
+    );
+    
+    MultipleInputs.addInputPath(
+    	job,
+    	new Path(args[2], InputFormat3.class, MapperC.class)
+    );
+    
+    job.setReducerClass(Reducer.class);
+    job.setOutputFormatClass(OutputFormat.class);
+    TextOutputFormat.setOutputPath(job, new Path(args[N + 1]));
+    job.setOutputValueClass(Text.class);
+    job.setOutputValueClass(Text.class);
+    
+    System.exit(job.waitForCompletion(true)? 0:2);
+}
+```
+
+
+
+#### Reduce side join
+
+Le principe du reduce side join est de se servir d'un MultipleInput pour lire simultanément plusieurs fichiers et utiliser le mécanisme de distribution de message pour regrouper les entrées qui partagent une même clé. La jointure est ensuite faite complètement dans le reducer. Toutes les données sont donc transférées sur les reducers.
+
+```java
+public static class MapperA extends Mapper<Object, Text, Text, Text> {
+    private Text outkey = new Text();
+    private Text outvalue = new Text();
+    
+    public void map(Object key, Text value, Context context) throws Exception {
+        outkey.set(GETKEY(value));
+        outvalue.set("A" + GETVALUE(value));
+        
+        context.write(outkey, outvalue);
+    }
+}
+
+public static class MapperB extends Mapper<Object, Text, Text, Text> {
+    private Text outkey = new Text();
+    private Text outvalue = new Text();
+    
+    public void map(Object key, Text value, Context context) throws Exception {
+     	outkey.set(GETKEY(value));
+        outvalue.set("B" + GETVALUE(value));
+        
+        context.write(outkey, outvalue);
+    }
+}
+```
+
+```java
+if (joinType.equalsIgnoreCase("inner")) {
+    if (!listA.isEmpty() && !listB.isEmpty()) {
+        for (Text A : listA)
+            for (Text B : listB)
+                context.write(A, B);
+    }
+}
+
+else if (joinType.equalsIgnoreCase("leftouter")) {
+    for (Text A : listA) {
+        if (!listB.isEmpty()) {
+            for (Text B : listB) {
+                context.write(A, B);
+            }
+        } else {
+            context.write(A, EMPTY_TEXT);
+        }
+    }
+}
+```
+
+
+
+#### Replicated Join
+
+Le principe du replicated join est d'effectuer la jointure uniquement dans les mappers. Pour cela, il faut impérativement que toutes les tables à joindre sauf une rentre en mémoire des mappers. Cette technique ne s'applique qu'à l'inner join ou au left outer join.
+
+```java
+public static class ReplicatedJoinMapper extends Mapper<Object, Text, Text, Text> {
+    private HashMap<String, String> userIdToInfo = new HashMap<>();
+    private String joinType = null;
+    
+    public void setup(Context context) throws Exception {
+        Path[] files = DistributedCache.getLocalCacheFiles(context.getConfiguration());
+      
+        for (Path p : files) {
+            BufferedReader rdr = new BufferedReader(new InputStreamReader(new GZIPInputStream(new FileInputStream(new File(p.toString())))));
+            String line = null;
+            
+            while ((line = rdr.readLine()) != null) {
+                // Parse the line...
+                String userId = pared.get("id");
+                userIdToInfo.put(userId, line); // Attention, dans ce cas clef unique.
+            }
+        }
+    }
+    
+    public void map(Object key, Text value, Context context) throws Exception {
+        parsed = // split the line;
+        String userId = parsed.get("UserId");
+        String userInformation = userIdToInfo.get(userId);
+        
+        if (userInformation != null) {
+            outvalue.set(userInformation);
+            context.write(value, outvalue);
+        } else if (joinType.equalsIgnoreCase("leftouter")) {
+            context.write(value, new Text());
+        }
+    }
+}
+```
+
+
+
+#### Composite join
+
+> Plein de trucs bizarre, pas sure que ce soit à jour tout ça
+
+Le principe du composite join est de préparer les données avant le split. Chaque table doit être triée et découpée en un même nombre de partitions. Ce pattern permet de faire des Inner join et des full join très efficaces. On utilise ensuite un CompositeInputFormat pour faire la jointure. Le composite input format fait le merge des deux inputs splits et renvoie les RecordReader qui renvoient un tuple au mapper.
+
+
+
+```java
+public static void main(String[] args) throws Exception {
+    Path userPath = new Path(args[0]);
+    Path commentPath = new Path(args[1]);
+    Path outputDir = new Path(args[2]);
+    
+    String joinType = args[3];
+    
+    JobConf conf = new JobConf("CompositeJoin");
+    conf.setJarByClass(CompositeJoinDriver.class);
+    conf.setMapperClass(CompositeMapper.class);
+    conf.setNumReduceTasks(0);
+    conf.setInputFormat(CompositeInputFormat.class);
+    conf.set("mapred.join.expr", CompositeInputFormat.compose(joinType, KeyValueTextInputFormat.class, userPath, commentPath));
+    TextOutputFormat.setOutputPath(conf, outputDir);
+    conf.setOutputKeyClass(Text.class);
+    conf.setOutputValueClass(Text.class);
+    RunningJob job = JobClient.runJob(conf);
+    
+    while(!job.isComplete()) {
+        Thread.sleep(1000);
+    }
+    
+    System.exit(job.isSuccessfull()? 0:1);
+}
+
+public static class CompositeMapper extends MapReduceBase implements Mapper<Text, TupleWritable, Text, Text> {
+    public void map(Text key, TupleWritable value, OuputCollector<Text, Text> output, Reporter reporter) throws Exception {
+        output.collect((Text) value.get(0), (Text) value.get(1));
+    }
+}
+```
+

@@ -142,3 +142,97 @@ let counter = function(init = 0) {
 ```
 
 Prototype : Référence à un autre objet.
+
+
+
+> Projet : SPA avec un framework côté front (Angular/React/Vue/...), une api rest en swagger ?, en java ou node, une bdd, utiliser un service thier, authentification de l'user.
+
+## Backend
+
+### Java
+
+#### Servlet
+
+```java
+import javax.servlet.*;
+import javax.servlet.http.*;
+import javax.servlet.annotation.*;
+
+public class HelloServlet extends HttpServlet {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setContentType("text/html");
+        PrintWriter out = resp.getWriter();
+        
+        out.println("<html>");
+        out.println("<body>");
+        out.println("<p> Hello world !</p>");
+        out.println("</body>");
+        out.println("</html>");
+    }
+}
+```
+
+Les servlets nécessitent un conteneur de servlets qui se charge de la gestion des servlets:
+
+- Gestion des noms des servlets
+- Création et initialisation des servlets
+- Suppression des servlets
+
+Avant, il fallait un fichier web.xml, maintenant il suffit d'avoir une annotaion `@WebServlet`
+
+```java
+@WebServlet(urlPatterns="/foo")
+public class HelloServlet extends HttpServlet {
+    ...
+}
+```
+
+
+
+```xml
+<servlet>
+    <servlet-name>HelloWorld</servlet-name>
+    <servlet-class>fr.u...</servlet-class>
+</servlet>
+
+<servlet-mapping>
+    <servlet-name></servlet-name>
+	<servlet-path></servlet-path>
+</servlet-mapping>
+```
+
+Il y a une seule instance par servlet. Le code va être multi-threadé, un thread par requête. C'est géré par le conteneur de servlet. Donc problème de concurrence. 
+
+Si y'a un fichier web.xml et des annotations, c'est le fichier web.xml qui est prioritaire
+
+On peut déléguer à un autre servlet
+
+```java
+request.getRequestDispatcher("/servlet1").forward(request, response);
+```
+
+Ce n'est pas la même chose qu'une redirection
+
+```java
+response.sendRedirect("http://..");
+```
+
+
+
+On peut conserver des objets dans des sessions.
+
+```java
+HttpSession session = request.getSession();
+sessuib.setAttribute("p1", val);
+```
+
+
+
+```java
+HttpSession session = request.getSession(); // true, la créé si elle n'existe pas
+Type1 v1 = (Type1) session.getAttribute("p1");
+```
+
+
+
+Il existe une Servlet session API. Elle permet de récupérer un objet HttpSession à partir de la requête (HttpServletRequest). L'objet HttpSession est une hashmap java. 
