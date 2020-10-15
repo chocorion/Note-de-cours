@@ -366,3 +366,61 @@ Docker-Compose: C'est un fichier .yml
 * Il faut absolument une page sur laquelle on peut télécharger la release. Et aussi les anciennes release
 * Chaque release a une date de sortie, et la liste des issues réalisées.
 * SemVer: C'est la manière de numéroter. Majeur, Mineur, Patch
+
+
+
+## Phase 2 : Projet
+
+Objectif : Réaliser un outil pour gérer la production logicielle (à la scrum)
+
+Le jury est pris en compte dans la note, 40%. Il va voire défiler les mêmes projets en boucle. Il faut donc être original. Il faut pas juste faire du *CRUD*.
+
+* Gestion des issues : Doit permettre la gestion des user story. Tous les points vues en courts doivent être respectés. Cette issue doit être réalisé, il faut aussi qu'on puisse trouver la release qui implémente l'issue. Est-ce qu'elle a été testé ? et quand. Story point et id unique.
+* Gestion des tâches : Doit permettre l'affectation, le suivi, la création, savoir dans quel sprint on est, la planification. Savoir quel est le reste à faire. DOD (générer un pert ?)
+* Gestion des releases : Avoir les release téléchargeable.
+* Gestion des tests : Test end to end. Il veut voir les tests, quand est-ce qu'ils ont été rréalisés..
+* Gestion de la documentation : Lien vers le doc d'install et la doc utilisateur
+
+Pas de gestion du code, pas de gestion de git. Product owner = équipe pédagogique. Pas de gestion d'équipe, pas d'authentification, pas de gestion de droit, on s'en fout.
+
+
+
+Contraintes : 
+
+* Équipe de 3 random
+* Un channel slack par équipe
+* Un dépot git pour les releases "épinglé"
+* Un dépot git pour le de "épinglé"
+* Channel vide = 0 activité. Pas de commit = 0 activité. 0 activité = 0 implication
+
+Pas de git privé.
+
+
+
+Mise en abime:
+
+* BackLog : Readme à la racine du dépôt release
+* Sprints : SprintX.md (X étant le numéro du sprint) à la racine du dépôt release
+* Tâches : TaskX.ml (X étant le numéro du sprint) à la racine du dépôt release
+* Release: Release.ml à la racine du dépôt release
+* Documentation: Documentation.md à la racine du dépot release
+
+
+
+WE et vacances, concidérés comme non travaillé
+
+Sprint 1 après les vacances ->  Faire tasklist. 
+
+Après les premiers sprint, on peut changer d'outil.
+
+
+
+Sprint 0 : Vendredi 23 octobre (issues, planification, architecture, docker, archi)
+
+Sprint 1: 2 novembre au 13 novembre (issues, task, code, test, release)
+
+Sprint 2: 16 novembre vendredi 27 novembre
+
+Sprint 3: 30 novembre au 11 décembre.
+
+Fin de sprint: mesurer la vélocité. Burn Down Chart
