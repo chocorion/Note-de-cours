@@ -236,3 +236,121 @@ Type1 v1 = (Type1) session.getAttribute("p1");
 
 
 Il existe une Servlet session API. Elle permet de récupérer un objet HttpSession à partir de la requête (HttpServletRequest). L'objet HttpSession est une hashmap java. 
+
+
+
+### JAX-RS
+
+
+
+Nous permet d'avoir un service REST. C'est basé sur l'utilisation des POJO avec des annotations spécifiques. Pas de description requise dans les fichiers de conf.
+
+
+
+Exemple d'un service rest helloworld. Ici, le nom de la classe et des méthodes n'a pas d'importance.
+
+```java
+@Path("/hello")
+public class HelloWorldResource {
+    @GET
+    @Produces("text/plain")
+    public String getHelloWorld() {
+        return "Hello world from text/plain";
+    }
+}
+
+@Path("/book")
+public class BookResource {
+    @Path("secondPath")
+    @GET
+    public String getSecond() {
+        return "";
+    }
+    
+    @GET
+    @Path("{id}")
+    public String getBookById(@PathParam("id") int id) {
+        return "Hop, " + id;
+    }
+    
+    @GET
+    @Path("name-{name}-editor-{editor}")
+    pubilc String getBookByNameAndEditor(@PathParam("name") String name, @PathParam("editor") String editor) {
+        return name + ' - ' + editor;
+    }
+    
+    @GET
+    @Path("hop")
+    public String getQueryParameter(
+    	@DefaultValue("all") @QueryParam("name") String name	
+    ) {
+        return "";
+    }
+    
+    @Post
+    @Path("createfromform")
+    @Consumes("application/x-www-form-urlencoded")
+    public String createBookFromForm(
+        @FormParam("name") String name
+    	@HeaderParam("isbn") String isbn // Permet de lire des trucs dans le header
+    ) {
+        return name;
+    }
+}
+```
+
+
+
+On peut récupérer le context en paramètre en utilisant des trucs du style `(@Context HttpHeader httpHeader)`. L'annotationi consumes est utilisée pour spécifier le ou les types MIME qu'une méthode d'une ressource peut accepter. L'annotation Produces est utilisée poru spécifier le ou les types MIME qu'une méthode d'une ressource peut produire. Il est possible de définir un ou plusieurs types MIME. Ces annotaitons peuvent porter sur la classe ou une méthode. Celle de la méthode surcharge celle de la classe. On peut trouver les types MIME dans `MediaType`.
+
+
+
+On peut convetir automatiquement un objet java en représentation xml et inversement, avec `jaxb`. On peut faire la même chose avec du json avec `jackson`.
+
+```java
+@JsonPrepertyOrder({"name", "isbo"})
+public class Book {
+    @JsonProperty("book_name");
+    protected String name;
+    
+    ...
+}
+```
+
+
+
+
+
+```java
+public class BookResource {
+    @GET
+    @Path("ok")
+    public String getBook() {
+	    return Response.status(Response.Status.OK).entity("Java for life").build();    
+    }
+}
+```
+
+
+
+
+
+
+
+
+
+# Projet
+
+
+
+Front : Js html css, avec un framework React/Angular/Vue/ ou autre chose mais il faut en parler au prof. SPA. On demande pas que se soit jolie, mais pas du web des années 90 non plus.
+
+Back: Implémenté en Java ou NodeJs, expose une api rest utilisée par le front. Cette api devra être décrite en openAPI. Donc générer une documentation propre (swagger). L'application doit permettre l'authentification des utilisateurs, mettre en oeuvre un base de donnée (relationnelle ou pas).
+
+Il faut utiliser une autre api tierce, utilisée par le front ou le back (par exemple map, service de stockage en ligne, ...)
+
+
+
+
+
+Chaque groupe aura 8min pour présenter juste la partie api, donc présenter l'application et faire un focus sur l'api. Il faudra rendre dimanche avant le cours la doc de l'api. Il faudra expliquer la philosophie de l'api, quelles sont les routes, quelles sont celles qui sont authentifier ou pas, la gestion des erreurs.
