@@ -354,3 +354,202 @@ Il faut utiliser une autre api tierce, utilisée par le front ou le back (par ex
 
 
 Chaque groupe aura 8min pour présenter juste la partie api, donc présenter l'application et faire un focus sur l'api. Il faudra rendre dimanche avant le cours la doc de l'api. Il faudra expliquer la philosophie de l'api, quelles sont les routes, quelles sont celles qui sont authentifier ou pas, la gestion des erreurs.
+
+
+
+
+
+## NodeJs
+
+```javascript
+const express = require('express');
+const app = experss();
+
+app.get('/', (req, res) => {
+    res.send('hello world');
+})
+
+app.listen(3000, () => {
+    console.log('Serveur démarré');
+})
+```
+
+```javascript
+app.get('/example', (req, res, next) => {
+    console.log('chainage des handlers');
+    next();
+}, (req, res) => {
+    res.send('hello world !');
+});
+```
+
+L'ordre des routes est important. Il faut mettre les routes les plus génériques en dernières.
+
+```javascript
+res.send('hello');
+res.status(404).end();
+res.status(404).send('product not found');
+res.json(json_object);
+res.redirect(301, 'http://example.com')
+```
+
+
+
+Récupération des paramètres : 
+
+```javascript
+// /?prenom='coucou'
+app.get('/', (req, res) => {
+    res.send(req.query.prenom);
+})
+
+app.get('/:prenom/:nom', (req, res) => {
+    let prenom = req.params.prenom;
+    
+    // accès aux headers
+    req.get('user-agent')
+})
+
+app.post('/login', (req, res) => {
+    res.json(req.body);
+})
+```
+
+Utilisation d'un middleware pour pouvoir rendre disponible les fichiers (par exemple style.css).
+
+```javascript
+app.use(express.static("public"))
+```
+
+
+
+Supervision : 
+
+Pour redémarrer automatiquement le serveur losqu'un changementa été effectué sur un des fichiers du projet:
+
+* Forever
+* nodemon
+* pm2
+* supervisor
+
+
+
+Outils pour réaliser des requêtes : curl, postman, insomnia.
+
+
+
+NodeJs permet de charger des modules common js à travers des modules. Un module = un fichier.Par défaut, tout est privé dans un module. Il faut le spécifier pour que ce soit publique.
+
+```javascript
+module.exports = 'Hello World'
+module.exports = (req, res) => {
+    res.send('Hello world !');
+}
+
+function printHello() {
+    
+}
+
+function printWorld() {
+    
+}
+
+module.exports.printHello = printHello;
+module.exports.printWorld = printWorld
+```
+
+```javascr
+require('./myModules/module1')
+```
+
+Il faut spécifier le chemin, sinon il va chercher dans `node_modules`
+
+
+
+Middleware
+
+
+
+Avec expressJs, toutes les fonctions qui ont comme argument la fonction next ou non sont appelés middleware.
+
+```javascript
+function checkAuth(req, res, next) {
+	if(req.get("API_KEY"))
+		next();
+	else
+		res.send("Error: Auth missing");
+}
+
+app.get("/", checkAuth, (req, res) => {
+    ...
+})
+```
+
+Il est donc possible de définir des middleware exécutés au début de chaque nouvelle requête, avec use.
+
+```javascript
+app.use(checkAuth);
+app.use("/user/:id", checkAuth);
+```
+
+
+
+Requêtes avec données dans le body :
+
+Body parser est un middleware
+
+`$> npm instasll body-parser`
+
+```javascript
+const bodyParser = require("body-parser")
+app.user(bodyParser.json()) //content-type : application.json
+
+app.user(bodyParser.urlencoded({extended: false}))// content-type : application/x-www-form-urlencoded
+
+app.post('/products', (req, res) => {
+    product = {
+        name: req.body.name,
+        price: req.body.price
+    }
+    
+    res.json(product);
+})
+```
+
+
+
+## mongoDb
+
+Base de donnée orientée document. Pas de clef étrangère ni de jointure. 
+
+`$> mongod`
+
+show dbs
+
+use NomDB
+
+show collections
+
+Pour l'utiliser dans node, installation du driver de base : 
+
+`$> npm install mongodb --save`
+
+> il est passé vite, voir le diapo
+
+```javascript
+const client = require ('mongodb').MongoClient
+const url = 'mongodb://localhost:27017/maDb'
+
+const collection = 
+```
+
+
+
+15 min (plutôt 10, pour avoir le temps de faire les questions), quelques transparent (une dizaine), décrire le sujet, qu'est-ce que fait le front, qu'est-ce que fait le back. Décrire l'api, écrite en swagger (génération de page web qui explique l'api). Dire qu'elle est l'api tierce qu'on va utiliser (soit front, soit back).
+
+Faudra rendre sur moodle, un pdf qui est la dersciption du projet, et la documentation swagger de l'api (le fichier json généré par swagger).
+
+Documents à rendre dans 15 jours. présentation lundi 9 et lundi 16. Rendu lundi 20.
+
+Le but c'est que l'api n'est pas besoin d'évoluer à partir du 20.
+

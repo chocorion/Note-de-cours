@@ -307,3 +307,43 @@ function twiceGen(g, x) {
 
 
 Une fonction générique est une fonction dont le type est générique. La fonction identitée `let id x = x;;` Comment typer x ? $'a$.
+
+La généralisation nous permet de structurer le code :
+
+1. separation of concerns
+2. factorisation du code
+
+
+
+### Décorateur fonctionnels (around function)
+
+Exemple avec la mémoisation : 
+
+```python
+def memoize(f):
+    mem = {}
+    def wrap():
+        if x not in mem:
+            mem[x] = f(x)
+            print("compute")
+         return mem[x]
+    return wrap
+
+@memoize
+def fibo(x):
+    if x < 2:
+        return 1
+   return fibo(x - 1) + fibo(x - 2)
+```
+
+
+### Stratégie fonctionnels
+
+En gros l'exo 2 du td 4
+
+### Généralisations pour la gestion de données
+
+1. constructeurs
+2. filtres
+3. map
+4. fold/reduce

@@ -424,3 +424,36 @@ Sprint 2: 16 novembre vendredi 27 novembre
 Sprint 3: 30 novembre au 11 décembre.
 
 Fin de sprint: mesurer la vélocité. Burn Down Chart
+
+
+
+
+
+## Architecture
+
+Identification des gros modules d'un logiciel et de leurs intéractions.  Il y a 2 objectifs principaux : 
+
+* Organiser les développeurs
+* Rapide et solide
+
+
+
+### L'architecture classique 3-tiers
+
+Architecture à l'ancienne, un container avec une bdd, un autre avec le serveur applicatif, puis tous les utilisateurs qui communiquent avec le serveur applicatif, qui lui même communique avec la base de donnée. Le gros avantage, c'est la sécurité des données.
+
+L'inconvénient, c'est que c'est moins rapide. Il y a plusieurs sauts. Ui ver Métier, Métier vers Data. Autre problème, surcharge du serveur. Solution : acheter un meilleur serveur.
+
+Le prof il veut nginx qui fait du load balancing, avec un cluester pour la bdd. Et tuer des containers en démo.
+
+
+
+### Web Service
+
+Pas une seule application, mais par exemple deux. Une pour la gestion des issues, une autre pour la gestion des tasks. Il y aura un serveur portail qui lui ira tapper dans les deux services.
+
+
+
+### Micro-service
+
+un appli par utilisateur, problème de synchro entre les bdd.
